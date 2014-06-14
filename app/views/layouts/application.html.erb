@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>School</title>
+  <title><%= @title %></title>
   
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id=header-wrapper>
-      <a href="#"><img id=logo src="/assets/logo.jpg"> </a>
+<div id=main-wrapper>
+  <div id=header-wrapper>
+      <a href="/"><img id=logo src="/assets/logo.jpg"> </a>
     </div><!-- end of header-wrapper -->
     <div id=nav>
      	  <ul class=landmark-menu>
-	    <li ><a href="#">First</a> </li>
-	    <li ><a href="#">Second</a></li>
-	    <li ><a href="https://www.youtube.com/watch?v=Ct4pdA5_4AY">Third</a></li>
+	    <li ><a href="/">Home</a></li>
+	    <li ><a href="/courses">Courses</a></li>
+	    <li ><a href="/curricula">Curricula</a></li>
+	    <li ><a href="/services">Services</a></li>
+	    <li ><a href="/structures">Structures</a></li>
+	    <li ><a href="/events">Events</a></li>
 	  </ul>
     </div>
     <div id=page-wrapper>
@@ -41,8 +45,18 @@
       </div>
 
 
-    <div id=footer-wrapper>footer
+    <div id=footer-wrapper>
+	<div id=nav>
+	     	  <ul class=landmark-menu>
+		    <li ><a href="/bureaucracy">Bureaucracy</a></li>
+		    <li ><a href="/mission">Mission</a></li>
+		    <li ><a href="/history">History</a></li>
+		    <li ><a href="/awards">Awards</a></li>
+		    <li ><a href="/how_to_get_there">How to reach</a></li>
+		    <li ><a href="/contacts">Contacts</a></li>
+		</ul>
+	</div>
     </div>
-
+</div>
 </body>
 </html>

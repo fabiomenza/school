@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 	# Landmarks
-	get 'curricula' => 'curricula#view'			# Tutti i curriculum
+	get 'curricula' => 'cirricula#view'			# Tutti i curriculum
 	get 'courses' => 'courses#view'				# Tutti i corsi
 	get 'services' => 'services#view'			# Tutti i servizi
 	get 'contacts' => 'contacts#view'			# Contatti
