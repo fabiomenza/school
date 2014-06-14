@@ -18,6 +18,8 @@ class CourseController < ApplicationController
   end
 
 
+
+
   def build_links
 	structural_links
 	semantic_links

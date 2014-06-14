@@ -1,2 +1,9 @@
-<h1>Teacher#view</h1>
-<p>Find me in app/views/teacher/view.html.erb</p>
+<h1><%= @name %></h1>
+<img src="<%= @photo %>" alt="<%= @name %>" style="float:left" width="250" height="300">
+<p><%= @description %></p>
+<h2><%= @name %>'s courses</h2>
+<ul>
+<% @courses.each do |element| %>
+	  <li><a href="<%= element[:url] %>"><%= element[:name] %></a></li>
+<% end %>
+</ul>
