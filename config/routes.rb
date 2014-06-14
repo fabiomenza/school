@@ -26,15 +26,15 @@ Rails.application.routes.draw do
 	get 'teacher/:id' => 'teacher#view'
 	get 'teacher/:id/curriculum' => 'teacher#curriculum'
 
-	# Curricula pages
+	# Curriculum pages
 	get 'curriculum/:id' => 'curriculum#view'
 	get 'curriculum/:id/work_opportunity' => 'curriculum#work_opportunity'
 
 	# News pages
 	get 'news/:id' => 'news#view'
 
-	# Materials pages
-	get 'materials/:id' => 'materials#view'
+	# Material pages
+	get 'material/:id' => 'material#view'
 
 	# Exams pages
 	get 'exam/:id' => 'exam#view'
