@@ -29,16 +29,36 @@
 
       </div>
 	  <div id=sidebar-right>
-	    <div id=structural-block>structural links
+	    <div id=structural-block>
 	      <ul class=menu>
-		<li ><a href="#">First</a> </li>
-		<li ><a href="#">Second</a></li>
-	      </ul>
-	    </div> 
-	    <div id=semantic-block> semantic links
-	      <ul class=menu>
+<% 
+if @struct_links
+	@struct_links.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
+<%	end 
+else
+%>
 			<li ><a href="#">First</a> </li>
 			<li ><a href="#">Second</a></li>
+<%
+end
+%>
+	      </ul>
+	    </div> 
+	    <div id=semantic-block>
+	      <ul class=menu>
+<% 
+if @semant_links
+	@semant_links.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
+<%	end 
+else
+%>
+			<li ><a href="#">First</a> </li>
+			<li ><a href="#">Second</a></li>
+<%
+end
+%>
 	      </ul>
 	    </div>
 	</div>

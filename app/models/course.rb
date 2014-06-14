@@ -5,4 +5,5 @@ class Course < ActiveRecord::Base
   has_many :exam
   has_one :classroom
   has_many :news
+
 end
