@@ -13,3 +13,204 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,body
+{
+    margin:0;
+    padding:0
+}
+
+
+/* Main wrapper contiene tutta la pagina
+ * e ne determina le dimensioni base 
+ * La larghezza e' comune a tutti.
+ * Le lunghezze sono specificate per:
+ * #header-wrapper:
+ * #nav
+ * #page-wrapper
+ * #footer-wrapper
+ * 
+ */
+#main-wrapper{
+  width:1000px;
+  margin:auto; 
+
+}
+
+#header-wrapper{
+/*   border: 1px solid blue; */
+  height:200px;
+  /*this is necessary for later positioning of the landmark-menu!*/
+  background-image:url(/assets/header-img.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#nav{
+  
+  background-color: #333333;
+  height:35px;
+  width: 100%;
+}
+
+#page-wrapper{
+  /*border: 1px solid green;  */ 
+  width: 100%;
+  height:800px;
+
+}
+
+
+#footer-wrapper {
+  clear:both;
+  border: 1px solid green;   
+  height:50px;
+}
+
+
+#sidebar-right,#content{
+  height:100%;
+}
+
+
+#sidebar-right{
+  border: 1px solid green;   
+  width: 25%;
+  float:right;
+}
+
+#content{
+  border: 1px solid purple;    
+  float:left;
+  width:75%;
+
+}
+
+
+
+#structural-block,#semantic-block {
+  border: 1px solid black;
+  width: 80%;
+  height: 100px;
+  margin: 20px auto 40px;
+
+}
+
+
+
+
+
+
+/*prove per gli elementi dei menu!
+ * 
+*/
+
+.menu{
+  border: 1px solid green;
+  width: 100%;
+  margin: 0px;
+ 
+  
+  
+}
+
+
+ul.menu {
+  list-style-type: none;
+  list-style-position:inside;
+  margin:0;
+  padding:0; 
+  
+}
+
+ul.menu >li{
+
+/*   text-align: center; */
+ 
+}
+
+
+ul.menu >li a{
+ display:block;
+ border: 1px solid red;
+ margin: 5px 5px;
+ width: 95%;
+ 
+ text-decoration: none;
+ 
+ color:black; 
+  
+  
+}
+
+ul.menu >li a:hover {
+  font-weight: bold;
+  
+}
+
+/*
+ * Settings fo the landmark menu
+ */
+
+
+ul.landmark-menu {
+  list-style-type: none;
+  width:35 px;  
+  margin:0;
+  padding: 0;
+
+  
+  
+}
+
+
+ul.landmark-menu > li {
+ 
+ float:left;
+ 
+}
+
+ul.landmark-menu > li > a{
+  display:block;
+  text-decoration:none;
+  
+  color: white;
+  background-color: #333333;
+  
+  margin:0px 1px 0px 0px;
+  padding:10px; 
+  
+  width:80px;
+  height:35px;
+  text-align: center;
+}
+
+ul.landmark-menu li a:hover{
+  font-weight:bold;
+  background-color: #AAAAAA;
+  
+}
+
+
+
+
+/*
+ * Logo
+ */
+
+#logo{
+  float:left;
+  width: 80px;
+  margin: 30px ;
+  border: 1px solid purple;
+
+}

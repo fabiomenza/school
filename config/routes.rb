@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	
+
 	# Landmarks
 	get 'curricula' => 'cirricula#view'			# Tutti i curriculum
 	get 'courses' => 'courses#view'				# Tutti i corsi

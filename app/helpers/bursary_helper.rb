@@ -1,0 +1,2 @@
+module BursaryHelper
+end
