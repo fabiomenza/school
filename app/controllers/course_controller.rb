@@ -27,7 +27,7 @@ class CourseController < ApplicationController
   def structural_links
 	c = Course.find(params[:id])
 	@struct_links = Array.new
-	@struct_links << {:name => "Descrizione",:value => "/course/#{c.id}/"}
+	@struct_links << {:name => "Description",:value => "/course/#{c.id}/"}
 	@struct_links << {:name => "Syllabus",:value => "/course/#{c.id}/syllabus"}
 	@struct_links << {:name => "Timetable", :value => "/course/#{c.id}/timetable"}
   end

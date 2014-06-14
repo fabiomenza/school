@@ -1,4 +1,4 @@
 class Service < ActiveRecord::Base
-  has_many :structure
-  has_many :classroom
+  belongs_to :structure
+  belongs_to :classroom
 end

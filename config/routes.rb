@@ -58,6 +58,6 @@ Rails.application.routes.draw do
 	get 'event/:id/get_involved' => 'event#get_involved'
 	
 	# School's awards pages
-	get 'awards/:id' => 'awards#view'
+	get 'award/:id' => 'award#view'
 	
 end
