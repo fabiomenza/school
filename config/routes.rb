@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 	get 'course/:id' => 'course#view'
 	get 'course/:id/syllabus' => 'course#syllabus'
 	get 'course/:id/timetable' => 'course#timetable'
+	get 'course/:id/materials' => 'course#materials'
+	get 'course/:id/exams' => 'course#exams'
+	get 'course/:id/curricula' => 'course#curricula'
 	
 	# Teacher pages
 	get 'teacher/:id' => 'teacher#view'

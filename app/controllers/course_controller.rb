@@ -16,7 +16,34 @@ class CourseController < ApplicationController
   def timetable
 	build_links
   end
-
+  
+  def materials
+	c = Course.find(params[:id])
+	@name = @title = "Materials for " + c.name
+	@materials = Array.new
+	c.material.each do |mat|
+		@materials << {:name => "#{mat.name}",:value => "/material/#{mat.id}/"}
+	end
+	build_links
+  end
+  def exams
+	c = Course.find(params[:id])
+	@name = @title = "Exams for " + c.name
+	@exams = Array.new
+	c.exam.each do |exam|
+		@exams << {:name => "#{exam.name}",:value => "/exam/#{exam.id}/"}
+	end
+	build_links
+  end
+  def curricula
+	c = Course.find(params[:id])
+	@name = @title = "Curricula related to " + c.name
+	@curricula = Array.new
+	c.curriculum.each do |curriculum|
+		@curricula << {:name => "#{curriculum.name}",:value => "/curriculum/#{curriculum.id}/"}
+	end
+	build_links
+  end
 
 
 
@@ -35,9 +62,9 @@ class CourseController < ApplicationController
 	c = Course.find(params[:id])
 	@semant_links = Array.new
 	@semant_links << {:name => "#{c.teacher.firstname} #{c.teacher.lastname}",:value => "/teacher/#{c.teacher_id}/"}
-	@semant_links << {:name => "Materials",:value => "#"}
-	@semant_links << {:name => "Exams",:value => "#"}
+	@semant_links << {:name => "Materials",:value => "/course/#{c.id}/materials"}
+	@semant_links << {:name => "Exams",:value => "/course/#{c.id}/exams"}
 	@semant_links << {:name => "Classroom",:value => "/classroom/#{c.classroom_id}"}
-	@semant_links << {:name => "Curricula",:value => "#"}
+	@semant_links << {:name => "Curricula",:value => "/course/#{c.id}/curricula"}
   end
 end
