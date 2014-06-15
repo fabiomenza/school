@@ -1,2 +1,9 @@
-<h1>Services#view</h1>
-<p>Find me in app/views/services/view.html.erb</p>
+<ul>
+	<li><a href="#">Search service for type</a></li>
+</ul>
+<h2>All Services</h2>
+<ul>
+<% @services.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
+<% end %>
+</ul>

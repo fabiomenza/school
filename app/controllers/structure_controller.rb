@@ -10,7 +10,6 @@ class StructureController < ApplicationController
 	c = Structure.find(params[:id])
 	@title = @name = c.name
 	@map = c.map
-	# TODO load map urls
 	build_links
   end
 

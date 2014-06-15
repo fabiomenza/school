@@ -1,2 +1,9 @@
-<h1>Structures#view</h1>
-<p>Find me in app/views/structures/view.html.erb</p>
+<ul>
+	<li><a href="#">Search structure per type</a></li>
+</ul>
+<h2>All Structures</h2>
+<ul>
+<% @structures.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
+<% end %>
+</ul>

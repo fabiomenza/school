@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614172329) do
+ActiveRecord::Schema.define(version: 20140615102448) do
 
   create_table "awards", force: true do |t|
     t.string   "title"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140614172329) do
     t.integer  "structure_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "get_involved"
   end
 
   add_index "events", ["structure_id"], name: "index_events_on_structure_id"
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(version: 20140614172329) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "map"
   end
 
   create_table "teachers", force: true do |t|

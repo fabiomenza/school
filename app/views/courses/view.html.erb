@@ -1,2 +1,10 @@
-<h1>Courses#view</h1>
-<p>Find me in app/views/courses/view.html.erb</p>
+<ul>
+	<li><a href="#">Search for course's year</a></li>
+	<li><a href="#">Search for course's type</a></li>
+</ul>
+<h2>All Courses</h2>
+<ul>
+<% @courses.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
+<% end %>
+</ul>

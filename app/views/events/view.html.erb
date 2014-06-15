@@ -1,2 +1,10 @@
-<h1>Events#view</h1>
-<p>Find me in app/views/events/view.html.erb</p>
+<ul>
+	<li><a href="#">Search event per type</a></li>
+	<li><a href="#">Search event per date</a></li>
+</ul>
+<h2>All Events</h2>
+<ul>
+<% @events.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
+<% end %>
+</ul>
