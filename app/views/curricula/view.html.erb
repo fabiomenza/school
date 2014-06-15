@@ -1,2 +1,6 @@
-<h1>Curricula#view</h1>
-<p>Find me in app/views/curricula/view.html.erb</p>
+<h1>Curricula</h1>
+<ul>
+<% @curricula.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
+<% end %>
+</ul>

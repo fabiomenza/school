@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
   belongs_to :teacher
-  belongs_to :curriculum
+  has_and_belongs_to_many  :curriculum
   has_many :material
   has_many :exam
   has_one :classroom
