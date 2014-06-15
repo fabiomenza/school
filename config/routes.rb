@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+	
+	root to: "home#index"
 
 	# Landmarks
 	get 'curricula' => 'curricula#view'			# Tutti i curriculum
