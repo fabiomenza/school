@@ -16,7 +16,31 @@ class StructureController < ApplicationController
   def photogallery
 	c = Structure.find(params[:id])
 	@title = @name = c.name
-	# TODO load photo's urls
+	@photos = Array.new
+	c.photo.each do |photo|
+		@photos << {:name => "#{photo.name}",:value => "#{photo.url}"}
+	end
+
+	build_links
+  end
+  def events
+	c = Structure.find(params[:id])
+	@title = @name = "Events that take place in " + c.name
+	@events = Array.new
+	c.event.each do |event|
+		@events << {:name => "#{event.name}",:value => "/event/#{event.id}"}
+	end
+
+	build_links
+  end
+  def services
+	c = Structure.find(params[:id])
+	@title = @name = "Services available at " + c.name
+	@services = Array.new
+	c.service.each do |service|
+		@services << {:name => "#{service.name}",:value => "/service/#{service.id}"}
+	end
+
 	build_links
   end
 
@@ -36,7 +60,7 @@ class StructureController < ApplicationController
   def semantic_links
 	s = Structure.find(params[:id])
 	@semant_links = Array.new
-	@semant_links << {:name => "Events hosted",:value => "#"}
-	@semant_links << {:name => "Services available",:value => "#"}
+	@semant_links << {:name => "Events hosted",:value => "/structure/#{s.id}/events"}
+	@semant_links << {:name => "Services available",:value => "/structure/#{s.id}/services"}
   end
 end

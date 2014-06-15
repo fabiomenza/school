@@ -55,6 +55,8 @@ Rails.application.routes.draw do
 	get 'structure/:id' => 'structure#view'
 	get 'structure/:id/map' => 'structure#map'
 	get 'structure/:id/photogallery' => 'structure#photogallery'
+	get 'structure/:id/events' => 'structure#events'
+	get 'structure/:id/services' => 'structure#services'
 
 	# Events pages
 	get 'event/:id' => 'event#view'
