@@ -1,2 +1,6 @@
-<h1>Awards#view</h1>
-<p>Find me in app/views/awards/view.html.erb</p>
+<h1>School's Awards</h1>
+<ul>
+<% @awards.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a> - <i><%= element[:time] %></i></li>
+<% end %>
+</ul>
