@@ -1,5 +1,5 @@
 class Structure < ActiveRecord::Base
-  has_many :service
-  has_many :event
-  has_many :photo
+  has_many :service, inverse_of: :structure
+  has_many :event, inverse_of: :structure
+  has_many :photo, inverse_of: :structure
 end
