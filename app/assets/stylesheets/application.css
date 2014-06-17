@@ -70,7 +70,7 @@ html,body
 #footer-wrapper {
   clear:both;
   border: 1px solid green;   
-  height:50px;
+  height:80px;
 }
 
 
@@ -102,6 +102,14 @@ html,body
 
 }
 
+#credits {
+  border: 1px solid green;
+
+  height:50%;
+  
+
+
+}
 
 
 
@@ -197,7 +205,57 @@ ul.landmark-menu li a:hover{
   
 }
 
+/*
+Footers menu
 
+*/
+
+.landmark-footer-menu{
+  height:50%;
+  border: 1px solid green;
+}
+
+ul.landmark-footer-menu{
+
+  /*1 use to center the menu */
+  display: block; 
+  text-align:center;
+  /*1*/
+  
+  list-style-type: none;
+  list-style-position:inside;
+  
+  padding:0px 0px; 
+
+  margin:auto;
+  
+
+}
+
+ul.landmark-footer-menu >li{
+  /*2 use to center the menu items*/
+  display: inline-block;
+  /*2*/
+}
+
+ul.landmark-footer-menu >li >a{
+  
+  display:block;
+  text-decoration:none;
+  text-align: center;
+
+  color: black;
+  
+  padding:10px; 
+  width:130px;
+  
+}
+
+ul.landmark-footer-menu >li >a:hover{
+  
+  font-weight:bold;
+
+}
 
 
 /*

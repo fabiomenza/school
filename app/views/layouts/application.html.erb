@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%=  %><!DOCTYPE html>
 <html>
 <head>
   <title><%= @title %></title>
@@ -19,14 +19,7 @@
       <a href="/"><%= image_tag "logo.jpg", id: "logo" %> </a>
     </div><!-- end of header-wrapper -->
     <div id=nav>
-     	  <ul class=landmark-menu>
-	    <li ><%= link_to "Home", root_path %></li>
-	    <li ><%= link_to "Courses", courses_path %></li>
-	    <li ><%= link_to "Curricula", curricula_path %></li>
-	    <li ><%= link_to "Services", services_path %></li>
-	    <li ><%= link_to "Structures", structures_path %></li>
-	    <li ><%= link_to "Events", events_path %></li>
-	  </ul>
+    	<%= render "shared/landmark_menu" %>
     </div>
     <div id=page-wrapper>
       <div id=content>
@@ -50,16 +43,11 @@
 
 
     <div id=footer-wrapper>
-	<div id=nav>
-	     	  <ul class=landmark-menu>
-		    <li ><a href="/bureaucracy">Bureaucracy</a></li>
-		    <li ><a href="/mission">Mission</a></li>
-		    <li ><a href="/history">History</a></li>
-		    <li ><a href="/awards">Awards</a></li>
-		    <li ><a href="/how_to_get_there">How to reach</a></li>
-		    <li ><a href="/contacts">Contacts</a></li>
-		</ul>
-	</div>
+		
+		<%= render "shared/footer_menu" %>
+		<div id=credits>
+			<strong> bannana</strong>
+		</div>
     </div>
 </div>
 </body>
