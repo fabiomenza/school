@@ -20,55 +20,55 @@ Rails.application.routes.draw do
 	get 'alumni' => 'alumni#view'				# Alumni
 	
 	# Course pages
-	get 'course/:id' => 'course#view'
-	get 'course/:id/syllabus' => 'course#syllabus'
-	get 'course/:id/timetable' => 'course#timetable'
-	get 'course/:id/materials' => 'course#materials'
-	get 'course/:id/exams' => 'course#exams'
-	get 'course/:id/curricula' => 'course#curricula'
+	get 'course/:id', to: 'course#view', as: 'course'
+	get 'course/:id/syllabus' => 'course#syllabus', as: 'course_syllabus'
+	get 'course/:id/timetable' => 'course#timetable', as: 'course_timetable'
+	get 'course/:id/materials' => 'course#materials', as: 'course_materials'
+	get 'course/:id/exams' => 'course#exams', as: 'course_exams'
+	get 'course/:id/curricula' => 'course#curricula', as: 'couser_curricula'
 
 	#courses pages
-	get 'courses/courses_by_year' => 'course#courses_by_year'
+	get 'courses/courses_by_year' => 'course#courses_by_year', as: 'courses_by_year'
 
 	# Teacher pages
-	get 'teacher/:id' => 'teacher#view'
-	get 'teacher/:id/curriculum' => 'teacher#curriculum'
+	get 'teacher/:id' => 'teacher#view', as: 'teacher'
+	get 'teacher/:id/curriculum' => 'teacher#curriculum', as: 'teacher_curriculum'
 
 
 	# Curriculum pages
-	get 'curriculum/:id' => 'curriculum#view'
-	get 'curriculum/:id/work_opportunity' => 'curriculum#work_opportunity'
+	get 'curriculum/:id' => 'curriculum#view', as: 'curriculum' 
+	get 'curriculum/:id/work_opportunity' => 'curriculum#work_opportunity', as: 'curriculum_work_opportunity'
 
 	# News pages
-	get 'news/:id' => 'news#view'
+	get 'news/:id' => 'news#view', as: 'news'
 
 	# Material pages
-	get 'material/:id' => 'material#view'
+	get 'material/:id' => 'material#view', as: 'material'
 
 	# Exams pages
-	get 'exam/:id' => 'exam#view'
+	get 'exam/:id' => 'exam#view', as: 'exam'
 	
 	# Classrooms pages
-	get 'classroom/:id' => 'classroom#view'
-	get 'classroom/:id/how_to_get_there' => 'classroom#how_to_get_there'
-	get 'classroom/:id/availability' => 'classroom#availability'
+	get 'classroom/:id' => 'classroom#view' , as: 'classroom'
+	get 'classroom/:id/how_to_get_there' => 'classroom#how_to_get_there', as: "classroom_htgt"
+	get 'classroom/:id/availability' => 'classroom#availability', as: 'classroom_avail'
 
 	# Student's services pages
-	get 'service/:id' => 'service#view'
-	get 'service/:id/reference' => 'service#reference'
+	get 'service/:id' => 'service#view', as: 'service'
+	get 'service/:id/reference' => 'service#reference', as: 'service_reference'
 
 	# Structures pages
-	get 'structure/:id' => 'structure#view'
-	get 'structure/:id/map' => 'structure#map'
-	get 'structure/:id/photogallery' => 'structure#photogallery'
-	get 'structure/:id/events' => 'structure#events'
-	get 'structure/:id/services' => 'structure#services'
+	get 'structure/:id' => 'structure#view', as: 'structure'
+	get 'structure/:id/map' => 'structure#map', as: 'structure_map'
+	get 'structure/:id/photogallery' => 'structure#photogallery', as: 'structure_photos'
+	get 'structure/:id/events' => 'structure#events', as: 'structure_events'
+	get 'structure/:id/services' => 'structure#services', as: 'structure_services'
 
 	# Events pages
-	get 'event/:id' => 'event#view'
-	get 'event/:id/get_involved' => 'event#get_involved'
+	get 'event/:id' => 'event#view', as: 'event'
+	get 'event/:id/get_involved' => 'event#get_involved', as: 'event_get_involved'
 	
 	# School's awards pages
-	get 'award/:id' => 'award#view'
+	get 'award/:id' => 'award#view', as: 'award'
 	
 end

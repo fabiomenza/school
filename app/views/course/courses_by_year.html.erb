@@ -15,41 +15,28 @@
 	</tr>
 	</thead>
 	<tbody>
+<%= 10.times do %>
 	<tr>
+	
 	<% @courses.each do |course| %>
 		<tr>
-			<td class="name"><%= link_to course[:name], "../course/#{course[:id]}" %>	</td>
-			<td class="teacher"><%= link_to course[:teacher], "../teacher/#{course[:teacher_id]}" %></td>
+			<td class="name"><%= link_to course[:name], course_path(course[:id]) %>	</td>
+			<td class="teacher"><%= link_to course[:teacher], teacher_path(course[:teacher_id]) %></td>
 			<td class ="curricula">
-
+			<% 3.times do %>
 				<% course[:curricula].each do |curriculum| %>
-					<%= link_to curriculum[:name], "../curriculum/#{curriculum[:id]}" %>
+					<%= link_to curriculum[:name], curriculum_path(curriculum[:id]) %>
 					<br> <%# usato per mettere ogni elemento su una buona linea %>
-					<%= link_to curriculum[:name], "../curriculum/#{curriculum[:id]}" %>
+					
 				<% end %>
-			
+			<% end %>
 			</td>
 			<td class="year"><%= course[:year].year %></td>
 
 		</tr>
 	<% end %>
+<% end %>
 
-	<!-- TODO eliminare questa parte, usatas solo pe mostrare! -->
-		<% @courses.each do |course| %>
-		<tr>
-			<td><%= link_to course[:name], "../course/#{course[:id]}" %>	</td>
-			<td><%= link_to course[:teacher], "../teacher/#{course[:teacher_id]}" %></td>
-			<td>
-				<% course[:curricula].each do |curriculum| %>
-					<%= link_to curriculum[:name], "../curriculum/#{curriculum[:id]}" %>
-					<br> <%# usato per mettere ogni elemento su una buona linea %>
-					<%= link_to curriculum[:name], "../curriculum/#{curriculum[:id]}" %>
-				<% end %>
-			</td>
-			<td><%= course[:year].year %></td>
-
-		</tr>
-	<% end %>
 </tbody>
 
 
