@@ -1,6 +1,5 @@
 <% content_for :structuralLinkMenu do%>
-	
-	<hr>
+
 	<% 	if @struct_links
 		@struct_links.each do |element| %>
 			<li><%= link_to element[:name], element[:value] %></a></li>

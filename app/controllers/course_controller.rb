@@ -45,6 +45,31 @@ class CourseController < ApplicationController
 	build_links
   end
 
+  def courses_by_year
+  	courses_by_year=Course.order('accademic_year DESC').all;
+  	@courses=Array.new
+	 #Informazioni mostrate: name, teacher, culliculum,year 
+	courses_by_year.each do |course|
+		curricula=Array.new
+		course.curriculum.each do |curriculum|
+			curricula <<{:name => "#{curriculum.name}",
+						 :id => curriculum.id
+
+			}
+		end
+  		@courses << {:name => "#{course.name}",
+  					 :id => course.id,
+  					 :teacher => "#{course.teacher.firstname} #{course.teacher.lastname}",
+  					 :teacher_id => course.teacher_id,
+  					 :year => course.accademic_year,
+  					 :curricula => curricula
+
+
+
+  					}
+  	end
+
+  end
 
 
   def build_links
@@ -67,4 +92,5 @@ class CourseController < ApplicationController
 	@semant_links << {:name => "Classroom",:value => "/classroom/#{c.classroom_id}"}
 	@semant_links << {:name => "Curricula",:value => "/course/#{c.id}/curricula"}
   end
+
 end
