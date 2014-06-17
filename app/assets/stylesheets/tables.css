@@ -1,0 +1,54 @@
+
+
+table.courses-table {
+	
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table.courses-table, .courses-table th,.courses-table td{
+	border:1px solid green;
+
+}
+
+.courses-table th {
+	
+	background-color: #333333;
+	color: white;
+	
+	text-align:center;
+	font-weight: bold;
+
+	height: 40px;
+	
+
+	margin:0px;
+	padding:0px;
+
+}
+
+.courses-table td{
+
+	text-align:left;
+	padding: 10px 10px 10px;
+	
+	margin:0px;
+	
+
+}
+
+.courses-table a{
+	
+	color:blue;
+}
+
+.courses-table td  a{
+	
+	text-decoration: none;
+}
+
+.courses-table td  a:hover {
+	color:red;
+
+}
+

@@ -1,9 +1,10 @@
 <h1>Curricula</h1>
+
 <ul>
 <% @curricula.each do |element| %>
 	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
 <% end %>
 </ul>
 
-<%= render "shared/structural_link" %>
-<%= render "shared/semantic_link" %>
+<%= render "shared/hide_structural_link" %>
+<%= render "shared/hide_semantic_link" %>
