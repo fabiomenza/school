@@ -15,7 +15,7 @@
 	</tr>
 	</thead>
 	<tbody>
-<%= 10.times do %>
+
 	<tr>
 	
 	<% @courses.each do |course| %>
@@ -35,10 +35,11 @@
 
 		</tr>
 	<% end %>
-<% end %>
+
 
 </tbody>
 
 
 </table>
-
+<br>
+<%= will_paginate @courses_by_year %>

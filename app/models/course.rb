@@ -6,4 +6,5 @@ class Course < ActiveRecord::Base
   has_one :classroom, inverse_of:  :course
   has_many :news, inverse_of:  :course
 
+  self.per_page = 1
 end

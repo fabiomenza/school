@@ -4,10 +4,8 @@ class CurriculumController < ApplicationController
 	@title = @name = c.name
 	@description = c.description
 	
-	@courses = Array.new
-	c.course.each do |course|
-		@courses << {:name => "#{course.name}",:value => "/course/#{course.id}/"}
-	end
+	@courses = c.course
+	
 
 	build_links
   end
