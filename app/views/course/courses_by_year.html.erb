@@ -6,7 +6,7 @@
 <%= render "shared/hide_semantic_link" %>
 <%= render "shared/hide_structural_link" %>
 
-<table class="courses-table" >
+<table class="styled-table" >
 	<thead>
 		<th>Course Name	</th>
 		<th>Professor</th>
@@ -25,7 +25,7 @@
 			<td class ="curricula">
 			<% 3.times do %>
 				<% course[:curricula].each do |curriculum| %>
-					<%= link_to curriculum[:name], curriculum_path(curriculum[:id]) %>
+					<%= link_to curriculum[:name], curriculum_id_path(curriculum[:id]) %>
 					<br> <%# usato per mettere ogni elemento su una buona linea %>
 					
 				<% end %>

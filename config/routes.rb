@@ -39,8 +39,16 @@ Rails.application.routes.draw do
 	get 'teacher/:id/curriculum' => 'teacher#curriculum', as: 'teacher_curriculum'
 
 
+
+	# Curriculum new, edit, and destoy
+	get 'curriculum/new' => 'curriculum#new', as: 'new_curriculum'
+	post 'curriculum' => 'curriculum#create'
+	get 'curriculum/:id/edit' => 'curriculum#edit', as: 'edit_curriculum'
+	put 'curriculum/:id' => 'curriculum#update'
+	delete 'curriculum/:id' => 'curriculum#destroy'
+	get 'curriculum/index' => 'curriculum#index', as: 'curriulum_index'
 	# Curriculum pages
-	get 'curriculum/:id' => 'curriculum#view', as: 'curriculum' 
+	get 'curriculum/:id' => 'curriculum#view', as: 'curriculum_id' 
 	get 'curriculum/:id/work_opportunity' => 'curriculum#work_opportunity', as: 'curriculum_work_opportunity'
 
 	# News pages

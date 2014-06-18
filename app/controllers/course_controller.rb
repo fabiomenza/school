@@ -47,7 +47,8 @@ class CourseController < ApplicationController
 
   def courses_by_year
 
-  	@courses_by_year=Course.order('accademic_year DESC').all.paginate(page: params[:page])
+  	# @courses_by_year=Course.order('accademic_year DESC').all.paginate(page: params[:page])
+  	@courses_by_year=Course.order('accademic_year ASC').all.paginate(page: params[:page])
   	@courses=Array.new
 	 #Informazioni mostrate: name, teacher, curriculum,year 
 	@courses_by_year.each do |course|
