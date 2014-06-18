@@ -16,8 +16,18 @@ class EventsController < ApplicationController
   def type
 	type = EventType.find(params[:id])
 	@events = Array.new
-	@name = @title = type.name + " event"
+	@name = @title = type.name + " events"
 	type.event.each do |event|
+		@events << {:name => "#{event.name}",:value => "/event/#{event.id}/"}
+	end
+  end
+
+  def bydate
+	date = params[:date]
+	@events = Array.new
+	@name = @title = "Events on " + date
+	date = Date.strptime(date, "%m/%d/%Y")
+	Event.where(:time => date.beginning_of_day..date.end_of_day).each do |event|
 		@events << {:name => "#{event.name}",:value => "/event/#{event.id}/"}
 	end
   end

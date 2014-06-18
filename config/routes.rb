@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 	get 'structures' => 'structures#view'			# Tutte le strutture
 	get 'structures/type/:id/' => 'structures#type'		# Strutture per tipo
 	get 'events' => 'events#view'				# Tutti gli eventi
+	post 'events/bydate' => 'events#bydate'			# Eventi per data
 	get 'events/type/:id/' => 'events#type'			# Eventi per tipo
 	get 'awards' => 'awards#view'				# Tutti i riconoscimenti
 	get 'bureaucracy' => 'bureaucracy#view'			# Burocrazia
