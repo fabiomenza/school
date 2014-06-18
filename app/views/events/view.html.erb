@@ -1,7 +1,10 @@
+<p>Find event by type:</p>
 <ul>
-	<li><a href="#">Search event per type</a></li>
-	<li><a href="#">Search event per date</a></li>
+<% @types.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %> events</a></li>
+<% end %>
 </ul>
+<p>Find event by date:</p>
 <h2>All Events</h2>
 <ul>
 <% @events.each do |element| %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617161941) do
+ActiveRecord::Schema.define(version: 20140618141402) do
 
   create_table "awards", force: true do |t|
     t.string   "title"
@@ -65,6 +65,12 @@ ActiveRecord::Schema.define(version: 20140617161941) do
     t.datetime "updated_at"
   end
 
+  create_table "event_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -73,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140617161941) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "get_involved"
+    t.integer  "event_type_id"
   end
 
   add_index "events", ["structure_id"], name: "index_events_on_structure_id"
@@ -122,6 +129,12 @@ ActiveRecord::Schema.define(version: 20140617161941) do
 
   add_index "photos", ["structure_id"], name: "index_photos_on_structure_id"
 
+  create_table "service_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "services", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -129,6 +142,13 @@ ActiveRecord::Schema.define(version: 20140617161941) do
     t.datetime "updated_at"
     t.integer  "structure_id"
     t.integer  "classroom_id"
+    t.integer  "service_type_id"
+  end
+
+  create_table "structure_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "structures", force: true do |t|
@@ -137,6 +157,7 @@ ActiveRecord::Schema.define(version: 20140617161941) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "map"
+    t.integer  "structure_type_id"
   end
 
   create_table "teachers", force: true do |t|

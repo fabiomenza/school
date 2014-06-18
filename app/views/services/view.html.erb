@@ -1,5 +1,8 @@
+<p>Find service by type:</p>
 <ul>
-	<li><a href="#">Search service for type</a></li>
+<% @types.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %> services</a></li>
+<% end %>
 </ul>
 <h2>All Services</h2>
 <ul>

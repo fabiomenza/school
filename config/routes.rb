@@ -6,11 +6,14 @@ Rails.application.routes.draw do
 	get 'curricula' => 'curricula#view'			# Tutti i curriculum
 	get 'courses' => 'courses#view'				# Tutti i corsi
 	get 'services' => 'services#view'			# Tutti i servizi
+	get 'services/type/:id/' => 'services#type'		# Servizi per tipo
 	get 'contacts' => 'contacts#view'			# Contatti
 	get 'mission' => 'mission#view'				# Mission & Principles
 	get 'how_to_get_there' => 'how_to_get_there#view'	# Come arrivare
 	get 'structures' => 'structures#view'			# Tutte le strutture
+	get 'structures/type/:id/' => 'structures#type'		# Strutture per tipo
 	get 'events' => 'events#view'				# Tutti gli eventi
+	get 'events/type/:id/' => 'events#type'			# Eventi per tipo
 	get 'awards' => 'awards#view'				# Tutti i riconoscimenti
 	get 'bureaucracy' => 'bureaucracy#view'			# Burocrazia
 	get 'regulation' => 'regulation#view'			# Regolamento

@@ -1,5 +1,8 @@
+<p>Find structure by type:</p>
 <ul>
-	<li><a href="#">Search structure per type</a></li>
+<% @types.each do |element| %>
+	  <li><a href="<%= element[:value] %>"><%= element[:name] %> structures</a></li>
+<% end %>
 </ul>
 <h2>All Structures</h2>
 <ul>
