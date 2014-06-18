@@ -40,7 +40,6 @@ Rails.application.routes.draw do
 	get 'curriculum/new' => 'curriculum#new', as: 'new_curriculum'
 	post 'curriculum' => 'curriculum#create'
 	get 'curriculum/:id/edit' => 'curriculum#edit', as: 'edit_curriculum'
-	patch 'curriculum/:id' => 'curriculum#update'
 	put 'curriculum/:id' => 'curriculum#update'
 	delete 'curriculum/:id' => 'curriculum#destroy'
 	get 'curriculum/index' => 'curriculum#index', as: 'curriulum_index'
