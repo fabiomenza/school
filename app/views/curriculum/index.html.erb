@@ -1,0 +1,38 @@
+
+<%= stylesheet_link_tag 'stylesheets/tables' %>
+<h1>Listring Curricuums</h1>
+
+<%= link_to "New Curriculum", new_curriculum_path %>
+<br><br>
+
+<table class="styled-table" >
+	<thead>
+		<tr>
+			<th>Name </th>
+			<th>Description</th>
+			<th colspan=3></th>
+
+
+		</tr>
+
+	</thead>
+	<tbody>
+
+			<% @curriculums.each do |curriculum| %>
+				<tr>
+					<td><%= curriculum.name %></td>
+					<td><%= curriculum.description.first(50) %></td>
+					<td><%= link_to 'Show', curriculum_id_path(curriculum) %></td>
+					<td><%= link_to 'Edit', edit_curriculum_path(curriculum) %></td>
+					<td><%= link_to 'Destroy', curriculum_id_path(curriculum), method: :delete,data: { confirm: 'Are you sure?' }  %></td>
+
+				</tr>
+
+			<% end %>
+
+	</tbody>
+
+
+</table>
+
+<%= will_paginate @curriculums %>

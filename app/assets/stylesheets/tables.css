@@ -1,17 +1,17 @@
 
 
-table.courses-table {
+table.styled-table {
 	
 	border-collapse: collapse;
 	width: 100%;
 }
 
-table.courses-table, .courses-table th,.courses-table td{
+table.styled-table, .styled-table th,.styled-table td{
 	border:1px solid green;
 
 }
 
-.courses-table th {
+.styled-table th {
 	
 	background-color: #333333;
 	color: white;
@@ -27,7 +27,7 @@ table.courses-table, .courses-table th,.courses-table td{
 
 }
 
-.courses-table td{
+.styled-table td{
 
 	text-align:left;
 	padding: 10px 10px 10px;
@@ -37,17 +37,17 @@ table.courses-table, .courses-table th,.courses-table td{
 
 }
 
-.courses-table a{
+.styled-table a{
 	
 	color:blue;
 }
 
-.courses-table td  a{
+.styled-table td  a{
 	
 	text-decoration: none;
 }
 
-.courses-table td  a:hover {
+.styled-table td  a:hover {
 	color:red;
 
 }
