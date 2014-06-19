@@ -1,0 +1,35 @@
+<h1>All news for <%= @course_name %></h1>
+
+
+
+<table class="styled-table" >
+	<thead>
+		<th>Name	</th>
+		<th>Time</th>
+		<th>Description</th>
+	</tr>
+	</thead>
+	<tbody>	
+		<% @news.each do |n|%>
+			
+			<tr>
+				<td> <%= link_to n.name, news_path(n.id) %></td>	
+				<td> <%= "#{n.time.day}/#{n.time.month}/#{n.time.year}"  %></td>
+				<td class="description"> <%= link_to "#{n.description.split[0...Course.max_word].join(' ')} ...", news_path(n.id) %></td>
+
+
+			</tr>
+			
+		<% end %>
+	
+
+	</tbody>
+
+
+</table>
+
+<%= will_paginate @news %>
+
+
+<%= render 'shared/hide_structural_link' %>
+<%= render 'shared/semantic_link' %>

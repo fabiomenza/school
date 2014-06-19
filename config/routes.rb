@@ -29,7 +29,8 @@ Rails.application.routes.draw do
 	get 'course/:id/timetable' => 'course#timetable', as: 'course_timetable'
 	get 'course/:id/materials' => 'course#materials', as: 'course_materials'
 	get 'course/:id/exams' => 'course#exams', as: 'course_exams'
-	get 'course/:id/curricula' => 'course#curricula', as: 'couser_curricula'
+	get 'course/:id/curricula' => 'course#curricula', as: 'couse_curricula'
+	get 'course/:id/news' => 'news#news', as: 'course_news'
 
 
 	#courses pages

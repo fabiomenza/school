@@ -30,7 +30,7 @@
 					
 				<% end %>
 			<% end %>
-			<td class="description"><%= link_to "#{course[:description].split[0...15].join(' ')} ...", course_path(course[:id]) %></td>
+			<td class="description"><%= link_to "#{course[:description].split[0...Course.max_word].join(' ')} ...", course_path(course[:id]) %></td>
 			</td>
 			
 

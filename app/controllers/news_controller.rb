@@ -7,6 +7,15 @@ class NewsController < ApplicationController
 	build_links
   end
 
+
+  def news
+  	c=Course.find(params[:id])
+  	@course_name=c.name
+  	@news=c.news.paginate(page: params[:page])
+  	build_links
+  	
+  end
+
   def build_links
 	structural_links
 	semantic_links

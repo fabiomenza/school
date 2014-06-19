@@ -2,8 +2,6 @@ class CourseController < ApplicationController
   def view
 	c = Course.find(params[:id])
 
-	
-
 	@title = @name = c.name
 	@description = c.description
 	build_links
@@ -48,6 +46,8 @@ class CourseController < ApplicationController
 	build_links
   end
 
+
+
   def courses_by_year
   	@year=params[:course][:year]
   	# @courses_by_year=Course.order('accademic_year DESC').all.paginate(page: params[:page])
@@ -87,8 +87,6 @@ class CourseController < ApplicationController
   def courses_by_type
   	@curriculum_id=params[:curriculums][:type]
   	@curriculum=Curriculum.find(@curriculum_id)
-	  	
-	  	
   end
 
 
@@ -111,6 +109,7 @@ class CourseController < ApplicationController
 	@semant_links << {:name => "Exams",:value => "/course/#{c.id}/exams"}
 	@semant_links << {:name => "Classroom",:value => "/classroom/#{c.classroom_id}"}
 	@semant_links << {:name => "Curricula",:value => "/course/#{c.id}/curricula"}
+	@semant_links << {name: "News",value: "/course/#{c.id}/news"}
   end
 
 end

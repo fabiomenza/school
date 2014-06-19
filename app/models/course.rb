@@ -7,4 +7,7 @@ class Course < ActiveRecord::Base
   has_many :news, inverse_of:  :course
 
   self.per_page = 10
+  def self.max_word 
+   15
+  end
 end
