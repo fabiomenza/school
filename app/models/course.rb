@@ -5,6 +5,7 @@ class Course < ActiveRecord::Base
   has_many :exam, inverse_of:  :course
   has_one :classroom, inverse_of:  :course
   has_many :news, inverse_of:  :course
+  has_many :lecture
 
   self.per_page = 10
   def self.max_word 

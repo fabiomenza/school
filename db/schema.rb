@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618141402) do
+ActiveRecord::Schema.define(version: 20140619165559) do
 
   create_table "awards", force: true do |t|
     t.string   "title"
@@ -96,6 +96,16 @@ ActiveRecord::Schema.define(version: 20140618141402) do
 
   add_index "exams", ["classroom_id"], name: "index_exams_on_classroom_id"
   add_index "exams", ["course_id"], name: "index_exams_on_course_id"
+
+  create_table "lectures", force: true do |t|
+    t.string   "w_day"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "course_id"
+    t.integer  "classroom_id"
+  end
 
   create_table "materials", force: true do |t|
     t.string   "name"

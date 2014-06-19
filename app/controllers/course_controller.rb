@@ -15,7 +15,36 @@ class CourseController < ApplicationController
   end
 
   def timetable
+  	@course=Course.find(params[:id])
+  	# indica le ore della mattina da cui partono le lezioni
+  	start_hours=8
+  	lectures=@course.lecture
+  	time=Time.new().change(hour:start_hours,minute:0,second:0)
+  	@rows=Array.new(11){ Array.new(6)}
+  	 for i in 0..10
+  	 	@rows[i][0]=time.advance(hours: i).hour
+  	 end	
+
+  	 # controlla il giorni di ongli lecture. 
+  	 #E lo colloca nell'array a seconda del suo orario
+  	 @weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
+  	 lectures.each do |lecture| 
+  	 	day=@weekday.find_index(lecture.w_day)+1 	
+
+  	 	for i in lecture.start_time.hour...lecture.end_time.hour
+  	 		# el=Array.new(2)
+  	 		# el[0]=1
+  	 		# el[1]=2
+  	 		@rows[i-start_hours][day]={:name => lecture.classroom.name, :id =>lecture.classroom.id}
+  	 	end
+
+  	 end
+  	
 	build_links
+  end
+
+  def insert_in_array (array   )
+  	
   end
   
   def materials

@@ -15,7 +15,7 @@
 		
 			<td><%= link_to c.name, course_path(c.id) %></td>
 			<td><%= link_to "#{c.teacher.firstname} #{c.teacher.lastname}", teacher_path(c.teacher.id) %></td>
-			<td><%= link_to "#{c.description.split[0...Course.max_word].join(' ')} ...",course_path(c.id)  %></td>
+			<td><%= link_to "#{c.description.split[0...Course.max_word].join(' ')} ...",course_syllabus_path(c.id)  %></td>
 
 
 			</tr>
