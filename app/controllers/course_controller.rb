@@ -22,7 +22,7 @@ class CourseController < ApplicationController
 	c = Course.find(params[:id])
 	@name = @title = "Materials for " + c.name
 	@materials = c.material.order('name ASC').paginate(page: params[:page])
-	build_links
+	back_to_course
   end
   def exams
 	c = Course.find(params[:id])
@@ -31,18 +31,16 @@ class CourseController < ApplicationController
 	c.exam.each do |exam|
 		@exams << {:name => "#{exam.name}",:value => "/exam/#{exam.id}/"}
 	end
-	build_links
+	back_to_course
   end
+
   def curricula
 	c = Course.find(params[:id])
 	@name = @title = "Curricula related to " + c.name
-	@curricula = Array.new
-	c.curriculum.each do |curriculum|
-		@curricula << {:name => "#{curriculum.name}",:value => "/curriculum/#{curriculum.id}/"}
-	end
-	@semant_links=Array.new
-	@semant_links << {:name => c.name,:value => "/course/#{c.id} "}
+	@curricula = c.curriculum.order('name ASC').paginate(page: params[:page])
+	
 
+	back_to_course
 
   end
 
@@ -110,6 +108,12 @@ class CourseController < ApplicationController
 	@semant_links << {:name => "Classroom",:value => "/classroom/#{c.classroom_id}"}
 	@semant_links << {:name => "Curricula",:value => "/course/#{c.id}/curricula"}
 	@semant_links << {name: "News",value: "/course/#{c.id}/news"}
+  end
+
+  def back_to_course
+  	c=Course.find(params[:id])
+  	@semant_links=Array.new
+	@semant_links << {name: c.name,value:"/course/#{c.id} "}
   end
 
 end

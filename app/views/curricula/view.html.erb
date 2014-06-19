@@ -1,10 +1,8 @@
 <h1>Curricula</h1>
 
-<ul>
-<% @curricula.each do |element| %>
-	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
-<% end %>
-</ul>
+<%= render 'shared/curriculum_table' %>
 
 <%= render "shared/hide_structural_link" %>
 <%= render "shared/hide_semantic_link" %>
+
+<%= will_paginate @curricula %>

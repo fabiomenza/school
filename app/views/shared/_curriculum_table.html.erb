@@ -1,0 +1,21 @@
+<table class="styled-table" >
+	<thead>
+		<th>Curriculum</th>
+		<th>Description</th>
+		
+	</tr>
+	</thead>
+	<tbody>
+		<% @curricula.each do |curriculum| %>
+	  	
+			<tr>
+				<td><%= link_to curriculum.name, curriculum_id_path(curriculum) %></td>
+				<td><%= curriculum.description.split[0...Course.max_word].join(' ') %></td>
+
+			</tr>
+	  	
+		<% end %>
+		
+	</tbody>
+
+</table>	
