@@ -21,10 +21,7 @@ class CourseController < ApplicationController
   def materials
 	c = Course.find(params[:id])
 	@name = @title = "Materials for " + c.name
-	@materials = Array.new
-	c.material.each do |mat|
-		@materials << {:name => "#{mat.name}",:value => "/material/#{mat.id}/"}
-	end
+	@materials = c.material.order('name ASC').paginate(page: params[:page])
 	build_links
   end
   def exams
@@ -43,7 +40,10 @@ class CourseController < ApplicationController
 	c.curriculum.each do |curriculum|
 		@curricula << {:name => "#{curriculum.name}",:value => "/curriculum/#{curriculum.id}/"}
 	end
-	build_links
+	@semant_links=Array.new
+	@semant_links << {:name => c.name,:value => "/course/#{c.id} "}
+
+
   end
 
 

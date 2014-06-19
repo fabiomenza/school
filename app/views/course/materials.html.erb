@@ -1,9 +1,32 @@
 <h1><%= @name %></h1>
-<ul>
-<% @materials.each do |element| %>
-	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
-<% end %>
-</ul>
+
+
+<table class="styled-table" >
+	<thead>
+		<th>Material Name</th>
+		<th>Course</th>
+		<th>Description</th>
+		<th>Download</th>
+	</tr>
+	</thead>
+	<tbody>
+		<% @materials.each do |material| %>
+	  	
+			<tr>
+				<td><%=link_to material.name, material_path(material.id) %></td>
+				<td><%=link_to material.course.name, course_path(material.course.id) %></td>
+				<td><%= material.description.split[0...Course.max_word].join(' ') %></td>
+				<td><%=link_to 'Download', material.multimedia_url%></td>
+
+			</tr>
+	  	
+		<% end %>
+		
+	</tbody>
+
+</table>	
+
+<%= will_paginate @materials %>
 
 
 <%= render "shared/structural_link" %>
