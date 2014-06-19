@@ -31,8 +31,12 @@ Rails.application.routes.draw do
 	get 'course/:id/exams' => 'course#exams', as: 'course_exams'
 	get 'course/:id/curricula' => 'course#curricula', as: 'couser_curricula'
 
+
 	#courses pages
 	get 'courses/courses_by_year' => 'course#courses_by_year', as: 'courses_by_year'
+	get 'courses/courses_by_type' => 'course#courses_by_type', as: 'courses_by_type'
+	post 'courses/courses_by_year' => 'course#courses_by_year'
+	post 'courses/courses_by_type' => 'course#courses_by_type'
 
 	# Teacher pages
 	get 'teacher/:id' => 'teacher#view', as: 'teacher'

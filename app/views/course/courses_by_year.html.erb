@@ -1,7 +1,7 @@
 
 <%= stylesheet_link_tag 'stylesheets/tables' %>
-<h1>Courses by year</h1>
-
+<h1>Courses in the year <%= @year %></h1>
+<%# <%= params.inspect %> 
 
 <%= render "shared/hide_semantic_link" %>
 <%= render "shared/hide_structural_link" %>
@@ -11,7 +11,7 @@
 		<th>Course Name	</th>
 		<th>Professor</th>
 		<th>Curricula</th>
-		<th>Year</th>
+		<th>Description</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -30,8 +30,9 @@
 					
 				<% end %>
 			<% end %>
+			<td class="description"><%= link_to "#{course[:description].split[0...15].join(' ')} ...", course_path(course[:id]) %></td>
 			</td>
-			<td class="year"><%= course[:year].year %></td>
+			
 
 		</tr>
 	<% end %>
@@ -42,4 +43,7 @@
 
 </table>
 <br>
+
+
+
 <%= will_paginate @courses_by_year %>

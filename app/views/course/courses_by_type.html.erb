@@ -1,0 +1,29 @@
+<!-- <%= params.inspect %> 
+<br> -->
+<h1>Courses for curriculum <%= @curriculum.name %></h1>
+<table class="styled-table" >
+	<thead>
+		<th>Course Name	</th>
+		<th>Professor</th>
+		
+		<th>Description</th>
+	</tr>
+	</thead>
+	<tbody>
+		<% @curriculum.course.each do |c| %>
+			<tr>
+		
+			<td><%= link_to c.name, course_path(c.id) %></td>
+			<td><%= link_to "#{c.teacher.firstname} #{c.teacher.lastname}", teacher_path(c.teacher.id) %></td>
+			<td><%= link_to "#{c.description.split[0...15].join(' ')} ...",course_path(c.id)  %></td>
+
+
+			</tr>
+		<% end %>
+	</tbody>
+
+</table>
+
+
+<%= render 'shared/hide_structural_link' %>
+<%= render 'shared/hide_semantic_link' %>

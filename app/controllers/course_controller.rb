@@ -1,6 +1,9 @@
 class CourseController < ApplicationController
   def view
 	c = Course.find(params[:id])
+
+	
+
 	@title = @name = c.name
 	@description = c.description
 	build_links
@@ -46,9 +49,16 @@ class CourseController < ApplicationController
   end
 
   def courses_by_year
-
+  	@year=params[:course][:year]
   	# @courses_by_year=Course.order('accademic_year DESC').all.paginate(page: params[:page])
-  	@courses_by_year=Course.order('accademic_year ASC').all.paginate(page: params[:page])
+  	date1=Date.new(@year.to_i)
+  	date2=Date.new(@year.to_i+1)
+
+  	@courses_by_year=Course.order('name ASC').where(accademic_year:  date1...date2).all.paginate(page: params[:page])
+  	# quick and dirty
+  	#@courses_by_year=Course.all.paginate(page: params[:page])
+
+
   	@courses=Array.new
 	 #Informazioni mostrate: name, teacher, curriculum,year 
 	@courses_by_year.each do |course|
@@ -64,13 +74,21 @@ class CourseController < ApplicationController
   					 :teacher => "#{course.teacher.firstname} #{course.teacher.lastname}",
   					 :teacher_id => course.teacher_id,
   					 :year => course.accademic_year,
-  					 :curricula => curricula
+  					 :curricula => curricula,
+  					 :description => course.description
 
 
 
   					}
   	end
 
+  end
+
+  def courses_by_type
+  	@curriculum_id=params[:curriculums][:type]
+  	@curriculum=Curriculum.find(@curriculum_id)
+	  	
+	  	
   end
 
 

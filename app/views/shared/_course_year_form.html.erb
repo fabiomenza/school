@@ -1,0 +1,8 @@
+<% years=@courses_year.map { |year| [year, year] } %>
+
+<%= form_for :course, url: { controller: 'course', action: "courses_by_year" } do |f| %>
+<%= f.label "Search for course's year" %>
+<%= f.select(:year, options_for_select(years)) %>
+	<%= f.submit :search %>
+<% end %>
+	

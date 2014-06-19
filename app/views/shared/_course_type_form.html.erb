@@ -1,0 +1,7 @@
+<% curriculums=@curriculum.map { |c| [c.name, c.id] } %>
+
+<%= form_for :curriculums, url: { controller: 'course', action: "courses_by_type" } do |f| %>
+<%= f.label "Search for course's type" %>
+<%= f.select(:type, options_for_select(curriculums)) %>
+<%= f.submit :search %>
+<% end %>
