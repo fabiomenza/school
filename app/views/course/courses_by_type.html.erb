@@ -10,12 +10,12 @@
 	</tr>
 	</thead>
 	<tbody>
-		<% @curriculum.course.each do |c| %>
+		<% @courses.each do |course| %>
 			<tr>
 		
-			<td><%= link_to c.name, courses_type_guided_tour_id_path(@curriculum, c.id) %></td>
-			<td><%= link_to "#{c.teacher.firstname} #{c.teacher.lastname}", teacher_path(c.teacher.id) %></td>
-			<td><%= link_to "#{c.description.split[0...Course.max_word].join(' ')} ...",course_syllabus_path(c.id)  %></td>
+			<td><%= link_to course.name, courses_type_guided_tour_id_path(@curriculum, course) %></td>
+			<td><%= link_to "#{course.teacher.firstname} #{course.teacher.lastname}", teacher_path(course.teacher) %></td>
+			<td><%= link_to "#{course.description.split[0...Course.max_word].join(' ')} ...",course_syllabus_path(course)  %></td>
 
 
 			</tr>

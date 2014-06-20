@@ -107,6 +107,7 @@ class CourseController < ApplicationController
   def courses_by_type
   	@curriculum_id=params[:curriculums][:type]
   	@curriculum=Curriculum.find(@curriculum_id)
+    @courses=@curriculum.course.sort{|c1,c2| c1.name.downcase <=> c2.name.downcase}
 
   
   end

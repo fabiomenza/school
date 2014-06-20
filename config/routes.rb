@@ -68,6 +68,7 @@ Rails.application.routes.draw do
 	get 'curriculum/:id' => 'curriculum#view', as: 'curriculum_id' 
 	get 'curriculum/:id/work_opportunity' => 'curriculum#work_opportunity', as: 'curriculum_work_opportunity'
 
+	
 	# News pages
 	get 'news/:id' => 'news#view', as: 'news'
 
