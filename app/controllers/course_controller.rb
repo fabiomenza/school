@@ -1,9 +1,7 @@
 class CourseController < ApplicationController
   def view
-	c = Course.find(params[:id])
+	@course= Course.find(params[:id])
 
-	@title = @name = c.name
-	@description = c.description
 	build_links
   end
 
@@ -32,10 +30,7 @@ class CourseController < ApplicationController
   	 	day=@weekday.find_index(lecture.w_day)+1 	
 
   	 	for i in lecture.start_time.hour...lecture.end_time.hour
-  	 		# el=Array.new(2)
-  	 		# el[0]=1
-  	 		# el[1]=2
-  	 		@rows[i-start_hours][day]={:name => lecture.classroom.name, :id =>lecture.classroom.id}
+    	 		@rows[i-start_hours][day]={:name => lecture.classroom.name, :id =>lecture.classroom.id}
   	 	end
 
   	 end
@@ -112,7 +107,48 @@ class CourseController < ApplicationController
   def courses_by_type
   	@curriculum_id=params[:curriculums][:type]
   	@curriculum=Curriculum.find(@curriculum_id)
+
+  
   end
+
+
+ 
+
+
+   def type_guided_tour
+    @this_course=Course.find(params[:id])
+    @curriculum=Curriculum.find(params[:curriculum_id])
+    #se params[:page].nil allora vuol dire che arrivo direttamente da
+    #courses_by_type, quindi devo mostrare il corso selezionato !
+    if  params[:page].nil?
+      @page=@curriculum.course.find_index(@this_course)+1
+    else
+      @page=params[:page]
+    end
+    @courses=@curriculum.course.paginate(page: @page, per_page:1)
+    
+    build_links
+
+  end
+
+    
+
+  def year_guided_tour
+    @year=params[:courses_year]
+    @this_course=Course.find(params[:id])
+    date1=Date.new(@year.to_i)
+    date2=Date.new(@year.to_i+1)
+    @courses=Course.order('name ASC').where(accademic_year:  date1...date2)
+    
+    if  params[:page].nil?
+      @page=@courses.find_index(@this_course)+1
+    else
+      @page=params[:page]
+    end
+    @courses=@courses.paginate(page: @page, per_page: 1)
+    build_links
+  end
+
 
 
   def build_links

@@ -20,7 +20,7 @@
 	
 	<% @courses.each do |course| %>
 		<tr>
-			<td class="name"><%= link_to course[:name], course_path(course[:id]) %>	</td>
+			<td class="name"><%= link_to course[:name], courses_year_guided_tour_id_path(@year,course[:id]) %>	</td>
 			<td class="teacher"><%= link_to course[:teacher], teacher_path(course[:teacher_id]) %></td>
 			<td class ="curricula">
 			<% 3.times do %>

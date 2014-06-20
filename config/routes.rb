@@ -46,6 +46,10 @@ Rails.application.routes.draw do
 	get 'courses/courses_by_type' => 'course#courses_by_type', as: 'courses_by_type'
 	post 'courses/courses_by_year' => 'course#courses_by_year'
 	post 'courses/courses_by_type' => 'course#courses_by_type'
+	get 'courses/courses_by_type/:id' => 'course#type_guided_tour', as: 'courses_type_guided_tour'
+	get 'courses/courses_by_year/:id' => 'course#year_guided_tour', as: 'courses_year_guided_tour'
+	get 'courses/courses_by_type/:curriculum_id/:id' => 'course#type_guided_tour', as: 'courses_type_guided_tour_id'
+	get 'courses/courses_by_year/:courses_year/:id' => 'course#year_guided_tour', as: 'courses_year_guided_tour_id'
 
 	# Teacher pages
 	get 'teacher/:id' => 'teacher#view', as: 'teacher'

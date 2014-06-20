@@ -1,0 +1,14 @@
+<h1>Courses for year <%= @year %></h1>
+
+<%= render partial: 'show', locals: {course: @courses.at(0)} %>
+
+<br>
+<br>
+<br>
+<%= page_entries_info @courses %>
+<%= will_paginate @courses %>
+
+
+
+<%= render 'shared/structural_link' %>
+<%= render 'shared/semantic_link' %>

@@ -46,6 +46,7 @@ class LecturesController < ApplicationController
 
 	def index
 		@lectures=Lecture.order('w_day ASC').order('start_time Asc')
+		@couse=Lecture
 		
 	end
 
