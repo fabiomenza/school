@@ -1,0 +1,43 @@
+<h1>Listing News</h1>
+<%= link_to "New", new_course_news_path %>
+
+
+<br><br>
+
+<table class="styled-table" >
+	<thead>
+		<tr>
+			<th>Name </th>
+			<th>Description</th>
+			<th>Time</th>
+			<th></th>
+			<th colspan=3></th>
+
+
+		</tr>
+
+	</thead>
+	<tbody>
+
+			<% @news.each do |news| %>
+				<tr>
+					<td><%= news.name %></td>
+					<td><%= news.description.first(50) %></td>
+					<td><%= link_to 'Show', news_path(news) %></td>
+					<td><%= link_to 'Edit', edit_course_new_path(news.course, news) %></td>
+					<td><%= link_to 'Destroy', news_path( news), method: :delete,data: { confirm: 'Are you sure?' }  %></td>
+
+				</tr>
+
+			<% end %>
+
+	</tbody>
+
+
+</table>
+
+<%= will_paginate @news %>
+
+
+<%= render 'shared/hide_structural_link' %>
+<%= render 'shared/hide_semantic_link' %>

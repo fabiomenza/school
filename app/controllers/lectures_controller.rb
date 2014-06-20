@@ -50,6 +50,13 @@ class LecturesController < ApplicationController
 		
 	end
 
+	def destroy
+		@lecture=Lecture.find(params[:id])
+		@lecture.destroy
+
+		redirect_to course_lectures_path(params[:course_id])
+	end
+
 	private
 		def set_params (lecture)
 			param=params[:lecture]

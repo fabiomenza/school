@@ -14,7 +14,7 @@
 			
 			<tr>
 				<td> <%= link_to n.name, news_path(n.id) %></td>	
-				<td> <%= "#{n.time.day}/#{n.time.month}/#{n.time.year}"  %></td>
+				<td> <%= "#{n.time.strftime('%H:%M')}"  %></td>
 				<td class="description"> <%= link_to "#{n.description.split[0...Course.max_word].join(' ')} ...", news_path(n.id) %></td>
 
 

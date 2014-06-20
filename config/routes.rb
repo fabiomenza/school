@@ -30,7 +30,17 @@ Rails.application.routes.draw do
 	get 'course/:id/materials' => 'course#materials', as: 'course_materials'
 	get 'course/:id/exams' => 'course#exams', as: 'course_exams'
 	get 'course/:id/curricula' => 'course#curricula', as: 'couse_curricula'
+	#CRUD courses news
+	get 'course/:course_id/news/new' => 'news#new', as: 'new_course_news'
+	post 'course/:course_id/news' => 'news#create'
+	get 'course/:course_id/news/:id/edit' => 'news#edit', as: 'edit_course_new'
+	put 'course/:course_id/news/:id' => 'news#update'
+	get 'course/:course_id/news' => 'news#index', as: 'course_news_index'
+
+
+	#Courses news
 	get 'course/:id/news' => 'news#news', as: 'course_news'
+	delete '/news/:id' => 'news#destroy'
 
 	#Lecture
 	get 'course/:course_id/lectures/new' => 'lectures#new', as: 'new_course_lecture'
@@ -38,7 +48,7 @@ Rails.application.routes.draw do
 	post 'course/:course_id/lectures' => 'lectures#create' 
 	get  'course/:course_id/lectures/:id/edit' => 'lectures#edit', as: 'edit_course_lecture'
 	put  'course/:course_id/lectures/:id' => 'lectures#update', as: 'update_course_lecture'
-	delete 'course/:course_id/lectures/:id' => 'lectures#delete' 
+	delete 'course/:course_id/lectures/:id' => 'lectures#destroy' 
 	get 'course/:course_id/lectures' => 'lectures#index', as: 'course_lectures'
 
 	#courses pages
@@ -68,7 +78,7 @@ Rails.application.routes.draw do
 	get 'curriculum/:id' => 'curriculum#view', as: 'curriculum_id' 
 	get 'curriculum/:id/work_opportunity' => 'curriculum#work_opportunity', as: 'curriculum_work_opportunity'
 
-	
+	#resources :news
 	# News pages
 	get 'news/:id' => 'news#view', as: 'news'
 
