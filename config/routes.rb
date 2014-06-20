@@ -32,6 +32,14 @@ Rails.application.routes.draw do
 	get 'course/:id/curricula' => 'course#curricula', as: 'couse_curricula'
 	get 'course/:id/news' => 'news#news', as: 'course_news'
 
+	#Lecture
+	get 'course/:course_id/lectures/new' => 'lectures#new', as: 'new_course_lecture'
+	get 'course/:course_id/lectures/:id' => 'lectures#show', as: 'course_lecture'
+	post 'course/:course_id/lectures' => 'lectures#create' 
+	get  'course/:course_id/lectures/:id/edit' => 'lectures#edit', as: 'edit_course_lecture'
+	put  'course/:course_id/lectures/:id' => 'lectures#update', as: 'update_course_lecture'
+	delete 'course/:course_id/lectures/:id' => 'lectures#delete' 
+	get 'course/:course_id/lectures' => 'lectures#index', as: 'course_lectures'
 
 	#courses pages
 	get 'courses/courses_by_year' => 'course#courses_by_year', as: 'courses_by_year'

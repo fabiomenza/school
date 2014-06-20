@@ -1,7 +1,7 @@
 <h1>Timetable for course <%= @course.name %></h1>
 
 
-<table class="styled-table" >
+<table class="styled-table timetable" >
 	<thead>
 	<tr>
 		<th colspan="1"></th>
@@ -14,15 +14,15 @@
 		<% @rows.each do |row| %>
 			<tr>
 				<% row.each do |classroom| %>
-				<td>
+				
 					<% if classroom.is_a? Integer %>
-						<%= "#{classroom}:00" %>
+						<td class="time"><%= "#{classroom}:00" %></td>
 					<% elsif classroom.is_a? Hash %>
-						<%= link_to classroom[:name], classroom_path(classroom[:id]) %>
-					    					
+						<td class="classroom"><%= link_to classroom[:name], classroom_path(classroom[:id]) %></td>
+					<% else %>
+						<td></td>				
 					<% end %>
 
-				</td>
 				<% end %>
 
 			</tr>

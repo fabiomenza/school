@@ -43,9 +43,7 @@ class CourseController < ApplicationController
 	build_links
   end
 
-  def insert_in_array (array   )
-  	
-  end
+
   
   def materials
 	c = Course.find(params[:id])

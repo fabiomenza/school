@@ -1,0 +1,19 @@
+
+
+
+<%= form_for :lecture, url:{ controller: 'lectures', action: to_do}, method: to_met do |f| %>
+    <%= f.label :week_day %> 
+	<%= f.select :w_day,@weekday.map { |d| [d ,d]   }  %> <br>
+	<%= f.label :start_time %>
+	<%= f.select :start_time,@lecture_times.map{|t| [t,t] }  %><br>
+	<%= f.label :end_time %> 
+	<%= f.select :end_time,@lecture_times.map{|t| [t,t] }  %><br>
+	<%= f.label :classroom%> 
+	<%= f.select :classroom_id,@classrooms.map{ |c| [ c.name,c.id] } %> <br> <br>
+
+
+
+
+	<%= f.submit %>
+<% end %>
+

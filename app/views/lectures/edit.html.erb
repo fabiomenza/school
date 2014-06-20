@@ -1,0 +1,12 @@
+<h1>Edit lecture for <%= @course.name %></h1>
+
+
+
+<%= render partial: 'lecture_form', locals: { :to_do => 'update', to_met: 'put'} %>
+
+
+
+
+
+<%= render 'shared/hide_structural_link' %>
+<%= render 'shared/hide_semantic_link' %>

@@ -55,3 +55,19 @@ table.styled-table, .styled-table th,.styled-table td{
 .description {
 	width:320px;
 }
+
+.timetable th{
+	width:16%;
+}
+
+td.classroom{
+	text-align: center;
+
+}
+
+td.time {
+	background-color:#535353;
+	color: white;
+	font-weight: bold;
+	text-align:right;
+}
