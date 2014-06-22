@@ -1,0 +1,3 @@
+<h1>Edit Course <%= @course.name %></h1>
+
+<%= render partial:'course_form', locals: {to_do:'update' , to_met: 'put', what: @course} %>

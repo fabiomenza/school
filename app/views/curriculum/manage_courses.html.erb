@@ -1,0 +1,60 @@
+<%= render 'shared/hide_semantic_link' %>
+<%= render 'shared/hide_structural_link' %>
+
+
+<h1>Manage Courses in <%= @name %> curriculum</h1>
+
+<%= form_tag  curriculum_courses_path, method: 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<p><%= link_to 'Add course to curriculum', list_curriculum_courses_path %></p>
+
+
+<table class="styled-table" >
+	<thead>
+		<th>Course Name	</th>
+		<th>Professor</th>
+		<th>Curricula</th>
+		<th>Year</th>
+		<th colsplan="1"></th>
+	</tr>
+	</thead>
+	<tbody>
+
+	<tr>
+	
+	<% @courses.each do |course| %>
+		<tr>
+			<td><%= link_to course.name, course_path(course) %></td>
+			<td><%= link_to "#{course.teacher.firstname} #{course.teacher.lastname}", teacher_path(course.teacher) %></td>
+			<td>
+				<% course.curriculum.each do |curriculum| %>
+					<%= link_to curriculum.name, curriculum_id_path(params[:curriculum_id]) %>
+				<% end %>
+
+			</td>
+			<td><%= course.accademic_year.year %></td>
+			<td><%= link_to "Remove", add_curriculum_course_path( params[:curriculum_id], course), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			
+
+		</tr>
+	<% end %>
+
+
+</tbody>
+
+
+</table>
+<br>
+
+<%= will_paginate @courses %>
+
+
+
+
+
+

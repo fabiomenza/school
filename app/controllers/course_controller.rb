@@ -152,6 +152,80 @@ class CourseController < ApplicationController
 
 
 
+  def index
+    @courses=Course.order('name ASC').paginate(page: params[:page])
+
+  end
+
+
+  def new
+    @course=Course.new
+    
+  end
+
+  def create
+    @course=Course.new
+    @course.name=params[:course][:name]
+    @course.description=params[:course][:description]
+    @course.program=params[:course][:program]
+    @course.teacher_id=params[:course][:teacher_id]
+    @course.classroom_id=params[:course][:classroom_id]
+    # curriculum=Curriculum.find(params[:course][:curriculum])
+    # curriculum.course << @course
+    @course.accademic_year=Date.new params[:course]['accademic_year(1i)'].to_i, params[:course]['accademic_year(2i)'].to_i, params[:course]['accademic_year(3i)'].to_i
+    
+    if @course.save
+      redirect_to course_path @course
+    else
+      render 'new'
+    end
+    
+  end
+
+  def destroy
+    @course=Course.find params[:id]
+    @course.destroy
+    redirect_to course_index_path
+
+    
+  end
+
+  def edit
+    @course=Course.find params[:id]
+    
+  end
+
+  def update
+    @course=Course.find params[:id]
+    @course.name=params[:course][:name]
+    @course.description=params[:course][:description]
+    @course.program=params[:course][:program]
+    @course.teacher_id=params[:course][:teacher_id]
+    @course.classroom_id=params[:course][:classroom_id]
+    # #if the curriculum for the course changed
+    # # => delete from old if exist
+    # # => add to the new course
+    # unless @course.curriculum.exists? params[:course][:classroom_id]
+    #     curriculum_old=Curriculum.find(@course.curriculum.id)
+    #     curriculum_new=Curriculum.find(params[:course][:classroom_id])
+    #     if curriculum_old.course.exists?(@course.id)
+    #       curriculum_old.delete(@course)
+    #     end
+    #     curriculum_new.course << @course
+    # end
+          
+    @course.accademic_year=Date.new params[:course]['accademic_year(1i)'].to_i, params[:course]['accademic_year(2i)'].to_i, params[:course]['accademic_year(3i)'].to_i
+
+    if @course.save
+      redirect_to course_index_path
+    else
+      render 'edit'
+    end
+    
+  end
+
+
+
   def build_links
 	structural_links
 	semantic_links
@@ -180,4 +254,5 @@ class CourseController < ApplicationController
 	@semant_links << {name: c.name,value:"/course/#{c.id} "}
   end
 
+  
 end

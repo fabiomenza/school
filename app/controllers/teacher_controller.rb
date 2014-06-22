@@ -15,7 +15,7 @@ class TeacherController < ApplicationController
 	build_links
   end
 
-
+ 
 
 
   def build_courses

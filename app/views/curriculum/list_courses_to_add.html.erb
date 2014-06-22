@@ -1,0 +1,37 @@
+<%= render 'shared/hide_semantic_link' %>
+<%= render 'shared/hide_structural_link' %>
+
+<h1>Ad a course to curriculum <%= @curriculum.name %></h1>
+
+<%= form_tag  list_curriculum_courses_path(params[:curriculum_id]), method: 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+ </p>
+ <% end %>
+
+<table class="styled-table" >
+	<thead>
+		<th>Course Name	</th>
+		<th>Professor</th>
+		<th>Description</th>
+		<th colspan="1"></th>
+	</tr>
+	</thead>
+	<tbody>
+		<% @courses.each do |course| %>
+			<tr>
+		
+			<td><%= link_to course.name, "#{:go_to}#{course.id}" %></td>
+			<td><%= link_to "#{course.teacher.firstname} #{course.teacher.lastname}", teacher_path(course.teacher.id) %></td>
+			<td><%= link_to "#{course.description.split[0...Course.max_word].join(' ')} ...",course_syllabus_path(course.id)  %></td>
+			<td><%= link_to "Add to curriculum",add_curriculum_course_path(params[:curriculum_id], course), method: :put %></td>
+
+			</tr>
+		<% end %>
+	</tbody>
+
+</table>
+
+
+<%= will_paginate @courses %>

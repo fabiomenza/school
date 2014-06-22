@@ -23,33 +23,46 @@ Rails.application.routes.draw do
 	get 'history' => 'history#view'				# Storia della scuola
 	get 'alumni' => 'alumni#view'				# Alumni
 	
-	# Course pages
+	# CRUD Course pages
+	get 'courses/index', to: 'course#index', as: 'course_index'
+	get 'courses/new', to: 'course#new', as: 'new_course'
+	post 'courses', to: 'course#create'
 	get 'course/:id', to: 'course#view', as: 'course'
+	get 'course/:id/edit', to: 'course#edit', as: 'course_edit'
+	put 'course/:id', to: 'course#update'
+	delete 'course/:id', to: 'course#destroy'
+
+	#Courses page
 	get 'course/:id/syllabus' => 'course#syllabus', as: 'course_syllabus'
 	get 'course/:id/timetable' => 'course#timetable', as: 'course_timetable'
 	get 'course/:id/materials' => 'course#materials', as: 'course_materials'
 	get 'course/:id/exams' => 'course#exams', as: 'course_exams'
 	get 'course/:id/curricula' => 'course#curricula', as: 'couse_curricula'
+
+
 	#CRUD courses news
+	get 'course/:course_id/news/index' => 'news#index', as: 'course_news_index'
 	get 'course/:course_id/news/new' => 'news#new', as: 'new_course_news'
 	post 'course/:course_id/news' => 'news#create'
 	get 'course/:course_id/news/:id/edit' => 'news#edit', as: 'edit_course_new'
 	put 'course/:course_id/news/:id' => 'news#update'
-	get 'course/:course_id/news' => 'news#index', as: 'course_news_index'
+	
 
 
 	#Courses news
 	get 'course/:id/news' => 'news#news', as: 'course_news'
 	delete '/news/:id' => 'news#destroy'
 
-	#Lecture
+	#Lecture CRUD
+	get 'course/:course_id/lectures/index' => 'lectures#index', as: 'course_lectures'
 	get 'course/:course_id/lectures/new' => 'lectures#new', as: 'new_course_lecture'
-	get 'course/:course_id/lectures/:id' => 'lectures#show', as: 'course_lecture'
 	post 'course/:course_id/lectures' => 'lectures#create' 
 	get  'course/:course_id/lectures/:id/edit' => 'lectures#edit', as: 'edit_course_lecture'
 	put  'course/:course_id/lectures/:id' => 'lectures#update', as: 'update_course_lecture'
 	delete 'course/:course_id/lectures/:id' => 'lectures#destroy' 
-	get 'course/:course_id/lectures' => 'lectures#index', as: 'course_lectures'
+	
+	#lecture pages
+	get 'course/:course_id/lectures/:id' => 'lectures#show', as: 'course_lecture'
 
 	#courses pages
 	get 'courses/courses_by_year' => 'course#courses_by_year', as: 'courses_by_year'
@@ -68,12 +81,17 @@ Rails.application.routes.draw do
 
 
 	# Curriculum new, edit, and destoy
+	get 'curriculum/index' => 'curriculum#index', as: 'curriulum_index'
 	get 'curriculum/new' => 'curriculum#new', as: 'new_curriculum'
+	get 'curriculum/:curriculum_id/courses/index', to: 'curriculum#manage_courses', as: 'curriculum_courses'
+	get 'curriculum/:curriculum_id/courses/list', to: 'curriculum#list_courses_to_add', as: 'list_curriculum_courses'
+	put 'curriculum/:curriculum_id/courses/:id', to: 'curriculum#add_course', as: 'add_curriculum_course'
+		delete 'curriculum/:curriculum_id/courses/:id', to: 'curriculum#remove_course'
 	post 'curriculum' => 'curriculum#create'
 	get 'curriculum/:id/edit' => 'curriculum#edit', as: 'edit_curriculum'
 	put 'curriculum/:id' => 'curriculum#update'
 	delete 'curriculum/:id' => 'curriculum#destroy'
-	get 'curriculum/index' => 'curriculum#index', as: 'curriulum_index'
+	
 	# Curriculum pages
 	get 'curriculum/:id' => 'curriculum#view', as: 'curriculum_id' 
 	get 'curriculum/:id/work_opportunity' => 'curriculum#work_opportunity', as: 'curriculum_work_opportunity'
