@@ -10,6 +10,7 @@ class StructureController < ApplicationController
 	c = Structure.find(params[:id])
 	@title = @name = c.name
 	@map = c.map
+        c.map = @map
 	build_links
   end
 
@@ -44,6 +45,49 @@ class StructureController < ApplicationController
 	build_links
   end
 
+  def new
+	@structure=Structure.new
+  end
+
+  def create
+    @structure=Structure.new
+    @structure.name=params[:structure][:name]
+    @structure.description=params[:structure][:description]
+    @structure.map=params[:structure][:map]
+    @structure.structure_type_id=params[:structure_type]
+    if @structure.save
+      redirect_to structure_path(@structure)
+    else
+      render 'edit'
+    end
+    
+  end
+
+  def edit
+	@structure = Structure.find(params[:id])
+  end
+
+  def update
+    @structure=Structure.find(params[:id])
+    @structure.name=params[:structure][:name]
+    @structure.description=params[:structure][:description]
+    @structure.map=params[:structure][:map]
+    @structure.structure_type_id=params[:structure_type]
+    if @structure.save
+      redirect_to structure_path(@structure)
+    else
+      render 'edit'
+    end
+    
+  end
+
+  def destroy
+    @structure=Structure.find params[:id]
+    @structure.destroy
+
+    redirect_to structures
+    
+  end
 
 
   def build_links

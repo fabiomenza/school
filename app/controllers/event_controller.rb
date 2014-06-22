@@ -14,6 +14,51 @@ class EventController < ApplicationController
   end
 
 
+  def new
+	@event=Event.new
+  end
+
+  def create
+    @event=Event.new
+    @event.name=params[:event][:name]
+    @event.description=params[:event][:description]
+    @event.get_involved=params[:event][:get_involved]
+    @event.event_type_id=params[:event_type]
+    @event.structure_id=params[:structure]
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render 'edit'
+    end
+    
+  end
+
+  def edit
+	@event = Event.find(params[:id])
+  end
+
+  def update
+    @event=Event.find(params[:id])
+    @event.name=params[:event][:name]
+    @event.description=params[:event][:description]
+    @event.get_involved=params[:event][:get_involved]
+    @event.event_type_id=params[:event_type]
+    @event.structure_id=params[:structure]
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render 'edit'
+    end
+    
+  end
+
+  def destroy
+    @event=Event.find params[:id]
+    @event.destroy
+
+    redirect_to events
+    
+  end
 
   def build_links
 	structural_links

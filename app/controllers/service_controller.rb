@@ -9,9 +9,61 @@ class ServiceController < ApplicationController
   def reference
 	s = Service.find(params[:id])
 	@title = @name = "Reference for " + s.name
-	@description = s.description
+	@description = s.reference
 	build_links
   end
+
+
+
+
+  def new
+	@service=Service.new
+  end
+
+  def create
+    @service=Service.new
+    @service.name=params[:service][:name]
+    @service.description=params[:service][:description]
+    @service.reference=params[:service][:reference]
+    @service.structure_id=params[:structure]
+    @service.classroom_id=params[:classroom]
+    @service.service_type_id=params[:service_type]
+    if @service.save
+      redirect_to service_path(@service)
+    else
+      render 'edit'
+    end
+    
+  end
+
+  def edit
+	@service = Service.find(params[:id])
+  end
+
+  def update
+    @service=Service.find(params[:id])
+    @service.name=params[:service][:name]
+    @service.description=params[:service][:description]
+    @service.reference=params[:service][:reference]
+    @service.structure_id=params[:structure]
+    @service.classroom_id=params[:classroom]
+    @service.service_type_id=params[:service_type]
+    if @service.save
+      redirect_to service_path(@service)
+    else
+      render 'edit'
+    end
+    
+  end
+
+  def destroy
+    @service=Service.find params[:id]
+    @service.destroy
+
+    redirect_to services
+    
+  end
+
 
 
   def build_links

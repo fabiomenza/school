@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619165559) do
+ActiveRecord::Schema.define(version: 20140622130021) do
 
   create_table "awards", force: true do |t|
     t.string   "title"
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 20140619165559) do
     t.integer  "structure_id"
     t.integer  "classroom_id"
     t.integer  "service_type_id"
+    t.text     "reference"
   end
 
   create_table "structure_types", force: true do |t|

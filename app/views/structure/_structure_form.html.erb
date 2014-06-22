@@ -1,0 +1,14 @@
+<% if defined? time %>
+	<%= debug time %>
+<% end %>
+
+<%= form_for what, url:{ controller: 'structure', action: to_do}, method: to_met do |f| %>
+	<%= f.label :name %> <br>
+	<%= f.text_field :name %> <br><br>
+	<%= f.label :description%> <br>
+	<%= f.text_area :description %> <br>
+	<%= f.label "Map"%> <br>
+	<%= f.text_field :map %> <br><br>
+	<%= select_tag(:structure_type, options_from_collection_for_select(StructureType.all, :id, :name)) %>
+	<%= f.submit %>
+<% end %>
