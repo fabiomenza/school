@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	
+
 	root to: "home#index"
 
 	# Landmarks
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 	get 'contacts' => 'contacts#view'			# Contatti
 	get 'mission' => 'mission#view'				# Mission & Principles
 	get 'how_to_get_there' => 'how_to_get_there#view'	# Come arrivare
-	get 'structures' => 'structures#view'			# Tutte le strutture
+	get 'structures' => 'structures#view', as: 'structures'	# Tutte le strutture
 	get 'structures/type/:id/' => 'structures#type'		# Strutture per tipo
 	get 'events' => 'events#view'				# Tutti gli eventi
 	post 'events/bydate' => 'events#bydate'			# Eventi per data
@@ -96,6 +96,12 @@ Rails.application.routes.draw do
 	# Student's services pages
 	get 'service/:id' => 'service#view', as: 'service'
 	get 'service/:id/reference' => 'service#reference', as: 'service_reference'
+	# CRUD services
+	get 'services/new' => 'service#new', as: 'new_service'
+	post 'service' => 'service#create'
+	get 'service/:id/edit' => 'service#edit', as: 'edit_service'
+	put 'service/:id' => 'service#update'
+	delete 'service/:id' => 'service#destroy'
 
 	# Structures pages
 	get 'structure/:id' => 'structure#view', as: 'structure'
@@ -103,10 +109,22 @@ Rails.application.routes.draw do
 	get 'structure/:id/photogallery' => 'structure#photogallery', as: 'structure_photos'
 	get 'structure/:id/events' => 'structure#events', as: 'structure_events'
 	get 'structure/:id/services' => 'structure#services', as: 'structure_services'
+	#CRUD structures
+	get 'structures/new' => 'structure#new', as: 'new_structure'
+	post 'structure' => 'structure#create'
+	get 'structure/:id/edit' => 'structure#edit', as: 'edit_structure'
+	put 'structure/:id' => 'structure#update'
+	delete 'structure/:id' => 'structure#destroy'
 
 	# Events pages
 	get 'event/:id' => 'event#view', as: 'event'
 	get 'event/:id/get_involved' => 'event#get_involved', as: 'event_get_involved'
+	#CRUD events
+	get 'events/new' => 'event#new', as: 'new_event'
+	post 'event' => 'event#create'
+	get 'event/:id/edit' => 'event#edit', as: 'edit_event'
+	put 'event/:id' => 'event#update'
+	delete 'event/:id' => 'event#destroy'
 	
 	# School's awards pages
 	get 'award/:id' => 'award#view', as: 'award'

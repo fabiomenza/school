@@ -1,0 +1,5 @@
+<h1>Edit structure <%= @structure.name %></h1>
+
+<%= render partial: 'structure_form', locals: { to_do: 'update', to_met: 'put', what: @structure} %>
+<%= render "shared/structural_link" %>
+<%= render "shared/semantic_link" %>

@@ -1,0 +1,20 @@
+<% if defined? time %>
+	<%= debug time %>
+<% end %>
+
+<%= form_for what, url:{ controller: 'service', action: to_do}, method: to_met do |f| %>
+	<%= f.label :name %> <br>
+	<%= f.text_field :name %> <br><br>
+	<%= f.label :description%> <br>
+	<%= f.text_area :description %> <br>
+	<%= f.label :reference%> <br>
+	<%= f.text_area :reference %> <br>
+	<%= f.label :structure%> <br>
+	<%= select_tag(:structure, options_from_collection_for_select(Structure.all, :id, :name)) %> <br>
+	<%= f.label :service_type%> <br>
+	<%= select_tag(:service_type, options_from_collection_for_select(ServiceType.all, :id, :name)) %> <br>
+	<%= f.label :classroom%> <br>
+	<%= select_tag(:classroom, options_from_collection_for_select(Classroom.all, :id, :name)) %> <br>
+	<br>
+	<%= f.submit %>
+<% end %>
