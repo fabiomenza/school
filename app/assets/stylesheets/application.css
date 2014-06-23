@@ -142,6 +142,37 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', end
 }
 
 
+#logo{
+  float:left;
+  width: 80px;
+  margin: 30px ;
+  border: 1px solid purple;
+  display:none;
+
+}
+
+
+#galleria{height:520px;}
+
+
+/*Flash Stiling*/
+
+#flash_notice, #flash_error, #flash_alert {
+  padding: 5px 8px;
+    margin: 10px 0;
+}
+
+#flash_notice {
+  background-color: #d5FFd5;
+  border: solid 1px green;
+  color: green;
+}
+
+#flash_error, #flash_alert {
+  background-color: #FFD5D5;
+  border: solid 1px red;
+  color: red;
+}
 
 
 
@@ -311,34 +342,5 @@ ul.landmark-menu > li > a.no-link:hover{
  * Logo
  */
 
-#logo{
-  float:left;
-  width: 80px;
-  margin: 30px ;
-  border: 1px solid purple;
-  display:none;
-
-}
 
 
-#galleria{height:520px;}
-
-
-/*Flash Stiling*/
-
-#flash_notice, #flash_error, #flash_alert {
-  padding: 5px 8px;
-    margin: 10px 0;
-}
-
-#flash_notice {
-  background-color: #d5FFd5;
-  border: solid 1px green;
-  color: green;
-}
-
-#flash_error, #flash_alert {
-  background-color: #FFD5D5;
-  border: solid 1px red;
-  color: red;
-}
