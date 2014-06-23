@@ -32,24 +32,26 @@ table.styled-table, .styled-table th,.styled-table td{
 
 	text-align:left;
 	padding: 10px 10px 10px;
-	
+	background-color:white;
 	margin:0px;
 	
 
 }
 
-.styled-table a{
+.styled-table a, a.new_button{
 	
-	color:blue;
-}
-
-.styled-table td  a{
 	
+	color:#006B00;
 	text-decoration: none;
 }
 
-.styled-table td  a:hover {
-	color:red;
+
+.styled-table td  a:hover, a.new_button:hover {
+	/*color:green;
+	color:#002B00;
+	color: #114711;*/
+	color:#54FF54;
+	
 
 }
 
@@ -72,3 +74,11 @@ td.time {
 	font-weight: bold;
 	text-align:right;
 }
+
+{
+	text-decoration: none;
+	color:#006B00;
+	
+
+}
+

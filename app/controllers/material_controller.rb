@@ -10,9 +10,9 @@ class MaterialController < ApplicationController
   end
 
   def index
-  	@materials=Material.all
+  	@materials=Material.where(course_id: params[:course_id] )
   	@course=Course.find params[:course_id]
-    back_to_course
+    
   	
   end
 

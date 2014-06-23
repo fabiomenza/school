@@ -49,7 +49,7 @@ class LecturesController < ApplicationController
 	end
 
 	def index
-		@lectures=Lecture.order('w_day ASC').order('start_time Asc')
+		@lectures=Lecture.order('w_day ASC').order('start_time Asc').where(course_id: params[:course_id] )
 		@course=Course.find params[:course_id]
 		back_to_course
 		
