@@ -1,4 +1,4 @@
-<h1>Listring Curricuums</h1>
+<h1>Listing lectures for <%= @course.name %></h1>
 
 <%= link_to "New Lecture", new_course_lecture_path %>
 <br><br>
@@ -22,7 +22,7 @@
 					<td><%= lecture.w_day %></td>
 					<td><%= "#{lecture.start_time.hour}:00" %></td>
 					<td><%= "#{lecture.end_time.hour}:00" %></td>
-					<td><%= link_to 'Show', '/' %></td>
+					<td><%= link_to 'Show', course_lecture_path(lecture.course, lecture) %></td>
 					<td><%= link_to 'Edit', edit_course_lecture_path(lecture.course, lecture) %></td>
 					<td><%= link_to 'Destroy', course_lecture_path(lecture.course, lecture), method: :delete,data: { confirm: 'Are you sure?' }  %></td>
 					
@@ -36,3 +36,6 @@
 
 </table>
 
+
+<%= render "shared/hide_semantic_link" %>
+<%= render "shared/hide_structural_link" %>

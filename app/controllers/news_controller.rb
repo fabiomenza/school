@@ -22,8 +22,10 @@ class NewsController < ApplicationController
     @time=Time.new time["time(1i)"], time["time(2i)"], time["time(3i)"], time["time(4i)"], time["time(5i)"]
     @new.time=@time
     if @new.save
-      redirect_to news_path(@new)
+      flash_notice_create "New"
+      redirect_to course_news_index_path params[:course_id]
     else
+      flash_error_create "New"
       render 'edit'
     end
     
@@ -37,8 +39,10 @@ class NewsController < ApplicationController
     @time=Time.new time["time(1i)"], time["time(2i)"], time["time(3i)"], time["time(4i)"], time["time(5i)"]
     @new.time=@time
     if @new.save
-      redirect_to news_path(@new)
+      flash_notice_update "New"
+      redirect_to course_news_index_path params[:course_id]
     else
+      flash_error_update "New"
       render 'edit'
     end
     
@@ -53,7 +57,11 @@ class NewsController < ApplicationController
   def destroy
     @news=News.find params[:id]
     course=@news.course
-    @news.destroy
+    if @news.destroy
+      flash_notice_destroy "New"
+    else
+      flash_error_destroy "New"
+    end
 
     redirect_to course_news_index_path course
     

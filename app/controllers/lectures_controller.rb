@@ -15,8 +15,10 @@ class LecturesController < ApplicationController
 		set_params(lecture)
 
 		if lecture.save
-			redirect_to course_timetable_path(params[:course_id])
+			flash_notice_create "Lecture"
+			redirect_to course_lectures_path params[:course_id]
 		else
+			flash_error_create "Lecture"
 			render 'new'
 		end
 		
@@ -36,8 +38,10 @@ class LecturesController < ApplicationController
 		lecture=Lecture.find(params[:id])
 		set_params(lecture)
 		if lecture.save
-			redirect_to course_timetable_path(params[:course_id])
+			flash_notice_update "Lecture"
+			redirect_to course_lectures_path params[:course_id]
 		else
+			flash_error_update "Lecture"
 			render 'edit'
 		end
 
@@ -46,15 +50,18 @@ class LecturesController < ApplicationController
 
 	def index
 		@lectures=Lecture.order('w_day ASC').order('start_time Asc')
-		@couse=Lecture
+		@course=Course.find params[:course_id]
 		
 	end
 
 	def destroy
 		@lecture=Lecture.find(params[:id])
-		@lecture.destroy
-
-		redirect_to course_lectures_path(params[:course_id])
+		if @lecture.destroy
+			flash_notice_destroy "Lecture"
+		else
+			flash_error_destroy "Lecture"
+		end
+		redirect_to course_lectures_path params[:course_id]
 	end
 
 	private

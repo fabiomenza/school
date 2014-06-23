@@ -54,6 +54,7 @@ class CurriculumController < ApplicationController
     curriculum=Curriculum.find params[:curriculum_id]
     course=Course.find params[:id]
     curriculum.course << course
+    flash[:notice]="Course successfully added to the curriculum"
     redirect_to curriculum_courses_path
    
   end
@@ -64,9 +65,10 @@ class CurriculumController < ApplicationController
     curriculum=Curriculum.find(params[:curriculum_id])
     course=Course.find(params[:id])
     if curriculum.course.delete(course)
-
+      flash[:notice]="Course successfully removed from the curriculum"
       redirect_to curriculum_courses_path
     else
+      flash.now[:error]="Unable to remove the course from the curriculum"
       render 'manage_courses'
     end
   end
@@ -79,9 +81,11 @@ class CurriculumController < ApplicationController
   def create
   	@curriculum=Curriculum.new(curriculum_params)
 
-  	if @curriculum.save
+  	unless @curriculum.save
+      flash_notice_create "Curriculum"
   		redirect_to curriculum_id_path(@curriculum)
   	else
+      flash_error_create "Curriculum"
   		render 'new'
   	end
   	
@@ -103,7 +107,11 @@ class CurriculumController < ApplicationController
 
   def destroy
     @curriculum=Curriculum.find(params[:id])
-    @curriculum.destroy
+    if @curriculum.destroy
+      flash_notice_destroy "Curriculum"
+    else
+      flash_error_destroy "Curriculum"
+    end
 
     redirect_to curriulum_index_path
     
@@ -112,8 +120,10 @@ class CurriculumController < ApplicationController
   def update
     curriculum=Curriculum.find(params[:id])
       if curriculum.update(curriculum_params)
+        flash_notice_update "Curriculum"
         redirect_to curriculum_id_path(curriculum)
       else
+        flash_error_update "Curriculum"
         render 'edit'
       end
     
