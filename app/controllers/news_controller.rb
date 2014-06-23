@@ -69,8 +69,9 @@ class NewsController < ApplicationController
 
   def index
     @news=News.where(course_id: params[:course_id]).paginate(page: params[:page])
-
     @course_id=params[:course_id]
+   
+    back_to_course
   end
 
   def news
@@ -81,7 +82,11 @@ class NewsController < ApplicationController
   	
   end
 
+  def back_to_course
+    @semant_links=Array.new
+    @semant_links << {name: "Back to courses",value: course_index_path }
 
+  end
 
  
 

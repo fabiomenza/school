@@ -1,5 +1,5 @@
-<!-- <%= params.inspect %> 
-<br> -->
+
+<br> 
 <h1>Courses for curriculum <%= @curriculum.name %></h1>
 <table class="styled-table" >
 	<thead>
@@ -14,8 +14,8 @@
 			<tr>
 		
 			<td><%= link_to course.name, courses_type_guided_tour_id_path(@curriculum, course) %></td>
-			<td><%= link_to "#{course.teacher.firstname} #{course.teacher.lastname}", teacher_path(course.teacher) %></td>
-			<td><%= link_to "#{course.description.split[0...Course.max_word].join(' ')} ...",course_syllabus_path(course)  %></td>
+			<td><%= "#{course.teacher.firstname} #{course.teacher.lastname}"%></td>
+			<td><%= "#{course.description.split[0...Course.max_word].join(' ')} ..."%></td>
 
 
 			</tr>

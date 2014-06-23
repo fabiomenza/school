@@ -39,6 +39,13 @@ Rails.application.routes.draw do
 	get 'course/:id/exams' => 'course#exams', as: 'course_exams'
 	get 'course/:id/curricula' => 'course#curricula', as: 'couse_curricula'
 
+	#Dirty way for gt!
+	get 'courses/courses_by_type/:curriculum_id/:id/syllabus' => 'course#syllabus', as: 'courses_type_guided_tour_id_syllabus'
+	get 'courses/courses_by_year/:courses_year/:id/syllabus' => 'course#syllabus', as: 'courses_year_guided_tour_id_syllabus'
+	get 'courses/courses_by_type/:curriculum_id/:id/timetable' => 'course#timetable', as: 'courses_type_guided_tour_id_timetable'
+	get 'courses/courses_by_year/:courses_year/:id/timetable' => 'course#timetable', as: 'courses_year_guided_tour_id_timetable'
+
+
 
 	#CRUD courses news
 	get 'course/:course_id/news/index' => 'news#index', as: 'course_news_index'
@@ -54,7 +61,7 @@ Rails.application.routes.draw do
 	delete '/news/:id' => 'news#destroy'
 
 	#Lecture CRUD
-	get 'course/:course_id/lectures/index' => 'lectures#index', as: 'course_lectures'
+	get 'course/:course_id/lectures/index' => 'lectures#index', as: 'course_lectures_index'
 	get 'course/:course_id/lectures/new' => 'lectures#new', as: 'new_course_lecture'
 	post 'course/:course_id/lectures' => 'lectures#create' 
 	get  'course/:course_id/lectures/:id/edit' => 'lectures#edit', as: 'edit_course_lecture'
@@ -101,7 +108,7 @@ Rails.application.routes.draw do
 	get 'news/:id' => 'news#view', as: 'news'
 
 	#CRUD Material
-	get 'course/:course_id/material/index' => 'material#index', as: 'course_material'
+	get 'course/:course_id/material/index' => 'material#index', as: 'course_material_index'
 	get 'course/:course_id/material/new' => 'material#new', as: 'new_course_material'
 	post 'course/:course_id/material' => 'material#create' 
 	get  'course/:course_id/material/:id/edit' => 'material#edit', as: 'edit_course_material'

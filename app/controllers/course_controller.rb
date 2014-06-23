@@ -9,7 +9,15 @@ def syllabus
    c = Course.find(params[:id])
    @title = @name = c.name
    @program = c.program
-   build_links
+   if params[:curriculum_id]
+    gt_type_structural_links
+    semantic_links
+   elsif params[:courses_year]
+      gt_year_structural_links
+      semantic_links
+   else
+    build_links
+  end
 end
 
 def timetable
@@ -35,7 +43,17 @@ def timetable
 
     end
 
-    build_links
+    if params[:curriculum_id]
+      gt_type_structural_links
+      semantic_links
+    end
+    if params[:courses_year]
+      
+      gt_year_structural_links
+      semantic_links
+    else
+      build_links
+    end
 end
   
 def materials
@@ -80,13 +98,13 @@ end
 
   	@courses=Array.new
 	 #Informazioni mostrate: name, teacher, curriculum,year 
-	@courses_by_year.each do |course|
-		curricula=Array.new
-		course.curriculum.each do |curriculum|
-			curricula <<{:name => "#{curriculum.name}",
-						 :id => curriculum.id
+  	@courses_by_year.each do |course|
+  		curricula=Array.new
+  		course.curriculum.each do |curriculum|
+  			curricula <<{:name => "#{curriculum.name}",
+  						 :id => curriculum.id
 
-			}
+  			}
 		end
   		@courses << {:name => "#{course.name}",
   					 :id => course.id,
@@ -100,6 +118,8 @@ end
 
   					}
   	end
+
+
 
   end
 
@@ -116,6 +136,7 @@ end
 
 
    def type_guided_tour
+
     @this_course=Course.find(params[:id])
     @curriculum=Curriculum.find(params[:curriculum_id])
     #se params[:page].nil allora vuol dire che arrivo direttamente da
@@ -127,7 +148,8 @@ end
     end
     @courses=@curriculum.course.paginate(page: @page, per_page:1)
     
-    build_links
+    gt_type_structural_links
+    semantic_links
 
   end
 
@@ -146,7 +168,9 @@ end
       @page=params[:page]
     end
     @courses=@courses.paginate(page: @page, per_page: 1)
-    build_links
+    
+    gt_year_structural_links
+    semantic_links
   end
 
 
@@ -255,6 +279,23 @@ end
 	@semant_links << {:name => "Curricula",:value => "/course/#{c.id}/curricula"}
 	@semant_links << {name: "News",value: "/course/#{c.id}/news"}
   end
+
+  def gt_type_structural_links
+      @struct_links = Array.new
+      @struct_links << {:name => "Description",:value => courses_type_guided_tour_id_path(params[:curriculum_id], params[:id] )}
+      @struct_links << {:name => "Syllabus",:value => courses_type_guided_tour_id_syllabus_path(params[:curriculum_id], params[:id] )}
+      @struct_links << {:name => "Timetable", :value => courses_type_guided_tour_id_timetable_path(params[:curriculum_id], params[:id] )}
+  end
+
+   def gt_year_structural_links
+      @struct_links = Array.new
+      @struct_links << {:name => "Description",:value => courses_year_guided_tour_id_path(params[:courses_year], params[:id] )}
+      @struct_links << {:name => "Syllabus",:value => courses_year_guided_tour_id_syllabus_path(params[:courses_year], params[:id] )}
+      @struct_links << {:name => "Timetable", :value => courses_year_guided_tour_id_timetable_path(params[:courses_year], params[:id] )}
+  end
+
+
+
 
   def back_to_course
   	c=Course.find(params[:id])

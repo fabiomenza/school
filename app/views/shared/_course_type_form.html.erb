@@ -3,5 +3,6 @@
 <%= form_for :curriculums, url: { controller: 'course', action: "courses_by_type" } do |f| %>
 <%= f.label "Search for course's type" %>
 <%= f.select(:type, options_for_select(curriculums)) %>
+<%= f.hidden_field  :gt, value: "type"%>
 <%= f.submit :search %>
 <% end %>

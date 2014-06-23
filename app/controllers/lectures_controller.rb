@@ -16,7 +16,7 @@ class LecturesController < ApplicationController
 
 		if lecture.save
 			flash_notice_create "Lecture"
-			redirect_to course_lectures_path params[:course_id]
+			redirect_to course_lectures_index_path params[:course_id]
 		else
 			flash_error_create "Lecture"
 			render 'new'
@@ -39,7 +39,7 @@ class LecturesController < ApplicationController
 		set_params(lecture)
 		if lecture.save
 			flash_notice_update "Lecture"
-			redirect_to course_lectures_path params[:course_id]
+			redirect_to course_lectures_index_path params[:course_id]
 		else
 			flash_error_update "Lecture"
 			render 'edit'
@@ -51,6 +51,7 @@ class LecturesController < ApplicationController
 	def index
 		@lectures=Lecture.order('w_day ASC').order('start_time Asc')
 		@course=Course.find params[:course_id]
+		back_to_course
 		
 	end
 
@@ -61,8 +62,14 @@ class LecturesController < ApplicationController
 		else
 			flash_error_destroy "Lecture"
 		end
-		redirect_to course_lectures_path params[:course_id]
+		redirect_to course_lectures_index_path params[:course_id]
 	end
+
+	 def back_to_course
+    @semant_links=Array.new
+    @semant_links << {name: "Back to courses",value: course_index_path }
+
+  	end
 
 	private
 		def set_params (lecture)

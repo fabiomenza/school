@@ -102,7 +102,9 @@ class CurriculumController < ApplicationController
   def index
 
   	 @curriculums=Curriculum.order('name ASC').all.paginate(page: params[:page])
-  	
+  	 @semant_links = Array.new
+     
+
   end
 
   def destroy
@@ -150,8 +152,9 @@ class CurriculumController < ApplicationController
 	@struct_links << {:name => "Work opportunities",:value => "/curriculum/#{c.id}/work_opportunity"}
   end
   def semantic_links
-	c = Curriculum.find(params[:id])
-	@semant_links = Array.new
+	  c = Curriculum.find(params[:id])
+    @semant_links = Array.new
+	 
   end
 end
 

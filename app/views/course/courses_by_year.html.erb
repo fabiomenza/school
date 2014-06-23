@@ -9,9 +9,10 @@
 <table class="styled-table" >
 	<thead>
 		<th>Course Name	</th>
+		<th>Description</th>
 		<th>Professor</th>
 		<th>Curricula</th>
-		<th>Description</th>
+		
 	</tr>
 	</thead>
 	<tbody>
@@ -21,17 +22,18 @@
 	<% @courses.each do |course| %>
 		<tr>
 			<td class="name"><%= link_to course[:name], courses_year_guided_tour_id_path(@year,course[:id]) %>	</td>
-			<td class="teacher"><%= link_to course[:teacher], teacher_path(course[:teacher_id]) %></td>
-			<td class ="curricula">
-			<% 3.times do %>
-				<% course[:curricula].each do |curriculum| %>
-					<%= link_to curriculum[:name], curriculum_id_path(curriculum[:id]) %>
-					<br> <%# usato per mettere ogni elemento su una buona linea %>
-					
-				<% end %>
-			<% end %>
-			<td class="description"><%= link_to "#{course[:description].split[0...Course.max_word].join(' ')} ...", course_syllabus_path(course[:id]) %></td>
+			<td class="description"><%= "#{course[:description].split[0...Course.max_word].join(' ')} ..." %></td>
 			</td>
+			<td class="teacher"><%= course[:teacher] %></td>
+			<td class ="curricula">
+			
+			<% course[:curricula].each do |curriculum| %>
+				<%= curriculum[:name] %>
+				<br> <%# usato per mettere ogni elemento su una buona linea %>
+				
+			<% end %>
+			
+			
 			
 
 		</tr>
