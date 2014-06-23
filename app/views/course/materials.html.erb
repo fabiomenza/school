@@ -13,8 +13,8 @@
 		<% @materials.each do |material| %>
 	  	
 			<tr>
-				<td><%=link_to material.name, material_path(material.id) %></td>
-				<td><%=link_to material.course.name, course_path(material.course.id) %></td>
+				<td><%=link_to material.name, material_path(material.course, material) %></td>
+				<td><%=link_to material.course.name, course_path(material.course) %></td>
 				<td><%= material.description.split[0...Course.max_word].join(' ') %></td>
 				<td><%=link_to 'Download', material.multimedia_url%></td>
 

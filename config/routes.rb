@@ -86,7 +86,7 @@ Rails.application.routes.draw do
 	get 'curriculum/:curriculum_id/courses/index', to: 'curriculum#manage_courses', as: 'curriculum_courses'
 	get 'curriculum/:curriculum_id/courses/list', to: 'curriculum#list_courses_to_add', as: 'list_curriculum_courses'
 	put 'curriculum/:curriculum_id/courses/:id', to: 'curriculum#add_course', as: 'add_curriculum_course'
-		delete 'curriculum/:curriculum_id/courses/:id', to: 'curriculum#remove_course'
+	delete 'curriculum/:curriculum_id/courses/:id', to: 'curriculum#remove_course'
 	post 'curriculum' => 'curriculum#create'
 	get 'curriculum/:id/edit' => 'curriculum#edit', as: 'edit_curriculum'
 	put 'curriculum/:id' => 'curriculum#update'
@@ -100,8 +100,15 @@ Rails.application.routes.draw do
 	# News pages
 	get 'news/:id' => 'news#view', as: 'news'
 
+	#CRUD Material
+	get 'course/:course_id/material/index' => 'material#index', as: 'course_material'
+	get 'course/:course_id/material/new' => 'material#new', as: 'new_course_material'
+	post 'course/:course_id/material' => 'material#create' 
+	get  'course/:course_id/material/:id/edit' => 'material#edit', as: 'edit_course_material'
+	put  'course/:course_id/material/:id' => 'material#update', as: 'update_course_material'
+	delete 'course/:course_id/material/:id' => 'material#destroy' 
 	# Material pages
-	get 'material/:id' => 'material#view', as: 'material'
+	get 'course/:course_id/material/:id' => 'material#view', as: 'material'
 
 	# Exams pages
 	get 'exam/:id' => 'exam#view', as: 'exam'

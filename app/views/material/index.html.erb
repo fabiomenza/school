@@ -1,0 +1,39 @@
+<h1>Listing material for <%= @course.name %></h1>
+
+<%= link_to "New Material", new_course_material_path %>
+<br><br>
+
+<table class="styled-table" >
+	<thead>
+		<tr>
+			<th>Name </th>
+			
+			<th colspan=3></th>
+
+
+		</tr>
+
+	</thead>
+	<tbody>
+
+			<% @materials.each do |material| %>
+				<tr>
+					<td><%= material.name %></td>
+					
+					<td><%= link_to 'Show', material_path(material.course, material) %></td>
+					<td><%= link_to 'Edit', edit_course_material_path(material.course, material) %></td>
+					<td><%= link_to 'Destroy', material_path(material.course, material), method: :delete,data: { confirm: 'Are you sure?' }  %></td>
+					
+
+				</tr>
+
+			<% end %>
+
+	</tbody>
+
+
+</table>
+
+
+<%= render "shared/hide_semantic_link" %>
+<%= render "shared/hide_structural_link" %>
