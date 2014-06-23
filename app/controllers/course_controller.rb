@@ -1,4 +1,5 @@
 class CourseController < ApplicationController
+  
 def view
    @course= Course.find(params[:id])
 

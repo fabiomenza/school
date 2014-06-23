@@ -19,6 +19,12 @@ class ClassroomController < ApplicationController
 	build_links
   end
 
+  def services
+  	@classroom=Classroom.find params[:id]
+  	@services=@classroom.service
+  	
+  end
+
 
 
 

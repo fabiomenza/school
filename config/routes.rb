@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 	put 'course/:id', to: 'course#update'
 	delete 'course/:id', to: 'course#destroy'
 
+
+
 	#Courses page
 	get 'course/:id/syllabus' => 'course#syllabus', as: 'course_syllabus'
 	get 'course/:id/timetable' => 'course#timetable', as: 'course_timetable'
@@ -123,7 +125,8 @@ Rails.application.routes.draw do
 	# Classrooms pages
 	get 'classroom/:id' => 'classroom#view' , as: 'classroom'
 	get 'classroom/:id/how_to_get_there' => 'classroom#how_to_get_there', as: "classroom_htgt"
-	get 'classroom/:id/availability' => 'classroom#availability', as: 'classroom_avail'
+get 'classroom/:id/availability' => 'classroom#availability', as: 'classroom_avail'
+get 'classroom/:id/services', to: 'classroom#services', as: 'classroom_services'
 
 	# Student's services pages
 	get 'service/:id' => 'service#view', as: 'service'
