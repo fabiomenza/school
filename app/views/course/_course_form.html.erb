@@ -1,20 +1,28 @@
 
 <%= form_for what, url:{ controller: 'course', action: to_do}, method: to_met do |f| %>
-	<%= f.label :name %> <br>
-	<%= f.text_field :name %> <br><br>
-	<%= f.label :description%> <br>
-	<%= f.text_area :description %> <br>
-	<%= f.label :program %> <br>
-	<%= f.text_area :program%> <br>
-	<%= f.label :teacher %> <br>
-	<%= f.select :teacher_id, Teacher.order('lastname ASC').map{|t| [ "#{t.lastname} #{t.firstname}",t.id] }  %> <br>
-	<%= f.label :classroom %> <br>
-	<%= f.collection_select :classroom_id, Classroom.order('name ASC'),:id, :name %> <br>
-	<%= f.label :curriculum %> <br>
-	<%= f.label :curriculum_message, "Remember to add the course to a curriculum in the curriculum managment page" %><br>
-	<%= f.label :start_time %> <br>
-	<%= f.date_select :accademic_year, order: [:day, :month, :year] %>
-    
+
+	<p><%= f.label :name %> <br/>
+		<%= f.text_field :name %> 
+	</p>
+	<p><%= f.label :description%> <br/>
+		<%= f.text_area :description %>
+	</p>
+	<p><%= f.label :program %> <br/>
+		<%= f.text_area :program%> 
+	</p>
+	<p><%= f.label :teacher %> <br/>
+		<%= f.select :teacher_id, Teacher.order('lastname ASC').map{|t| [ "#{t.lastname} #{t.firstname}",t.id] }  %> 
+	</p>
+	<p><%= f.label :classroom %> <br/>
+		<%= f.collection_select :classroom_id, Classroom.order('name ASC'),:id, :name %> 
+	</p>
+	<p>
+		<%= f.label :curriculum %> <br/>
+		<%= f.label :curriculum_message, "Remember to add the course to a curriculum in the curriculum managment page" %>
+	</p>
+	<p><%= f.label :start_time %> <br/>
+		<%= f.date_select :accademic_year, order: [:day, :month, :year] %>
+	</p>
 
 	<br><%= f.submit %>
-<% end %>
+	<% end %>

@@ -1,9 +1,15 @@
 <%= form_for what, url:{ controller: 'material', action: to_do}, method: to_met do |f| %>
-	<%= f.label :name %> <br/>
-	<%= f.text_field :name %> <br><br>
-	<%= f.label :description%> <br>
-	<%= f.text_area :description %> <br>
-	<%= f.label :multimedia_url %> <br>
-	<%= f.url_field :multimedia_url%> <br>
+	<p>
+		<%= f.label :name %> <br/>
+		<%= f.text_field :name %> 
+	</p>
+	<p>
+		<%= f.label :description%> <br/>
+		<%= f.text_area :description %> 
+	</p>
+	<p>
+		<%= f.label :multimedia_url %> <br/>
+		<%= f.url_field :multimedia_url%> 
+	</p>
 	<br><%= f.submit %>
 <% end %>
