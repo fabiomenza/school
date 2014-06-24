@@ -1,4 +1,9 @@
 class LecturesController < ApplicationController
+
+	add_breadcrumb 'Courses', :courses_path
+	add_breadcrumb "Index for courses", :course_index_path, only: %w(index new edit)
+  	add_breadcrumb "Index for lectures", :course_lectures_index_path, only: %w(index new edit)
+
 	def new
 		@lecture=Lecture.new
 		@course=Course.find(params[:course_id])
@@ -6,10 +11,11 @@ class LecturesController < ApplicationController
 		@lecture_times=*(8..19)
 		@classrooms=Classroom.select(:name, :id).order('name ASC')
 
-
+		add_breadcrumb "New lecture", new_course_lecture_path(@course)
 		
 		
 	end
+
 	def create
 		@lecture=Lecture.new
 		set_params(@lecture)
@@ -36,7 +42,9 @@ class LecturesController < ApplicationController
 		@lecture_times=*(8..19)
 		@classrooms=Classroom.select(:name, :id).order('name ASC')
 		@start_hour=@lecture
-		
+
+
+		add_breadcrumb "#{@lecture.w_day}: from #{@lecture.start_time.strftime("%R")} to #{@lecture.end_time.strftime("%R")}", new_course_lecture_path(@course)
 	end
 
 	def update
@@ -70,11 +78,12 @@ class LecturesController < ApplicationController
 		redirect_to course_lectures_index_path params[:course_id]
 	end
 
-	 def back_to_course
+	def back_to_course
     @semant_links=Array.new
     @semant_links << {name: "Back to courses",value: course_index_path }
 
   	end
+
 
 	private
 		def set_params (lecture)

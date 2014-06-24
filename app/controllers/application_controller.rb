@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  add_breadcrumb  "Home",:root_path
   protect_from_forgery with: :exception
   def flash_notice_create object_name
   	flash[:notice]= "#{object_name} successfully created"

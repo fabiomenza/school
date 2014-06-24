@@ -1,15 +1,28 @@
 class NewsController < ApplicationController
+  add_breadcrumb 'Courses', :courses_path
+  add_breadcrumb "Index for courses", :course_index_path, only: %w(index new edit)
+  add_breadcrumb "Index for news", :course_news_index_path, only: %w(index new edit)
+  
+
   def view
-	n = News.find(params[:id])
-	@title = @name = n.name
-	@time = n.time.to_s(:long)
-	@description = n.description
-	build_links
-  end
+   n = News.find(params[:id])
+   @title = @name = n.name
+   @time = n.time.to_s(:long)
+   @description = n.description
+
+   build_links
+
+   add_breadcrumb  n.course.name, course_path(n.course)
+   add_breadcrumb 'News', course_news_path(n.course)
+   add_breadcrumb  @name, course_new_path(n.course, n)  
+ end
 
   def new
     @new=News.new
     @course=Course.find(params[:course_id])
+     
+    add_breadcrumb "New new", new_course_news_path(@course)
+
     
   end
 
@@ -53,6 +66,9 @@ class NewsController < ApplicationController
     @new=News.find(params[:id])
 
     
+    add_breadcrumb @new.name, edit_course_new_path( params[:course_id], @new)
+
+    
   end
 
   def destroy
@@ -71,15 +87,18 @@ class NewsController < ApplicationController
   def index
     @news=News.where(course_id: params[:course_id]).paginate(page: params[:page])
     @course_id=params[:course_id]
-   
-    back_to_course
+
   end
 
   def news
   	c=Course.find(params[:id])
   	@course_name=c.name
   	@news=c.news.paginate(page: params[:page])
+
   	build_links
+    @title='bannana'
+    add_breadcrumb c.name , course_path(c)
+    add_breadcrumb 'News', course_news_path(c)
   	
   end
 
@@ -98,8 +117,8 @@ class NewsController < ApplicationController
   def structural_links
   end
   def semantic_links
-	n = News.find(params[:id])
-	@semant_links = Array.new
-	@semant_links << {:name => "#{n.course.name}",:value => "/course/#{n.course.id}/"}
+	 # n = Course.find(params[:id])
+	 # @semant_links = Array.new
+	 # @semant_links << {:name => "#{n.name}",:value => course_path(n)}
   end
 end

@@ -36,14 +36,22 @@
     	<%= render "shared/landmark_menu" %>
     </div>
     <div id=page-wrapper>
+    
       <div id=content>
+      	<div id="breadcrumb">
+			<%= render_breadcrumbs :separator => '>>' %>
+    	</div>
+
       	<% flash.each do |name, msg| %>
       		<%= content_tag :div, id: "flash_#{name}" do%>
 				<%= msg %>
 				
 
       		<% end %>
-      	<% end %>
+        <% end %>
+
+
+      	
 		<!-- Qui viene reso il contenuto della pagina -->
 		<%= yield %>
 

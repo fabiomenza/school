@@ -13,9 +13,9 @@
 		<% @news.each do |n|%>
 			
 			<tr>
-				<td> <%= link_to n.name, news_path(n.id) %></td>	
+				<td> <%= link_to n.name, course_new_path(n.course,n) %></td>	
 				<td> <%= "#{n.time.strftime('%H:%M')}"  %></td>
-				<td class="description"> <%= link_to "#{n.description.split[0...Course.max_word].join(' ')} ...", news_path(n.id) %></td>
+				<td class="description"> <%= link_to "#{n.description.split[0...Course.max_word].join(' ')} ...", course_new_path(n.course,n) %></td>
 
 
 			</tr>

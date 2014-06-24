@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 	root to: "home#index"
+	
 
 	# Landmarks
 	get 'curricula' => 'curricula#view'			# Tutti i curriculum
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
 	get 'course/:id/timetable' => 'course#timetable', as: 'course_timetable'
 	get 'course/:id/materials' => 'course#materials', as: 'course_materials'
 	get 'course/:id/exams' => 'course#exams', as: 'course_exams'
-	get 'course/:id/curricula' => 'course#curricula', as: 'couse_curricula'
+	get 'course/:id/curricula' => 'course#curricula', as: 'course_curricula'
 
 	#Dirty way for gt!
 	get 'courses/courses_by_type/:curriculum_id/:id/syllabus' => 'course#syllabus', as: 'courses_type_guided_tour_id_syllabus'
@@ -49,18 +50,21 @@ Rails.application.routes.draw do
 
 
 
+	
 	#CRUD courses news
 	get 'course/:course_id/news/index' => 'news#index', as: 'course_news_index'
 	get 'course/:course_id/news/new' => 'news#new', as: 'new_course_news'
 	post 'course/:course_id/news' => 'news#create'
 	get 'course/:course_id/news/:id/edit' => 'news#edit', as: 'edit_course_new'
 	put 'course/:course_id/news/:id' => 'news#update'
+	delete 'course/:course_id/news/:id' => 'news#destroy'
+	# News pages
+	get 'course/:course_id/news/:id' => 'news#view', as: 'course_new'
 	
-
 
 	#Courses news
 	get 'course/:id/news' => 'news#news', as: 'course_news'
-	delete '/news/:id' => 'news#destroy'
+	delete 'course/:course_id/news/:id' => 'news#destroy'
 
 	#Lecture CRUD
 	get 'course/:course_id/lectures/index' => 'lectures#index', as: 'course_lectures_index'
@@ -105,9 +109,7 @@ Rails.application.routes.draw do
 	get 'curriculum/:id' => 'curriculum#view', as: 'curriculum_id' 
 	get 'curriculum/:id/work_opportunity' => 'curriculum#work_opportunity', as: 'curriculum_work_opportunity'
 
-	#resources :news
-	# News pages
-	get 'news/:id' => 'news#view', as: 'news'
+	
 
 	#CRUD Material
 	get 'course/:course_id/material/index' => 'material#index', as: 'course_material_index'

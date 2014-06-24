@@ -31,6 +31,7 @@ gem 'will_paginate', '~> 3.0.5'
 #Use superfish menu
 gem 'superfish-rails', :git => 'https://github.com/rorlab/superfish-rails.git'
 gem 'jquery-hoverIntent-rails'
+gem 'breadcrumbs_on_rails', '~> 2.3.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

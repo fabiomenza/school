@@ -22,7 +22,7 @@
 		<% @courses.each do |course| %>
 			<tr>
 		
-			<td><%= link_to course.name, "#{:go_to}#{course.id}" %></td>
+			<td><%= link_to course.name, course_path(course) %></td>
 			<td><%= link_to "#{course.teacher.firstname} #{course.teacher.lastname}", teacher_path(course.teacher.id) %></td>
 			<td><%= link_to "#{course.description.split[0...Course.max_word].join(' ')} ...",course_syllabus_path(course.id)  %></td>
 			<td><%= link_to "Add to curriculum",add_curriculum_course_path(params[:curriculum_id], course), method: :put %></td>

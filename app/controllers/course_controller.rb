@@ -1,67 +1,107 @@
 class CourseController < ApplicationController
+  add_breadcrumb "Courses", :courses_path
 
+  
 def view
    @course= Course.find(params[:id])
 
    build_links
+
+   add_breadcrumb @course.name, course_path( @course)
+   
+
 end
 
 def syllabus
    c = Course.find(params[:id])
    @title = @name = c.name
    @program = c.program
+
+
+   
+
    if params[:curriculum_id]
     gt_type_structural_links
     semantic_links
+
+    add_breadcrumb "Course for curriculum #{Curriculum.find(prams[:curriculum_id]).name}", courses_type_guided_tour_id_path(params[:curriculum_id],c)
+    add_breadcrumb 'Syllabus', courses_type_guided_tour_id_syllabus_path(params[:curriculum_id],c)
    elsif params[:courses_year]
       gt_year_structural_links
       semantic_links
+
+      add_breadcrumb "Course in the year #{params[:courses_year]}", courses_year_guided_tour_id_path(params[:courses_year],c)
+      add_breadcrumb 'Syllabus', courses_year_guided_tour_id_syllabus_path(params[:courses_year],c)
+      
    else
     build_links
+
+    add_breadcrumb c.name, course_path(c)
+    add_breadcrumb 'Syllabus', course_syllabus_path(c)
   end
+  
+  
+  
+  
+
 end
 
 def timetable
-   @course=Course.find(params[:id])
-  	# indica le ore della mattina da cui partono le lezioni
-  	start_hours=8
-  	lectures=@course.lecture
-  	time=Time.new().change(hour:start_hours,minute:0,second:0)
-  	@rows=Array.new(11){ Array.new(6)}
-    for i in 0..10
-     @rows[i][0]=time.advance(hours: i).hour
-   end	
+  @course=Course.find(params[:id])
+	# indica le ore della mattina da cui partono le lezioni
+	start_hours=8
+	lectures=@course.lecture
+	time=Time.new().change(hour:start_hours,minute:0,second:0)
+	@rows=Array.new(11){ Array.new(6)}
 
-  	 # controlla il giorni di ongli lecture. 
-  	 #E lo colloca nell'array a seconda del suo orario
-  	 @weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
-  	 lectures.each do |lecture| 
-  	 	day=@weekday.find_index(lecture.w_day)+1 	
+  for i in 0..10
+    @rows[i][0]=time.advance(hours: i).hour
+  end	
 
-  	 	for i in lecture.start_time.hour...lecture.end_time.hour
-        @rows[i-start_hours][day]={:name => lecture.classroom.name, :id =>lecture.classroom.id}
-      end
+  # controlla il giorni di ongli lecture. 
+  #E lo colloca nell'array a seconda del suo orario
+  @weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
+  lectures.each do |lecture| 
+   	day=@weekday.find_index(lecture.w_day)+1 	
 
+   	for i in lecture.start_time.hour...lecture.end_time.hour
+      @rows[i-start_hours][day]={:name => lecture.classroom.name, :id =>lecture.classroom.id}
     end
 
-    if params[:curriculum_id]
-      gt_type_structural_links
-      semantic_links
-    end
-    if params[:courses_year]
-      
-      gt_year_structural_links
-      semantic_links
-    else
-      build_links
-    end
-end
+  end
+
+  if params[:curriculum_id]
+
+    gt_type_structural_links
+    semantic_links
+
+    add_breadcrumb "Course for curriculum #{Curriculum.find(prams[:curriculum_id]).name}", courses_type_guided_tour_id_path(params[:curriculum_id],@course)
+    add_breadcrumb 'Timetable', courses_type_guided_tour_id_timetable_path(params[:curriculum_id],@course)
+  elsif params[:courses_year]
+
+    gt_year_structural_links
+    semantic_links
+
+    add_breadcrumb "Course in the year #{params[:courses_year]}", courses_year_guided_tour_id_path(params[:courses_year],@course)
+    add_breadcrumb 'Timetable', courses_year_guided_tour_id_timetable_path(params[:courses_year],@course)
+  else
+    build_links
+
+    add_breadcrumb @course.name, course_path(@course)
+    add_breadcrumb 'Timetable', course_timetable_path(@course)
+  end
+
+    
+  end
   
 def materials
    c = Course.find(params[:id])
    @name = @title = "Materials for " + c.name
    @materials = c.material.order('name ASC').paginate(page: params[:page])
    back_to_course
+
+   add_breadcrumb c.name, course_path(c)
+   add_breadcrumb 'Materials', course_materials_path(c)
 end
 
 def exams
@@ -72,6 +112,10 @@ def exams
     @exams << {:name => "#{exam.name}",:value => "/exam/#{exam.id}/"}
   end
   back_to_course
+
+  add_breadcrumb c.name, course_path(c)
+  add_breadcrumb 'Exams', course_exams_path(c)
+
 end
 
 def curricula
@@ -81,6 +125,9 @@ def curricula
 	
 
 	back_to_course
+
+  add_breadcrumb c.name, course_path(c)
+  add_breadcrumb "Curricula related to #{c.name}", course_curricula_path(c)
 
 end
 
@@ -92,7 +139,7 @@ end
   	date1=Date.new(@year.to_i)
   	date2=Date.new(@year.to_i+1)
 
-  	@courses_by_year=Course.order('name ASC').where(accademic_year:  date1...date2).all.paginate(page: params[:page])
+  	@courses_by_year=Course.order('name ASC').where(accademic_year:  date1...date2).paginate(page: params[:page])
   	# quick and dirty
   	#@courses_by_year=Course.all.paginate(page: params[:page])
 
@@ -120,7 +167,8 @@ end
   					}
   	end
 
-
+   add_breadcrumb "Course in the year #{@year}", courses_by_year_path(params)
+   
 
   end
 
@@ -129,6 +177,7 @@ end
   	@curriculum=Curriculum.find(@curriculum_id)
     @courses=@curriculum.course.sort{|c1,c2| c1.name.downcase <=> c2.name.downcase}
 
+    add_breadcrumb "Course for curriculum #{@curriculum.name}", courses_by_type_path(params)
   
   end
 
@@ -152,6 +201,7 @@ end
     gt_type_structural_links
     semantic_links
 
+    add_breadcrumb "Course for curriculum #{@curriculum.name}", courses_type_guided_tour_id_path(@curriculum, @this_course)
   end
 
     
@@ -172,18 +222,24 @@ end
     
     gt_year_structural_links
     semantic_links
+
+    add_breadcrumb "Course in the year #{@year}", courses_year_guided_tour_path(@year, @this_course)
   end
 
 
 
   def index
     @courses=Course.order('name ASC').paginate(page: params[:page])
+
+    add_breadcrumb "Index for courses", course_index_path
   
   end
 
 
   def new
     @course=Course.new
+
+    add_breadcrumb 'New course', new_course_path(@course)
     
   end
 
@@ -222,7 +278,8 @@ end
 
   def edit
     @course=Course.find params[:id]
-    
+
+    add_breadcrumb 'Edit course', course_edit_path(@course)
   end
 
   def update
@@ -265,33 +322,33 @@ end
   def structural_links
 	c = Course.find(params[:id])
 	@struct_links = Array.new
-	@struct_links << {:name => "Description",:value => "/course/#{c.id}/"}
-	@struct_links << {:name => "Syllabus",:value => "/course/#{c.id}/syllabus"}
-	@struct_links << {:name => "Timetable", :value => "/course/#{c.id}/timetable"}
+	@struct_links << {name: "Description",value: course_path(c)}
+	@struct_links << {name:  "Syllabus",value: course_syllabus_path(c)}
+	@struct_links << {name:  "Timetable", value: course_timetable_path(c)}
   end
   def semantic_links
 	c = Course.find(params[:id])
 	@semant_links = Array.new
-	@semant_links << {:name => "#{c.teacher.firstname} #{c.teacher.lastname}",:value => "/teacher/#{c.teacher_id}/"}
-	@semant_links << {:name => "Materials",:value => "/course/#{c.id}/materials"}
-	@semant_links << {:name => "Exams",:value => "/course/#{c.id}/exams"}
-	@semant_links << {:name => "Classroom",:value => "/classroom/#{c.classroom_id}"}
-	@semant_links << {:name => "Curricula",:value => "/course/#{c.id}/curricula"}
-	@semant_links << {name: "News",value: "/course/#{c.id}/news"}
+	@semant_links << {name: "#{c.teacher.firstname} #{c.teacher.lastname}",value: teacher_path(c.teacher_id)}
+	@semant_links << {name: "Materials",value: course_materials_path(c.id)}
+	@semant_links << {name: "Exams",value: course_exams_path(c.id)}
+	@semant_links << {name: "Classroom",value: classroom_path(c.classroom_id)}
+	@semant_links << {name: "Curricula",value: course_curricula_path(c.id)}
+	@semant_links << {name: "News",value: course_news_path(c.id)}
   end
 
   def gt_type_structural_links
       @struct_links = Array.new
-      @struct_links << {:name => "Description",:value => courses_type_guided_tour_id_path(params[:curriculum_id], params[:id] )}
-      @struct_links << {:name => "Syllabus",:value => courses_type_guided_tour_id_syllabus_path(params[:curriculum_id], params[:id] )}
-      @struct_links << {:name => "Timetable", :value => courses_type_guided_tour_id_timetable_path(params[:curriculum_id], params[:id] )}
+      @struct_links << {name: "Description", value: courses_type_guided_tour_id_path(params[:curriculum_id], params[:id] )}
+      @struct_links << {name: "Syllabus", value: courses_type_guided_tour_id_syllabus_path(params[:curriculum_id], params[:id] )}
+      @struct_links << {name: "Timetable",  value: courses_type_guided_tour_id_timetable_path(params[:curriculum_id], params[:id] )}
   end
 
    def gt_year_structural_links
       @struct_links = Array.new
-      @struct_links << {:name => "Description",:value => courses_year_guided_tour_id_path(params[:courses_year], params[:id] )}
-      @struct_links << {:name => "Syllabus",:value => courses_year_guided_tour_id_syllabus_path(params[:courses_year], params[:id] )}
-      @struct_links << {:name => "Timetable", :value => courses_year_guided_tour_id_timetable_path(params[:courses_year], params[:id] )}
+      @struct_links << {name: "Description", value: courses_year_guided_tour_id_path(params[:courses_year], params[:id] )}
+      @struct_links << {name: "Syllabus", value: courses_year_guided_tour_id_syllabus_path(params[:courses_year], params[:id] )}
+      @struct_links << {name: "Timetable",  value: courses_year_guided_tour_id_timetable_path(params[:courses_year], params[:id] )}
   end
 
 

@@ -2,15 +2,22 @@ class CurriculumController < ApplicationController
 
   require 'will_paginate/array'
 
-  def view
-	c = Curriculum.find(params[:id])
-	@title = @name = c.name
-	@description = c.description
-	
-	@courses = c.course
-	
+  add_breadcrumb 'Curricula', :curricula_path
+  add_breadcrumb "Index for curricula", :curriculum_index_path, only: %w(index new edit manage_courses list_courses_to_add )
+  # add_breadcrumb "Index for materials", :course_material_index_path, only: %w(index new edit)
 
-	build_links
+
+
+
+  def view
+  	c = Curriculum.find(params[:id])
+  	@title = @name = c.name
+  	@description = c.description
+  	
+  	@courses = c.course
+
+    add_breadcrumb c.name, curriculum_id_path(c)
+		
   end
 
 
@@ -25,6 +32,8 @@ class CurriculumController < ApplicationController
     end
 
     @courses=@courses.paginate(page: params[:page])   
+
+    add_breadcrumb "Manage course in #{curriculum.name}", curriculum_courses_path(curriculum)
 
   end
 
@@ -45,7 +54,8 @@ class CurriculumController < ApplicationController
     end
     @courses=@courses.paginate(page: params[:page])
    
-    
+    add_breadcrumb "Manage course in #{@curriculum.name}", curriculum_courses_path(@curriculum)
+    add_breadcrumb "Add a course to #{@curriculum.name}", list_curriculum_courses_path(@curriculum)
     
   end
 
@@ -75,6 +85,8 @@ class CurriculumController < ApplicationController
 
   def new
   	@curriculum=Curriculum.new
+
+    add_breadcrumb 'New curriculum', new_curriculum_path
   	
   end
 
@@ -93,7 +105,8 @@ class CurriculumController < ApplicationController
 
   def edit
 		@curriculum =Curriculum.find(params[:id])
-	
+
+	   add_breadcrumb "Edit curriculum #{@curriculum.name}", new_curriculum_path
   end
 
 

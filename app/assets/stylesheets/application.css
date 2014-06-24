@@ -177,15 +177,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', end
   color: red;
 }
 
+#breadcrumb{
+  color: black;
+  height: 30px;
+
+
+}
+
+
+
+#breadcrumb a{
+  color: green;
+  text-decoration: none;
+}
+
+#breadcrumb a:hover{
+
+  color:#51F751;
+}
 
 
 
 
-
-/*prove per gli elementi dei menu!
- * 
-*/
-
+/*Classes*/
 .menu{
   /* border: 1px solid green; */
   width: 100%;
