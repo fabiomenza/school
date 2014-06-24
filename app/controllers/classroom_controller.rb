@@ -36,7 +36,47 @@ class ClassroomController < ApplicationController
   end
 
 
+def new
+@classroom=Classroom.new
+end
 
+def create
+ @classroom=Classroom.new
+ @classroom.name=params[:teacher][:name]
+ @classroom.description=params[:teacher][:description]
+ @classroom.how_to_get_there=params[:teacher][:how_to_get_there]
+ if @classroom.save
+   redirect_to classroom_path(@classroom)
+ else
+   render 'edit'
+ end
+
+end
+
+def edit
+@classroom = Classroom.find(params[:id])
+end
+
+def update
+ @classroom=Classroom.find(params[:id])
+ @classroom.name=params[:teacher][:name]
+ @classroom.description=params[:teacher][:description]
+ @classroom.how_to_get_there=params[:teacher][:how_to_get_there]
+ if @classroom.save
+   redirect_to classroom_path(@classroom)
+ else
+   render 'edit'
+ end
+
+end
+
+def destroy
+ @classroom=Classroom.find params[:id]
+ @classroom.destroy
+
+ redirect_to classroom_path
+
+end
 
 
   def build_links

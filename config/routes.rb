@@ -87,7 +87,12 @@ Rails.application.routes.draw do
 	get 'teacher/:id' => 'teacher#view', as: 'teacher'
 	get 'teacher/:id/curriculum' => 'teacher#curriculum', as: 'teacher_curriculum'
 
-
+	#CRUD teacher
+	get 'teacher/newteacher' => 'teacher#new', as: 'new_teacher'
+	post 'teacher' => 'teacher#create'
+	get 'teacher/:id/edit' => 'teacher#edit', as: 'edit_teacher'
+	put 'teacher/:id' => 'teacher#update'
+	delete 'teacher/:id' => 'teacher#destroy'
 
 	# Curriculum new, edit, and destoy
 	get 'curriculum/index' => 'curriculum#index', as: 'curriculum_index'
@@ -122,6 +127,13 @@ Rails.application.routes.draw do
 	# Exams pages
 	get 'exam/:id' => 'exam#view', as: 'exam'
 
+	# CRUD exam
+	get 'exam/newexam' => 'exam#new', as: 'new_exam'
+	post 'exam' => 'exam#create'
+	get 'exam/:id/edit' => 'exam#edit', as: 'edit_exam'
+	put 'exam/:id' => 'exam#update'
+	delete 'exam/:id' => 'exam#destroy'
+
 	# Classrooms pages
 	get 'classroom/:id' => 'classroom#view' , as: 'classroom'
 	get 'classroom/:id/how_to_get_there' => 'classroom#how_to_get_there', as: "classroom_htgt"
@@ -129,6 +141,13 @@ Rails.application.routes.draw do
 	get 'classroom/:id/services', to: 'classroom#services', as: 'classroom_services'
 	get 'classroom/:id/exams', to: 'classroom#exams', as: 'classroom_exams'
 	get 'classroom/:id/courses', to: 'classroom#courses', as: 'classroom_courses'
+
+	#CRUD classroom
+	get 'classroom/newclassroom' => 'classroom#new', as: 'new_classroom'
+	post 'classroom' => 'classroom#create'
+	get 'classroom/:id/edit' => 'classroom#edit', as: 'edit_classroom'
+	put 'classroom/:id' => 'classroom#update'
+	delete 'classroom/:id' => 'classroom#destroy'
 
 	# Student's services pages
 	get 'service/:id' => 'service#view', as: 'service'
