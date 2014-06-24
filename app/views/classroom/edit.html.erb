@@ -1,0 +1,4 @@
+<h1>Edit Teacher <%= @teacher.lastname %></h1>
+
+<%= render partial:'shared/error_partial', locals:{what: @teacher, name:'teacher'} %>
+<%= render partial:'teacher_form', locals: {to_do:'update' , to_met: 'put', what: @teacher} %>
