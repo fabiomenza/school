@@ -1,0 +1,72 @@
+/*** DEMO SKIN ***/
+.sf-menu {
+	
+}
+
+ul.sf-menu {
+	
+	list-style-type: none;
+  	list-style-position:inside;
+  	width:35 px;  
+  	margin:0;
+  	padding:0; 
+}
+ul.sf-menu > li {
+	float:left;
+
+}
+
+.sf-menu a {
+  display:block;
+  text-decoration:none;
+  
+  color: white;
+  
+  
+  /*margin:0px 1px 0px 0px;*/
+  padding:10px; 
+  
+  width:100px;
+  height:35px;
+  text-align: center;
+  border-right: 1px solid #AAAAAA;
+
+}
+
+.sf-menu li {
+	background: #333333;
+	
+	
+}
+
+.sf-menu ul li a{
+	border-top: 1px solid green;
+	width: 150px;
+		
+}
+
+
+.sf-menu ul ul li {
+	background: blue;
+}
+.sf-menu  li:hover 
+{
+	background: #AAAAAA;
+	/* only transition out, not in */
+	font-weight:bold;
+
+}
+
+.sf-menu ul li a:hover {
+	
+	color:green;
+	
+	
+}
+
+a.no-link:hover{
+  background-color: #333333;
+  font-weight: normal;
+  
+  
+}

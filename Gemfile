@@ -28,7 +28,9 @@ gem 'spring',        group: :development
 
 #Use will_paginate for pagination
 gem 'will_paginate', '~> 3.0.5'
-
+#Use superfish menu
+gem 'superfish-rails', :git => 'https://github.com/rorlab/superfish-rails.git'
+gem 'jquery-hoverIntent-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
