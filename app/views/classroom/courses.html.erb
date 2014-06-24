@@ -1,0 +1,27 @@
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Teacher</th>
+
+    </tr>
+
+
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+    <tr>
+      <td><%= link_to course.name, course_path(course)  %> </td>
+      <td><%= course.description %></td>
+      <td><%= course.teacher %></td>
+    </tr>
+
+    <% end %>
+
+
+
+  </tbody>
+
+</table>
