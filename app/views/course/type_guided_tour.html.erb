@@ -3,11 +3,17 @@
 
 
 <%= render partial: 'show', locals: {course: @courses.at(0)} %>
-<br>
-<br>
-<br>
-<%= page_entries_info @courses %>
+
+
+
+
+
+<div class="paginate">
+
+Course<strong> <%= @page %></strong> of <strong><%=  @total_pages %></strong>
 <%= will_paginate @courses %>
+
+</div>
 
 <%= render 'shared/structural_link' %>
 <%= render 'shared/semantic_link' %>
