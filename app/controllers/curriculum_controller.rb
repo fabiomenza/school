@@ -81,11 +81,11 @@ class CurriculumController < ApplicationController
   def create
   	@curriculum=Curriculum.new(curriculum_params)
 
-  	unless @curriculum.save
+  	if @curriculum.save
       flash_notice_create "Curriculum"
   		redirect_to curriculum_id_path(@curriculum)
   	else
-      flash_error_create "Curriculum"
+      
   		render 'new'
   	end
   	
@@ -112,7 +112,7 @@ class CurriculumController < ApplicationController
     if @curriculum.destroy
       flash_notice_destroy "Curriculum"
     else
-      flash_error_destroy "Curriculum"
+      #flash_error_destroy "Curriculum"
     end
 
     redirect_to curriulum_index_path
@@ -122,10 +122,10 @@ class CurriculumController < ApplicationController
   def update
     curriculum=Curriculum.find(params[:id])
       if curriculum.update(curriculum_params)
-        flash_notice_update "Curriculum"
-        redirect_to curriculum_id_path(curriculum)
+        flash_notice_edit "Curriculum"
+        redirect_to curriculum_index_path
       else
-        flash_error_update "Curriculum"
+        #flash_error_update "Curriculum"
         render 'edit'
       end
     

@@ -1,8 +1,8 @@
 <h1>Edit lecture for <%= @course.name %></h1>
 
 
-
-<%= render partial: 'lecture_form', locals: { :to_do => 'update', to_met: 'put'} %>
+<%= render partial:'shared/error_partial', locals:{what: @lecture, name:'course'} %>
+<%= render partial: 'lecture_form', locals: { :to_do => 'update', to_met: 'put', what: @lecture} %>
 
 
 

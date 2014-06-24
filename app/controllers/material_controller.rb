@@ -28,7 +28,7 @@ class MaterialController < ApplicationController
   		flash_notice_create "Material"
   		redirect_to course_material_index_path
   	else
-  		flash_error_create "Material"
+  		# flash_error_create "Material"
   		render 'new'
   	end
 
@@ -45,7 +45,7 @@ class MaterialController < ApplicationController
   		flash_notice_edit "Material"
   		redirect_to course_material_index_path
   	else
-  		flash_error_edit "Material"
+  		# flash_error_edit "Material"
   		render 'edit'
   	end
   end
@@ -55,7 +55,7 @@ class MaterialController < ApplicationController
   	if material.destroy
   		flash_notice_destroy "Material"
    	else
-  		flash_error_destroy "Material"
+  		# flash_error_destroy "Material"
   	end
 
   	redirect_to course_material_index_path

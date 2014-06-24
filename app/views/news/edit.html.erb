@@ -1,5 +1,6 @@
 <h1>Edit new for <%= @new.course.name %></h1>
 
+<%= render partial:'shared/error_partial', locals:{what: @new, name:'news'} %>
 <%= render partial: 'news_form', locals: { to_do: 'update', to_met: 'put', what: @new} %>
 
 

@@ -1,27 +1,7 @@
 <h1>New Curriculum</h1>
 
-
-<%= form_for :curriculum, url: curriculum_path, action:"create" do |f| %>
-	<p>
-		<%= f.label :name %> <br>
-		<%= f.text_field :name %>
-	</p>
-	<p>
-		<%= f.label :description %> <br>
-		<%= f.text_area :description %>
-
-	</p>
-	<p>
-		<%= f.label :work_opportunity %> <br>
-		<%= f.text_area :work_opportunity %>
-		
-	</p>
-
-	<p>
-    	<%= f.submit %>
-  	</p>
-
-<% end %>
+<%= render partial:'shared/error_partial', locals:{what: @curriculum, name:'curriculum'} %>
+<%= render partial: 'curriculum_form', locals: {to_do: 'create', to_met: 'post', what: @curriculum} %>
 
 <%= render 'shared/hide_structural_link' %>
 <%= render 'shared/hide_semantic_link' %>

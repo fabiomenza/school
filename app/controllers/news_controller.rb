@@ -15,6 +15,7 @@ class NewsController < ApplicationController
 
   def create
     @new=News.new
+    @course=Course.find(params[:course_id])
     @new.name=params[:news][:name]
     @new.description=params[:news][:description]
     @new.course_id=params[:course_id]
@@ -25,8 +26,8 @@ class NewsController < ApplicationController
       flash_notice_create "New"
       redirect_to course_news_index_path params[:course_id]
     else
-      flash_error_create "New"
-      render 'edit'
+      #flash_error_create "New"
+      render 'new'
     end
     
   end

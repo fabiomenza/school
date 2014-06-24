@@ -11,14 +11,19 @@ class LecturesController < ApplicationController
 		
 	end
 	def create
-		lecture=Lecture.new
-		set_params(lecture)
+		@lecture=Lecture.new
+		set_params(@lecture)
+		@course=Course.find params[:course_id]
+		@weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
+		@lecture_times=*(8..19)
+		@classrooms=Classroom.select(:name, :id).order('name ASC')
 
-		if lecture.save
+
+		if @lecture.save
 			flash_notice_create "Lecture"
 			redirect_to course_lectures_index_path params[:course_id]
 		else
-			flash_error_create "Lecture"
+			#flash_error_create "Lecture"
 			render 'new'
 		end
 		
@@ -38,10 +43,10 @@ class LecturesController < ApplicationController
 		lecture=Lecture.find(params[:id])
 		set_params(lecture)
 		if lecture.save
-			flash_notice_update "Lecture"
+			flash_notice_edit "Lecture"
 			redirect_to course_lectures_index_path params[:course_id]
 		else
-			flash_error_update "Lecture"
+			# flash_error_update "Lecture"
 			render 'edit'
 		end
 
@@ -60,7 +65,7 @@ class LecturesController < ApplicationController
 		if @lecture.destroy
 			flash_notice_destroy "Lecture"
 		else
-			flash_error_destroy "Lecture"
+			#flash_error_destroy "Lecture"
 		end
 		redirect_to course_lectures_index_path params[:course_id]
 	end

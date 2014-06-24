@@ -90,7 +90,7 @@ Rails.application.routes.draw do
 
 
 	# Curriculum new, edit, and destoy
-	get 'curriculum/index' => 'curriculum#index', as: 'curriulum_index'
+	get 'curriculum/index' => 'curriculum#index', as: 'curriculum_index'
 	get 'curriculum/new' => 'curriculum#new', as: 'new_curriculum'
 	get 'curriculum/:curriculum_id/courses/index', to: 'curriculum#manage_courses', as: 'curriculum_courses'
 	get 'curriculum/:curriculum_id/courses/list', to: 'curriculum#list_courses_to_add', as: 'list_curriculum_courses'
@@ -125,8 +125,8 @@ Rails.application.routes.draw do
 	# Classrooms pages
 	get 'classroom/:id' => 'classroom#view' , as: 'classroom'
 	get 'classroom/:id/how_to_get_there' => 'classroom#how_to_get_there', as: "classroom_htgt"
-get 'classroom/:id/availability' => 'classroom#availability', as: 'classroom_avail'
-get 'classroom/:id/services', to: 'classroom#services', as: 'classroom_services'
+	get 'classroom/:id/availability' => 'classroom#availability', as: 'classroom_avail'
+	get 'classroom/:id/services', to: 'classroom#services', as: 'classroom_services'
 
 	# Student's services pages
 	get 'service/:id' => 'service#view', as: 'service'

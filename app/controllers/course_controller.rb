@@ -1,5 +1,5 @@
 class CourseController < ApplicationController
-  
+
 def view
    @course= Course.find(params[:id])
 
@@ -203,7 +203,7 @@ end
 
       redirect_to course_path @course
     else
-      flash_error_create "Course"
+      # flash_error_create "Course"
       render 'new'
     end
     
@@ -213,11 +213,10 @@ end
     @course=Course.find params[:id]
     if @course.destroy
       flash_notice_destroy "Course"
-      redirect_to course_index_path
     else
-      flash_error_destroy "Course"
-      redirect_to course_index_path
+      # flash_error_destroy "Course"
     end
+    redirect_to course_index_path
     
   end
 
@@ -251,7 +250,7 @@ end
       flash_notice_edit "Course"
       redirect_to course_index_path
     else
-      flash_error_edit
+      # flash_error_edit "Course"
       render 'edit'
     end
     
