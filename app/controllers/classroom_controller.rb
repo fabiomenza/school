@@ -22,7 +22,17 @@ class ClassroomController < ApplicationController
   def services
   	@classroom=Classroom.find params[:id]
   	@services=@classroom.service
-  	
+
+  end
+
+  def exams
+    @classroom=Classroom.find params[:id]
+    @exams=@classroom.exam
+  end
+
+  def courses
+    @classroom=Classroom.find params[:id]
+    @courses=@classroom.course
   end
 
 
@@ -43,8 +53,8 @@ class ClassroomController < ApplicationController
   def semantic_links
 	c = Classroom.find(params[:id])
 	@semant_links = Array.new
-	@semant_links << {:name => "Courses hosted",:value => "#"}
-	@semant_links << {:name => "Exams hosted",:value => "#"}
-	@semant_links << {:name => "Services available",:value => "#"}
+	@semant_links << {:name => "Courses hosted",:value => "/classroom/#{c.id}/courses"}
+	@semant_links << {:name => "Exams hosted",:value => "/classroom/#{c.id}/exams"}
+	@semant_links << {:name => "Services available",:value => "/classroom/#{c.id}/services"}
   end
 end

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 	get 'bursary' => 'bursary#view'				# Borse di studio
 	get 'history' => 'history#view'				# Storia della scuola
 	get 'alumni' => 'alumni#view'				# Alumni
-	
+
 	# CRUD Course pages
 	get 'courses/index', to: 'course#index', as: 'course_index'
 	get 'courses/new', to: 'course#new', as: 'new_course'
@@ -55,7 +55,7 @@ Rails.application.routes.draw do
 	post 'course/:course_id/news' => 'news#create'
 	get 'course/:course_id/news/:id/edit' => 'news#edit', as: 'edit_course_new'
 	put 'course/:course_id/news/:id' => 'news#update'
-	
+
 
 
 	#Courses news
@@ -65,11 +65,11 @@ Rails.application.routes.draw do
 	#Lecture CRUD
 	get 'course/:course_id/lectures/index' => 'lectures#index', as: 'course_lectures_index'
 	get 'course/:course_id/lectures/new' => 'lectures#new', as: 'new_course_lecture'
-	post 'course/:course_id/lectures' => 'lectures#create' 
+	post 'course/:course_id/lectures' => 'lectures#create'
 	get  'course/:course_id/lectures/:id/edit' => 'lectures#edit', as: 'edit_course_lecture'
 	put  'course/:course_id/lectures/:id' => 'lectures#update', as: 'update_course_lecture'
-	delete 'course/:course_id/lectures/:id' => 'lectures#destroy' 
-	
+	delete 'course/:course_id/lectures/:id' => 'lectures#destroy'
+
 	#lecture pages
 	get 'course/:course_id/lectures/:id' => 'lectures#show', as: 'course_lecture'
 
@@ -100,9 +100,9 @@ Rails.application.routes.draw do
 	get 'curriculum/:id/edit' => 'curriculum#edit', as: 'edit_curriculum'
 	put 'curriculum/:id' => 'curriculum#update'
 	delete 'curriculum/:id' => 'curriculum#destroy'
-	
+
 	# Curriculum pages
-	get 'curriculum/:id' => 'curriculum#view', as: 'curriculum_id' 
+	get 'curriculum/:id' => 'curriculum#view', as: 'curriculum_id'
 	get 'curriculum/:id/work_opportunity' => 'curriculum#work_opportunity', as: 'curriculum_work_opportunity'
 
 	#resources :news
@@ -112,21 +112,23 @@ Rails.application.routes.draw do
 	#CRUD Material
 	get 'course/:course_id/material/index' => 'material#index', as: 'course_material_index'
 	get 'course/:course_id/material/new' => 'material#new', as: 'new_course_material'
-	post 'course/:course_id/material' => 'material#create' 
+	post 'course/:course_id/material' => 'material#create'
 	get  'course/:course_id/material/:id/edit' => 'material#edit', as: 'edit_course_material'
 	put  'course/:course_id/material/:id' => 'material#update', as: 'update_course_material'
-	delete 'course/:course_id/material/:id' => 'material#destroy' 
+	delete 'course/:course_id/material/:id' => 'material#destroy'
 	# Material pages
 	get 'course/:course_id/material/:id' => 'material#view', as: 'material'
 
 	# Exams pages
 	get 'exam/:id' => 'exam#view', as: 'exam'
-	
+
 	# Classrooms pages
 	get 'classroom/:id' => 'classroom#view' , as: 'classroom'
 	get 'classroom/:id/how_to_get_there' => 'classroom#how_to_get_there', as: "classroom_htgt"
 	get 'classroom/:id/availability' => 'classroom#availability', as: 'classroom_avail'
 	get 'classroom/:id/services', to: 'classroom#services', as: 'classroom_services'
+	get 'classroom/:id/exams', to: 'classroom#exams', as: 'classroom_exams'
+	get 'classroom/:id/courses', to: 'classroom#courses', as: 'classroom_courses'
 
 	# Student's services pages
 	get 'service/:id' => 'service#view', as: 'service'
@@ -160,8 +162,8 @@ Rails.application.routes.draw do
 	get 'event/:id/edit' => 'event#edit', as: 'edit_event'
 	put 'event/:id' => 'event#update'
 	delete 'event/:id' => 'event#destroy'
-	
+
 	# School's awards pages
 	get 'award/:id' => 'award#view', as: 'award'
-	
+
 end
