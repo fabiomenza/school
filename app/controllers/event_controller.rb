@@ -4,6 +4,8 @@ class EventController < ApplicationController
 	@title = @name = e.name
 	@description = e.description
 	@time = e.time
+	
+  	add_breadcrumb e.name, event_path(e)
 	build_links
   end
   def get_involved
@@ -11,6 +13,7 @@ class EventController < ApplicationController
 	@title = @name = e.name
 	@description = e.get_involved
 	build_links
+  	add_breadcrumb e.name, event_path(e)
   end
 
 

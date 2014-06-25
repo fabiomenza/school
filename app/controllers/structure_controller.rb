@@ -3,6 +3,7 @@ class StructureController < ApplicationController
 	c = Structure.find(params[:id])
 	@title = @name = c.name
 	@description = c.description
+  	add_breadcrumb c.name, structure_path(c)
 	build_links
   end
 
@@ -11,6 +12,7 @@ class StructureController < ApplicationController
 	@title = @name = c.name
 	@map = c.map
         c.map = @map
+  	add_breadcrumb c.name, structure_path(c)
 	build_links
   end
 
@@ -21,6 +23,7 @@ class StructureController < ApplicationController
 	c.photo.each do |photo|
 		@photos << {:name => "#{photo.name}",:value => "#{photo.url}"}
 	end
+  	add_breadcrumb c.name, structure_path(c)
 
 	build_links
   end

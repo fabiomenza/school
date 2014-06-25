@@ -3,6 +3,7 @@ class ServiceController < ApplicationController
 	s = Service.find(params[:id])
 	@title = @name = s.name
 	@description = s.description
+  	add_breadcrumb s.name, service_path( s)
 	build_links
   end
 
@@ -10,6 +11,7 @@ class ServiceController < ApplicationController
 	s = Service.find(params[:id])
 	@title = @name = "Reference for " + s.name
 	@description = s.reference
+  	add_breadcrumb s.name, service_path( s)
 	build_links
   end
 

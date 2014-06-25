@@ -19,5 +19,6 @@ class StructuresController < ApplicationController
 	type.structure.each do |structure|
 		@structures << {:name => "#{structure.name}",:value => "/structure/#{structure.id}/"}
 	end
+  	add_breadcrumb type.name, "/structure/type/#{type.id}"
   end
 end
