@@ -15,16 +15,60 @@ class TeacherController < ApplicationController
 	build_links
   end
 
- 
+ def new
+@teacher=Teacher.new
+end
+
+def create
+  @teacher=Teacher.new
+  @teacher.firstname=params[:teacher][:firstname]
+  @teacher.lastname=params[:teacher][:lastname]
+  @teacher.bio=params[:teacher][:bio]
+  @teacher.photo_url[:teacher][:photo_url]
+  @teacher.curriculum[:teacher][:curriculum]
+  if @teacher.save
+    redirect_to teacher_path(@teacher)
+  else
+    render 'edit'
+  end
+
+end
+
+def edit
+@teacher = Teacher.find(params[:id])
+end
+
+def update
+  @teacher=Teacher.find(params[:id])
+  @teacher.firstname=params[:teacher][:firstname]
+  @teacher.lastname=params[:teacher][:lastname]
+  @teacher.bio=params[:teacher][:bio]
+  @teacher.photo_url=params[:teacher][:bio]
+  @teacher.curriculum[:teacher][:curriculum]
+  if @teacher.save
+    redirect_to teacher_path(@teacher)
+  else
+    render 'edit'
+  end
+
+end
+
+def destroy
+  @teacher=Teacher.find params[:id]
+  @teacher.destroy
+
+  redirect_to teacher_path
+
+end
 
 
   def build_courses
 	t = Teacher.find(params[:id])
 	c = t.course
 	@courses = Array.new
-	c.each do |element| 
+	c.each do |element|
 		@courses << {:name => "#{element.name}",:url => "/course/#{element.id}/"}
-	end 
+	end
   end
 
   def build_links

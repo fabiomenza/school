@@ -1,0 +1,27 @@
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Time</th>
+
+    </tr>
+
+
+  </thead>
+  <tbody>
+    <% @exams.each do |exam| %>
+    <tr>
+      <td><%= link_to exam.name, exam_path(exam)  %> </td>
+      <td><%= exam.description %></td>
+      <td><%= exam.time %></td>
+    </tr>
+
+    <% end %>
+
+
+
+  </tbody>
+
+</table>

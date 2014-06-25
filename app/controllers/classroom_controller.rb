@@ -22,11 +22,61 @@ class ClassroomController < ApplicationController
   def services
   	@classroom=Classroom.find params[:id]
   	@services=@classroom.service
-  	
+
+  end
+
+  def exams
+    @classroom=Classroom.find params[:id]
+    @exams=@classroom.exam
+  end
+
+  def courses
+    @classroom=Classroom.find params[:id]
+    @courses=@classroom.course
   end
 
 
+def new
+@classroom=Classroom.new
+end
 
+def create
+ @classroom=Classroom.new
+ @classroom.name=params[:teacher][:name]
+ @classroom.description=params[:teacher][:description]
+ @classroom.how_to_get_there=params[:teacher][:how_to_get_there]
+ if @classroom.save
+   redirect_to classroom_path(@classroom)
+ else
+   render 'edit'
+ end
+
+end
+
+def edit
+@classroom = Classroom.find(params[:id])
+end
+
+def update
+ @classroom=Classroom.find(params[:id])
+ @classroom.name=params[:teacher][:name]
+ @classroom.description=params[:teacher][:description]
+ @classroom.how_to_get_there=params[:teacher][:how_to_get_there]
+ if @classroom.save
+   redirect_to classroom_path(@classroom)
+ else
+   render 'edit'
+ end
+
+end
+
+def destroy
+ @classroom=Classroom.find params[:id]
+ @classroom.destroy
+
+ redirect_to classroom_path
+
+end
 
 
   def build_links
@@ -43,8 +93,8 @@ class ClassroomController < ApplicationController
   def semantic_links
 	c = Classroom.find(params[:id])
 	@semant_links = Array.new
-	@semant_links << {:name => "Courses hosted",:value => "#"}
-	@semant_links << {:name => "Exams hosted",:value => "#"}
-	@semant_links << {:name => "Services available",:value => "#"}
+	@semant_links << {:name => "Courses hosted",:value => "/classroom/#{c.id}/courses"}
+	@semant_links << {:name => "Exams hosted",:value => "/classroom/#{c.id}/exams"}
+	@semant_links << {:name => "Services available",:value => "/classroom/#{c.id}/services"}
   end
 end
