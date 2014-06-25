@@ -1,4 +1,6 @@
 class ServicesController < ApplicationController
+	add_breadcrumb 'Services', :services_path
+	
   def view
 	@types = Array.new
 	ServiceType.all.each do |type|
