@@ -8,16 +8,17 @@ Rails.application.routes.draw do
 	get 'courses' => 'courses#view'				# Tutti i corsi
 	get 'services' => 'services#view'			# Tutti i servizi
 	get 'services/type/:id/' => 'services#type'		# Servizi per tipo
-	get 'contacts' => 'contacts#view'			# Contatti
-	get 'mission' => 'mission#view'				# Mission & Principles
-	get 'how_to_get_there' => 'how_to_get_there#view'	# Come arrivare
+	get 'contacts' => 'contacts#view', as: 'contact'			# Contatti
+	get 'mission' => 'mission#view', as: 'mission'				# Mission & Principles
+	get 'how_to_get_there' => 'how_to_get_there#view', as: 'how_to_get_there'	# Come arrivare
 	get 'structures' => 'structures#view', as: 'structures'	# Tutte le strutture
 	get 'structures/type/:id/' => 'structures#type'		# Strutture per tipo
 	get 'events' => 'events#view'				# Tutti gli eventi
 	post 'events/bydate' => 'events#bydate'			# Eventi per data
 	get 'events/type/:id/' => 'events#type'			# Eventi per tipo
 	get 'awards' => 'awards#view'				# Tutti i riconoscimenti
-	
+	get 'history', to: 'history#view', as: 'history'
+	get 'alumni', to: 'alumni#view'
 	
 	
 	#bureaucracy
@@ -41,19 +42,19 @@ Rails.application.routes.draw do
 	#Edit for single topic
 		
 	get 'mission/edit' => 'mission#edit', as: 'edit_mission'
-	put 'mission', to: 'mission#update'
+	patch 'mission', to: 'mission#update'
 	
 	get 'history/edit' => 'history#edit', as: 'edit_history'
-	put 'history', to: 'history#update'
+	patch 'history', to: 'history#update'
 	
 	get 'awards/edit' => 'awards#edit', as: 'edit_awards'
-	put 'awards', to: 'awards#update'
+	patch 'awards', to: 'awards#update'
 
 	get 'how_to_get_there/edit' => 'how_to_get_there#edit', as: 'edit_how_to_get_there'
-	put 'how_to_get_there', to: 'how_to_get_there#update'
+	patch 'how_to_get_there', to: 'how_to_get_there#update'
 
 	get 'contacts/edit' => 'contacts#edit', as: 'edit_contacts'
-	put 'contacts', to: 'contacts#update'
+	patch 'contacts', to: 'contacts#update'
 
 	# CRUD Course pages
 	get 'courses/index', to: 'course#index', as: 'course_index'

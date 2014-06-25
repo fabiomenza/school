@@ -1,0 +1,14 @@
+<%= render partial:'shared/error_partial', locals:{what: @contact, name:'contact'} %>
+
+
+<%= form_for @contact do |f| %>
+	<p>
+		<%= f.label :description %> <br>
+		<%= f.text_area :description %>
+
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+
+<% end %>

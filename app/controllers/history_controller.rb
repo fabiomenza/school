@@ -1,4 +1,6 @@
 class HistoryController < ApplicationController
+  add_breadcrumb 'History', :history_path
+
   def view
    @history=History.find 1
 	 @title = "History"
@@ -9,12 +11,13 @@ class HistoryController < ApplicationController
 
   def edit
     @history=History.find 1  	
+    add_breadcrumb 'Edit', edit_history_path
   	
   end
 
   def update
     @history=History.find 1
-    if @history.update(bureaurucracy_params)
+    if @history.update(history_params)
       flash_notice_edit "History"
       redirect_to '/history'
     else

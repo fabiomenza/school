@@ -1,0 +1,14 @@
+<%= render partial:'shared/error_partial', locals:{what: @history, name:'bursary'} %>
+
+
+<%= form_for @history do |f| %>
+	<p>
+		<%= f.label :description %> <br>
+		<%= f.text_area :description %>
+
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+
+<% end %>

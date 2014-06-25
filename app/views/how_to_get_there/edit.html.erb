@@ -1,0 +1,14 @@
+<%= render partial:'shared/error_partial', locals:{what: @how_to_get_there, name:'how to get there'} %>
+
+
+<%= form_for @how_to_get_there do |f| %>
+	<p>
+		<%= f.label :description %> <br>
+		<%= f.text_area :description %>
+
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+
+<% end %>

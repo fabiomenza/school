@@ -1,24 +1,6 @@
-<h1>Contacts</h1>
-<h3>School postal address</h3>
-<p>
-Royal Holloway, University of London<br>
-Egham Hill<br>
-Egham<br>
-TW20 0EX<br>
-<br>
-</p>
-<h3>Telephone number</h3>
-<p>
-UK: 01784 434455<br>
-International: +44 (0)1784 434455<br>
-</p>
-<h3>Fax number</h3>
-<p>
-UK: 01784 437520<br>
-International: +44 (0)1784 437520<br>
-</p>
-<h3>E-mail</h3>
-<p></p>
+
+<%= @contact.description.html_safe %>
+
 <form name="contacts" method="post" action="/contacts">
 <table width="450px">
 </tr>
