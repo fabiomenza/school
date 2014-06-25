@@ -30,6 +30,11 @@ html,body
     background-color: #ff;
 }
 
+html,body{
+  font-family: Tahoma, Geneva, sans-serif;
+
+}
+
 
 /* Main wrapper contiene tutta la pagina
  * e ne determina le dimensioni base 
@@ -308,7 +313,7 @@ ul.landmark-menu > li > a{
   background-color: #333333;
   
   /*margin:0px 1px 0px 0px;*/
-  padding:10px; 
+  padding:8px; 
   
   width:130px;
   height:35px;

@@ -22,7 +22,7 @@ def syllabus
     gt_type_structural_links
     semantic_links
 
-    add_breadcrumb "Course for curriculum #{Curriculum.find(prams[:curriculum_id]).name}", courses_type_guided_tour_id_path(params[:curriculum_id],c)
+    add_breadcrumb "Courses for curriculum #{Curriculum.find(params[:curriculum_id]).name}", courses_type_guided_tour_id_path(params[:curriculum_id],c)
     add_breadcrumb 'Syllabus', courses_type_guided_tour_id_syllabus_path(params[:curriculum_id],c)
   elsif params[:courses_year]
     gt_year_structural_links
@@ -68,7 +68,7 @@ def timetable
     gt_type_structural_links
     semantic_links
 
-    add_breadcrumb "Course for curriculum #{Curriculum.find(prams[:curriculum_id]).name}", courses_type_guided_tour_id_path(params[:curriculum_id],@course)
+    add_breadcrumb "Courses for curriculum #{Curriculum.find(params[:curriculum_id]).name}", courses_type_guided_tour_id_path(params[:curriculum_id],@course)
     add_breadcrumb 'Timetable', courses_type_guided_tour_id_timetable_path(params[:curriculum_id],@course)
   
   elsif params[:courses_year]
