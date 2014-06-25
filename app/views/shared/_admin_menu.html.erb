@@ -2,24 +2,25 @@
     <li ><%= link_to "Admin Menu:", '', { class: "no-link" } %></li>
     <li ><%= link_to "Courses", course_index_path %>
 		<ul>
-			<li><%= link_to "All course", course_index_path  %></li>
 			<li><%= link_to "New course", new_course_path %></li>
-
+			<li><%= link_to "All course", course_index_path  %></li>
 		</ul>
 
     </li>
     <li ><%= link_to "Curricula", curriculum_index_path %>
 		<ul>
-			<li><%= link_to "All curricula", curriculum_index_path%></li>
 			<li><%= link_to "New curriculum", new_curriculum_path%></li></li>
+			<li><%= link_to "All curricula", curriculum_index_path%></li>
+			
 		</ul>
 
 
     </li>
     <li ><%= link_to "Services", services_path %>
 		<ul>
-			<li><%= link_to "All services", services_path %></li>
 			<li><%= link_to "New services", new_service_path %></li>
+			<li><%= link_to "All services", services_path %></li>
+		
 
 		</ul>
 
@@ -27,19 +28,42 @@
     </li>
     <li ><%= link_to "Structures", structures_path %>
     	<ul>
-    		<li><%= link_to "All structures", structures_path %></li>
     		<li><%= link_to "New structure", new_structure_path %></li>
+    		<li><%= link_to "All structures", structures_path %></li>
+    	
     	</ul>
 
 
     </li>
     <li ><%= link_to "Events", events_path %>
 	    <ul>
-	    	<li><%= link_to "All events", events_path %></li>
 	    	<li><%= link_to "New event", new_event_path %></li>
+	    	<li><%= link_to "All events", events_path %></li>
+	    
 	    </ul>
 
     </li>
+    <li><%= link_to "Teachers", '#' %>
+    	<ul>
+    		<li><%= link_to 'New teacher', new_teacher_path %></li>
+
+    	</ul>
+
+    </li>
+	<li><%= link_to "Exams", '#' %>
+		<ul>
+			<li><%= link_to 'New exams', new_exam_path %></li>
+		</ul>
+		
+
+	</li>
+	<li><%= link_to 'Classroom', '#' %>
+		<ul>
+			<li><%= link_to 'New Classroom', new_classroom_path %></li>
+		</ul>
+		
+
+	</li>
 </ul>
 
 

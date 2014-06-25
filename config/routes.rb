@@ -87,12 +87,14 @@ Rails.application.routes.draw do
 	get 'courses/courses_by_type/:curriculum_id/:id' => 'course#type_guided_tour', as: 'courses_type_guided_tour_id'
 	get 'courses/courses_by_year/:courses_year/:id' => 'course#year_guided_tour', as: 'courses_year_guided_tour_id'
 
+
 	# Teacher pages
+	get 'teacher/new' => 'teacher#new', as: 'new_teacher'
 	get 'teacher/:id' => 'teacher#view', as: 'teacher'
 	get 'teacher/:id/curriculum' => 'teacher#curriculum', as: 'teacher_curriculum'
 
 	#CRUD teacher
-	get 'teacher/newteacher' => 'teacher#new', as: 'new_teacher'
+	
 	post 'teacher' => 'teacher#create'
 	get 'teacher/:id/edit' => 'teacher#edit', as: 'edit_teacher'
 	put 'teacher/:id' => 'teacher#update'
@@ -127,16 +129,19 @@ Rails.application.routes.draw do
 	get 'course/:course_id/material/:id' => 'material#view', as: 'material'
 
 	# Exams pages
+	get 'exam/new' => 'exam#new', as: 'new_exam'
 	get 'exam/:id' => 'exam#view', as: 'exam'
 
 	# CRUD exam
-	get 'exam/newexam' => 'exam#new', as: 'new_exam'
+	
 	post 'exam' => 'exam#create'
 	get 'exam/:id/edit' => 'exam#edit', as: 'edit_exam'
 	put 'exam/:id' => 'exam#update'
 	delete 'exam/:id' => 'exam#destroy'
 
 	# Classrooms pages
+	get 'classroom/new' => 'classroom#new', as: 'new_classroom'
+	
 	get 'classroom/:id' => 'classroom#view' , as: 'classroom'
 	get 'classroom/:id/how_to_get_there' => 'classroom#how_to_get_there', as: "classroom_htgt"
 	get 'classroom/:id/availability' => 'classroom#availability', as: 'classroom_avail'
@@ -145,7 +150,7 @@ Rails.application.routes.draw do
 	get 'classroom/:id/courses', to: 'classroom#courses', as: 'classroom_courses'
 
 	#CRUD classroom
-	get 'classroom/newclassroom' => 'classroom#new', as: 'new_classroom'
+	
 	post 'classroom' => 'classroom#create'
 	get 'classroom/:id/edit' => 'classroom#edit', as: 'edit_classroom'
 	put 'classroom/:id' => 'classroom#update'
@@ -155,6 +160,7 @@ Rails.application.routes.draw do
 	get 'service/:id' => 'service#view', as: 'service'
 	get 'service/:id/reference' => 'service#reference', as: 'service_reference'
 	# CRUD services
+
 	get 'services/new' => 'service#new', as: 'new_service'
 	post 'service' => 'service#create'
 	get 'service/:id/edit' => 'service#edit', as: 'edit_service'
