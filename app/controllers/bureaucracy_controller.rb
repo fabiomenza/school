@@ -1,7 +1,28 @@
 class BureaucracyController < ApplicationController
   def view
-	@title = "Ammission"
-	build_links
+   @bureaucracy=Bureaucracy.find 1
+	 @title = "Ammission"
+
+
+	 build_links
+  end
+
+  def edit
+    @bureaucracy=Bureaucracy.find 1  	
+  	
+  end
+
+  def update
+    @bureaucracy=Bureaucracy.find 1
+    if @bureaucracy.update(bureaurucracy_params)
+      flash_notice_edit "Bureaucracy"
+      redirect_to '/bureaucracy'
+    else
+      
+      render 'edit'
+    
+    end
+    
   end
 
 
@@ -20,4 +41,10 @@ class BureaucracyController < ApplicationController
   end
   def semantic_links
   end
+
+
+  private
+    def bureaurucracy_params
+            params.require(:bureaucracy).permit(:description) 
+    end
 end

@@ -1,0 +1,16 @@
+<h1>Edit Bureaucracy</h1>
+
+<%= render partial:'shared/error_partial', locals:{what: @bureaucracy, name:'bureaucracy'} %>
+
+
+<%= form_for @bureaucracy do |f| %>
+	<p>
+		<%= f.label :description %> <br>
+		<%= f.text_area :description %>
+
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+
+<% end %>

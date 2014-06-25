@@ -18,11 +18,31 @@ Rails.application.routes.draw do
 	get 'events/type/:id/' => 'events#type'			# Eventi per tipo
 	get 'awards' => 'awards#view'				# Tutti i riconoscimenti
 	get 'bureaucracy' => 'bureaucracy#view'			# Burocrazia
-	get 'regulation' => 'regulation#view'			# Regolamento
-	get 'costs' => 'costs#view'				# Costi
+
+	get 'regulation' => 'regulation#view'		# Regolamento
+	get 'costs' => 'costs#view'				    # Costi
 	get 'bursary' => 'bursary#view'				# Borse di studio
 	get 'history' => 'history#view'				# Storia della scuola
 	get 'alumni' => 'alumni#view'				# Alumni
+
+	#Edit for single topic
+	get 'bureaucracy/edit' => 'bureaucracy#edit', as: 'edit_bureaucracy'
+	patch 'bureaucracy', to: 'bureaucracy#update'
+	
+	get 'mission/edit' => 'mission#edit', as: 'edit_mission'
+	put 'mission', to: 'mission#update'
+	
+	get 'history/edit' => 'history#edit', as: 'edit_history'
+	put 'history', to: 'history#update'
+	
+	get 'awards/edit' => 'awards#edit', as: 'edit_awards'
+	put 'awards', to: 'awards#update'
+
+	get 'how_to_get_there/edit' => 'how_to_get_there#edit', as: 'edit_how_to_get_there'
+	put 'how_to_get_there', to: 'how_to_get_there#update'
+
+	get 'contacts/edit' => 'contacts#edit', as: 'edit_contacts'
+	put 'contacts', to: 'contacts#update'
 
 	# CRUD Course pages
 	get 'courses/index', to: 'course#index', as: 'course_index'
@@ -141,7 +161,7 @@ Rails.application.routes.draw do
 
 	# Classrooms pages
 	get 'classroom/new' => 'classroom#new', as: 'new_classroom'
-	
+
 	get 'classroom/:id' => 'classroom#view' , as: 'classroom'
 	get 'classroom/:id/how_to_get_there' => 'classroom#how_to_get_there', as: "classroom_htgt"
 	get 'classroom/:id/availability' => 'classroom#availability', as: 'classroom_avail'
