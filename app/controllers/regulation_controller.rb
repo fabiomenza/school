@@ -1,4 +1,7 @@
 class RegulationController < ApplicationController
+
+  add_breadcrumb 'Bureaucracy', :bureaucracy_path
+  add_breadcrumb 'Regulation', :regulation_path
   def view
    @regulation=Regulation.find 1
 	 @title = "Regulation"
@@ -8,8 +11,8 @@ class RegulationController < ApplicationController
 
   def edit
     @regulation=Regulation.find 1  
-
-	 build_links	
+    add_breadcrumb 'edit', edit_regulation_path
+	  build_links	
   	
   end
 

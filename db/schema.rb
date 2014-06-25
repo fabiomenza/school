@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20140625171843) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "regulation_id"
+    t.integer  "cost_id"
+    t.integer  "bursary_id"
+  end
+
+  create_table "bursaries", force: true do |t|
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bureaucracy_id"
   end
 
   create_table "classrooms", force: true do |t|
@@ -41,6 +51,13 @@ ActiveRecord::Schema.define(version: 20140625171843) do
     t.text     "how_to_get_there"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "costs", force: true do |t|
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bureaucracy_id"
   end
 
   create_table "courses", force: true do |t|
@@ -169,6 +186,7 @@ ActiveRecord::Schema.define(version: 20140625171843) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bureaucracy_id"
   end
 
   create_table "service_types", force: true do |t|
