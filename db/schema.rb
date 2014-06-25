@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625161815) do
+ActiveRecord::Schema.define(version: 20140625171843) do
+
+  create_table "alumnis", force: true do |t|
+    t.string   "name"
+    t.integer  "year"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "awards", force: true do |t|
     t.string   "title"
@@ -25,16 +33,6 @@ ActiveRecord::Schema.define(version: 20140625161815) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "regulation_id"
-    t.integer  "cost_id"
-    t.integer  "bursary_id"
-  end
-
-  create_table "bursaries", force: true do |t|
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "bureaucracy_id"
   end
 
   create_table "classrooms", force: true do |t|
@@ -43,13 +41,6 @@ ActiveRecord::Schema.define(version: 20140625161815) do
     t.text     "how_to_get_there"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "costs", force: true do |t|
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "bureaucracy_id"
   end
 
   create_table "courses", force: true do |t|
@@ -120,6 +111,12 @@ ActiveRecord::Schema.define(version: 20140625161815) do
   add_index "exams", ["classroom_id"], name: "index_exams_on_classroom_id"
   add_index "exams", ["course_id"], name: "index_exams_on_course_id"
 
+  create_table "histories", force: true do |t|
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "lectures", force: true do |t|
     t.string   "w_day"
     t.time     "start_time"
@@ -140,6 +137,12 @@ ActiveRecord::Schema.define(version: 20140625161815) do
   end
 
   add_index "materials", ["course_id"], name: "index_materials_on_course_id"
+
+  create_table "missions", force: true do |t|
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "news", force: true do |t|
     t.string   "name"
@@ -166,7 +169,6 @@ ActiveRecord::Schema.define(version: 20140625161815) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "bureaucracy_id"
   end
 
   create_table "service_types", force: true do |t|

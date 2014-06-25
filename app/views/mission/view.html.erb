@@ -1,2 +1,5 @@
-<h1>Mission#view</h1>
-<p>Find me in app/views/mission/view.html.erb</p>
+<h1><%= @title %></h1>
+<p><%= @mission.description.html_safe %></p>
+
+
+<%= render 'shared/structural_link' %>

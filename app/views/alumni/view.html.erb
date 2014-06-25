@@ -1,2 +1,28 @@
-<h1>Alumni#view</h1>
-<p>Find me in app/views/alumni/view.html.erb</p>
+<h1><%= @title %></h1>
+<table class="styled-table" >
+	<thead>
+		<th>Alumnus Name</th>
+		<th>Graduation Year</th>
+		<th>Description</th>
+	</tr>
+	</thead>
+	<tbody>
+
+	<tr>
+	
+	<% @alumni.each do |a| %>
+		<tr>
+			<td><%= a.name %></td>
+			<td><%= a.year %></td>
+			<td><%= a.description %></td>
+
+		</tr>
+	<% end %>
+
+
+</tbody>
+
+
+</table>
+<br>
+<%= render 'shared/structural_link' %>

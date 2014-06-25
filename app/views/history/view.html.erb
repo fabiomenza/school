@@ -1,2 +1,5 @@
-<h1>History#view</h1>
-<p>Find me in app/views/history/view.html.erb</p>
+<h1><%= @title %></h1>
+<p><%= @history.description.html_safe %></p>
+
+
+<%= render 'shared/structural_link' %>
