@@ -17,17 +17,31 @@ Rails.application.routes.draw do
 	post 'events/bydate' => 'events#bydate'			# Eventi per data
 	get 'events/type/:id/' => 'events#type'			# Eventi per tipo
 	get 'awards' => 'awards#view'				# Tutti i riconoscimenti
-	get 'bureaucracy' => 'bureaucracy#view'			# Burocrazia
+	
+	#bureaucracy
+	get 'bureaucracy' => 'bureaucracy#view', as: 'bureaucracy'		# Burocrazia
+	get 'regulation' => 'regulation#view',as: 'regulation'		# Regolamento
+	get 'costs' => 'costs#view', as: 'cost'			    # Costi
+	get 'bursary' => 'bursary#view', as: 'bursary'			# Borse di studio
+	#Edit 
+	get 'bureaucracy/edit' => 'bureaucracy#edit', as: 'edit_bureaucracy'
+	patch 'bureaucracy', to: 'bureaucracy#update'
 
-	get 'regulation' => 'regulation#view'		# Regolamento
-	get 'costs' => 'costs#view'				    # Costi
-	get 'bursary' => 'bursary#view'				# Borse di studio
+	get 'regulation/edit' => 'regulation#edit', as: 'edit_regulation'
+	patch 'regulation' => 'regulation#update'
+
+	get 'costs/edit' => 'costs#edit', as: 'edit_cost'
+	patch 'costs' => 'costs#update'
+
+	get 'bursary/edit' => 'bursary#edit', as: 'edit_bursary'
+	patch 'bursary' => 'bursary#update'
+
+	
 	get 'history' => 'history#view'				# Storia della scuola
 	get 'alumni' => 'alumni#view'				# Alumni
 
 	#Edit for single topic
-	get 'bureaucracy/edit' => 'bureaucracy#edit', as: 'edit_bureaucracy'
-	patch 'bureaucracy', to: 'bureaucracy#update'
+	
 	
 	get 'mission/edit' => 'mission#edit', as: 'edit_mission'
 	put 'mission', to: 'mission#update'

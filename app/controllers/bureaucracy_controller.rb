@@ -1,4 +1,6 @@
 class BureaucracyController < ApplicationController
+  add_breadcrumb 'Bureaucracy', :bureaucracy_path
+  add_breadcrumb 'Ammission', :bureaucracy_path
   def view
    @bureaucracy=Bureaucracy.find 1
 	 @title = "Ammission"
@@ -8,7 +10,8 @@ class BureaucracyController < ApplicationController
   end
 
   def edit
-    @bureaucracy=Bureaucracy.find 1  	
+    @bureaucracy=Bureaucracy.find 1 
+    add_breadcrumb 'edit', edit_bureaucracy_path
   	
   end
 
@@ -18,7 +21,7 @@ class BureaucracyController < ApplicationController
       flash_notice_edit "Bureaucracy"
       redirect_to '/bureaucracy'
     else
-      
+
       render 'edit'
     
     end
@@ -33,11 +36,11 @@ class BureaucracyController < ApplicationController
 	semantic_links
   end
   def structural_links
-	@struct_links = Array.new
-	@struct_links << {:name => "Ammission",:value => "/bureaucracy"}
-	@struct_links << {:name => "Regulation",:value => "/regulation"}
-	@struct_links << {:name => "Costs", :value => "/costs"}
-	@struct_links << {:name => "Bursary", :value => "/bursary"}
+  	@struct_links = Array.new
+  	@struct_links << {name: "Ammission",value: bureaucracy_path}
+  	@struct_links << {name: "Regulation",value: regulation_path}
+  	@struct_links << {name: "Costs", value: costs_path}
+  	@struct_links << {name: "Bursary", value: bursary_path}
   end
   def semantic_links
   end
