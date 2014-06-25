@@ -57,14 +57,10 @@ Rails.application.routes.draw do
 	post 'course/:course_id/news' => 'news#create'
 	get 'course/:course_id/news/:id/edit' => 'news#edit', as: 'edit_course_new'
 	put 'course/:course_id/news/:id' => 'news#update'
-<<<<<<< HEAD
 	delete 'course/:course_id/news/:id' => 'news#destroy'
 	# News pages
 	get 'course/:course_id/news/:id' => 'news#view', as: 'course_new'
-	
-=======
 
->>>>>>> c0636c836bf5d931845b82b3700e114b24195407
 
 	#Courses news
 	get 'course/:id/news' => 'news#news', as: 'course_news'
