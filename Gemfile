@@ -30,9 +30,10 @@ gem 'spring',        group: :development
 gem 'will_paginate', '~> 3.0.5'
 #Use superfish menu
 gem 'superfish-rails', :git => 'https://github.com/rorlab/superfish-rails.git'
-gem 'jquery-hoverIntent-rails'
+#use breadrcrums_on_rails for breadcrumbs
 gem 'breadcrumbs_on_rails', '~> 2.3.0'
-
+#use devise for autentication
+gem 'devise'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

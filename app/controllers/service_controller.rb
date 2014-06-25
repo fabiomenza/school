@@ -1,5 +1,5 @@
 class ServiceController < ApplicationController
-  add_breadcrumb 'Services', :services_path
+  
 
   def view
 	s = Service.find(params[:id])

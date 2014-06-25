@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
+  	devise_for :admins , :controllers => { :registrations => 'registration'}
+  	
+	
 	root to: "home#index"
 	
+	#to restrict account creation to admins only
+
+
 
 	# Landmarks
 	get 'curricula' => 'curricula#view'			# Tutti i curriculum

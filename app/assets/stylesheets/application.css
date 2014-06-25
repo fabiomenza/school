@@ -327,10 +327,32 @@ ul.landmark-menu li a:hover{
   
 }
 
+/* 
+  Login Buttons
+ */
+ul.login > li {
+ 
+ float:right;
+  
+}
+
+ul.login > li> a  {
+ 
+ float:right;
+ border:none;
+ 
+ 
+}
+
+
+
 /*
 Footers menu
 
 */
+
+
+
 
 .landmark-footer-menu{
   height:50%;
