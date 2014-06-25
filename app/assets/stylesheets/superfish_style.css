@@ -26,7 +26,8 @@ ul.sf-menu > li {
   /*margin:0px 1px 0px 0px;*/
   padding:7px; 
   
-  width:100px;
+  /*width:100px;*/
+  width:120px;
   height:35px;
   text-align: center;
   border-right: 1px solid #AAAAAA;
@@ -40,15 +41,22 @@ ul.sf-menu > li {
 }
 
 .sf-menu ul li a{
+	border:none;
 	border-top: 1px solid green;
 	width: 150px;
+	
 		
 }
 
 
 .sf-menu ul ul li {
-	background: blue;
+	background: #333333;
+	border-right: green;
+	
 }
+
+
+
 .sf-menu  li:hover 
 {
 	background: #AAAAAA;
@@ -76,3 +84,8 @@ a.no-link:hover{
   
 }
 
+.sf-menu ul ul li a:hover {
+	background: #AAAAAA;
+	border-left: 1px solid green;
+	
+}

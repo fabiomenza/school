@@ -147,6 +147,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', end
 #admin_menu{
   
   height: 35px;  
+  width: 1000px;
+  margin: auto;
   background-color: #333333;
 }
 
@@ -409,3 +411,8 @@ ul.landmark-menu > li > a.no-link:hover{
   
 }
 
+ .signed_in{
+  
+  width: 1500px !important;
+
+}
