@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   	
 	
 	root to: "home#index"
-	
-	#to restrict account creation to admins only
-
+	#Edit
+	get 'home/edit' => 'home#edit', as: 'edit_home'
+	patch 'home', to: 'home#update'
 
 
 	# Landmarks

@@ -1,0 +1,16 @@
+<%= title "Edit Home" %>
+
+<%= render partial:'shared/error_partial', locals:{what: @home, name:'Home'} %>
+
+
+<%= form_for @home do |f| %>
+	<p>
+		<%= f.label :description %> <br>
+		<%= f.text_area :description %>
+
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+
+<% end %>
