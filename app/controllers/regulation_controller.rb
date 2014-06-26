@@ -2,6 +2,9 @@ class RegulationController < ApplicationController
 
   add_breadcrumb 'Bureaucracy', :bureaucracy_path
   add_breadcrumb 'Regulation', :regulation_path
+
+  before_action :authenticate_admin!, except: [:view ]
+  
   def view
    @regulation=Regulation.find 1
 	 build_links

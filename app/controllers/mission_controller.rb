@@ -1,6 +1,8 @@
 class MissionController < ApplicationController
   add_breadcrumb 'Mission', :mission_path
 
+  before_action :authenticate_admin!, except: [:view]
+  
   def view
 	@mission=Mission.find 1
 	@title = "Mission"

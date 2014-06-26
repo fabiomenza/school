@@ -1,4 +1,8 @@
 class ClassroomController < ApplicationController
+  
+  before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
+  
+
   def view
 	c = Classroom.find(params[:id])
 	@title = @name = "Room " + c.name

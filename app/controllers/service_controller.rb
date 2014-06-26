@@ -1,6 +1,7 @@
 class ServiceController < ApplicationController
   
-
+  before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
+  
   def view
 	s = Service.find(params[:id])
 	@title = @name = s.name

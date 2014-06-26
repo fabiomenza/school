@@ -4,6 +4,8 @@ class LecturesController < ApplicationController
 	add_breadcrumb "Index for courses", :course_index_path, only: %w(index new edit)
   	add_breadcrumb "Index for lectures", :course_lectures_index_path, only: %w(index new edit)
 
+  	before_action :authenticate_admin!
+
 	def new
 		@lecture=Lecture.new
 		@course=Course.find(params[:course_id])
@@ -12,8 +14,6 @@ class LecturesController < ApplicationController
 		@classrooms=Classroom.select(:name, :id).order('name ASC')
 
 		add_breadcrumb "New lecture", new_course_lecture_path(@course)
-		
-		
 	end
 
 	def create
@@ -24,7 +24,6 @@ class LecturesController < ApplicationController
 		@lecture_times=*(8..19)
 		@classrooms=Classroom.select(:name, :id).order('name ASC')
 
-
 		if @lecture.save
 			flash_notice_create "Lecture"
 			redirect_to course_lectures_index_path params[:course_id]
@@ -32,7 +31,6 @@ class LecturesController < ApplicationController
 			#flash_error_create "Lecture"
 			render 'new'
 		end
-		
 	end
 
 	def edit
@@ -42,7 +40,6 @@ class LecturesController < ApplicationController
 		@lecture_times=*(8..19)
 		@classrooms=Classroom.select(:name, :id).order('name ASC')
 		@start_hour=@lecture
-
 
 		add_breadcrumb "#{@lecture.w_day}: from #{@lecture.start_time.strftime("%R")} to #{@lecture.end_time.strftime("%R")}", new_course_lecture_path(@course)
 	end
@@ -56,16 +53,12 @@ class LecturesController < ApplicationController
 		else
 			# flash_error_update "Lecture"
 			render 'edit'
-		end
-
-		
+		end		
 	end
 
 	def index
 		@lectures=Lecture.order('w_day ASC').order('start_time Asc').where(course_id: params[:course_id] )
-		@course=Course.find params[:course_id]
-		
-		
+		@course=Course.find params[:course_id]		
 	end
 
 	def destroy
@@ -78,12 +71,6 @@ class LecturesController < ApplicationController
 		redirect_to course_lectures_index_path params[:course_id]
 	end
 
- # def back_to_course
- #    @semant_links=Array.new
- #    @semant_links << {name: "Back to courses",value: course_index_path }
- # end
-
-
 	private
 		def set_params (lecture)
 			param=params[:lecture]
@@ -91,7 +78,6 @@ class LecturesController < ApplicationController
 			lecture.start_time=Time.zone.now.change( hour: param[:start_time] )
 			lecture.end_time=Time.zone.now.change(hour: param[:end_time])
 			lecture.course_id=params[:course_id]
-			lecture.classroom_id=param[:classroom_id]
-			
+			lecture.classroom_id=param[:classroom_id]	
 		end
 end

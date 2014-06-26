@@ -1,6 +1,8 @@
 class ContactsController < ApplicationController
 	add_breadcrumb 'Contacts', :contact_path
 
+  before_action :authenticate_admin!, except: [:view ]
+
   def view
 	@title = "Contacts"
 	@contact=Contact.find 1
@@ -8,8 +10,7 @@ class ContactsController < ApplicationController
 
   def edit
     @contact=Contact.find 1  	
-    add_breadcrumb 'Edit', edit_contacts_path
-  	
+    add_breadcrumb 'Edit', edit_contacts_path	
   end
 
   def update
@@ -19,10 +20,8 @@ class ContactsController < ApplicationController
       redirect_to contact_path
     else
       
-      render 'edit'
-    
-    end
-    
+      render 'edit' 
+    end  
   end
 
 

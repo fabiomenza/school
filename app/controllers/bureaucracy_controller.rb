@@ -2,6 +2,8 @@ class BureaucracyController < ApplicationController
   add_breadcrumb 'Bureaucracy', :bureaucracy_path
   add_breadcrumb 'Ammission', :bureaucracy_path
 
+  before_action :authenticate_admin!, except: [:view ]
+
   def view
    @bureaucracy=Bureaucracy.find 1
 	 

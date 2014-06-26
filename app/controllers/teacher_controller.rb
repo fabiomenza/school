@@ -1,4 +1,8 @@
 class TeacherController < ApplicationController
+
+  before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
+  
+
   def view
 	t = Teacher.find(params[:id])
 	@title = @name = t.firstname + " " + t.lastname

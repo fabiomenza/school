@@ -1,4 +1,8 @@
 class ExamController < ApplicationController
+  
+before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
+  
+
   def view
 	e = Exam.find(params[:id])
 	@title = @name = e.name

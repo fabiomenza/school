@@ -1,4 +1,8 @@
 class StructureController < ApplicationController
+
+  before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
+  
+
   def view
 	c = Structure.find(params[:id])
 	@title = @name = c.name

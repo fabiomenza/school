@@ -1,6 +1,8 @@
 class HistoryController < ApplicationController
   add_breadcrumb 'History', :history_path
 
+  before_action :authenticate_admin!, except: [:view ]
+  
   def view
    @history=History.find 1
 	 @title = "History"

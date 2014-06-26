@@ -4,8 +4,7 @@ class CurriculumController < ApplicationController
 
   add_breadcrumb 'Curricula', :curricula_path
   add_breadcrumb "Index for curricula", :curriculum_index_path, only: %w(index new edit manage_courses list_courses_to_add )
-  # add_breadcrumb "Index for materials", :course_material_index_path, only: %w(index new edit)
-
+  before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
 
 
 
@@ -17,9 +16,7 @@ class CurriculumController < ApplicationController
   	@courses = c.course
 
     add_breadcrumb c.name, curriculum_id_path(c)
-		
   end
-
 
   def manage_courses
 
@@ -34,7 +31,6 @@ class CurriculumController < ApplicationController
     @courses=@courses.paginate(page: params[:page])   
 
     add_breadcrumb "Manage course in #{curriculum.name}", curriculum_courses_path(curriculum)
-
   end
 
   def list_courses_to_add
@@ -56,9 +52,7 @@ class CurriculumController < ApplicationController
    
     add_breadcrumb "Manage course in #{@curriculum.name}", curriculum_courses_path(@curriculum)
     add_breadcrumb "Add a course to #{@curriculum.name}", list_curriculum_courses_path(@curriculum)
-    
   end
-
 
   def add_course
     curriculum=Curriculum.find params[:curriculum_id]
@@ -66,12 +60,9 @@ class CurriculumController < ApplicationController
     curriculum.course << course
     flash[:notice]="Course successfully added to the curriculum"
     redirect_to curriculum_courses_path
-   
   end
 
-
-
- def remove_course
+  def remove_course
     curriculum=Curriculum.find(params[:curriculum_id])
     course=Course.find(params[:id])
     if curriculum.course.delete(course)
@@ -86,8 +77,7 @@ class CurriculumController < ApplicationController
   def new
   	@curriculum=Curriculum.new
 
-    add_breadcrumb 'New curriculum', new_curriculum_path
-  	
+    add_breadcrumb 'New curriculum', new_curriculum_path	
   end
 
   def create
@@ -99,8 +89,7 @@ class CurriculumController < ApplicationController
   	else
       
   		render 'new'
-  	end
-  	
+  	end	
   end
 
   def edit
@@ -109,15 +98,10 @@ class CurriculumController < ApplicationController
 	   add_breadcrumb "Edit curriculum #{@curriculum.name}", new_curriculum_path
   end
 
-
-
-
   def index
 
   	 @curriculums=Curriculum.order('name ASC').all.paginate(page: params[:page])
   	 @semant_links = Array.new
-     
-
   end
 
   def destroy
@@ -128,8 +112,7 @@ class CurriculumController < ApplicationController
       #flash_error_destroy "Curriculum"
     end
 
-    redirect_to curriulum_index_path
-    
+    redirect_to curriulum_index_path 
   end
 
   def update
@@ -140,39 +123,40 @@ class CurriculumController < ApplicationController
       else
         #flash_error_update "Curriculum"
         render 'edit'
-      end
-    
+      end   
   end
 
   def work_opportunity
-	c = Curriculum.find(params[:id])
-	@title = @name = "Work opportunities with " + c.name + " curriculum"
-	@description = c.work_opportunity
-	build_links
+  	c = Curriculum.find(params[:id])
+  	@title = @name = "Work opportunities with " + c.name + " curriculum"
+  	@description = c.work_opportunity
+  	build_links
   end
-
-
-
 
   def build_links
-	structural_links
-	semantic_links
+  	structural_links
+  	semantic_links
   end
+
   def structural_links
-	c = Curriculum.find(params[:id])
-	@struct_links = Array.new
-	@struct_links << {:name => "Description",:value => "/curriculum/#{c.id}/"}
-	@struct_links << {:name => "Work opportunities",:value => "/curriculum/#{c.id}/work_opportunity"}
+  	c = Curriculum.find(params[:id])
+  	@struct_links = Array.new
+  	@struct_links << {:name => "Description",:value => "/curriculum/#{c.id}/"}
+  	@struct_links << {:name => "Work opportunities",:value => "/curriculum/#{c.id}/work_opportunity"}
   end
+
   def semantic_links
 	  c = Curriculum.find(params[:id])
     @semant_links = Array.new
-	 
   end
-end
 
- private
+  private
     def curriculum_params
         params.require(:curriculum).permit(:name, :description, :work_opportunity)
     end
+
+
+end
+
+
 

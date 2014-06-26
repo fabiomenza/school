@@ -3,7 +3,8 @@ class NewsController < ApplicationController
   add_breadcrumb "Index for courses", :course_index_path, only: %w(index new edit)
   add_breadcrumb "Index for news", :course_news_index_path, only: %w(index new edit)
   
-
+  before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
+  
   def view
    n = News.find(params[:id])
    @name = n.name
