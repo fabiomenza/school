@@ -19,6 +19,11 @@ class EventController < ApplicationController
   	add_breadcrumb e.name, event_path(e)
   end
 
+  def index
+    @events=Event.order('name ASC').paginate(page: params[:page])
+
+    add_breadcrumb "Index for events", event_index_path
+  end
 
   def new
 	@event=Event.new

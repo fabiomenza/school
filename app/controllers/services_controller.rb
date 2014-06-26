@@ -10,10 +10,9 @@ class ServicesController < ApplicationController
 	@name = @title = "All services"
 	@services = Array.new
 	Service.all.each do |service|
-		@services << {:name => "#{service.name}",:value => "/service/#{service.id}/"}
+		@services << service #{:name => "#{service.name}",:value => "/service/#{service.id}/"}
 	end
   end
-
 
   def type
 	type = ServiceType.find(params[:id])
@@ -22,5 +21,6 @@ class ServicesController < ApplicationController
 	type.service.each do |service|
 		@services << {:name => "#{service.name}",:value => "/service/#{service.id}/"}
 	end
+	add_breadcrumb type.name, "/services/type/#{type.id}/"
   end
 end

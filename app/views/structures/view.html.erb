@@ -1,12 +1,37 @@
 <p>Find structure by type:</p>
-<ul>
-<% @types.each do |element| %>
-	  <li><a href="<%= element[:value] %>"><%= element[:name] %> structures</a></li>
-<% end %>
-</ul>
+<table class="styled-table" >
+	<thead>
+		<th>Structure types</th>
+	</tr>
+	</thead>
+	<tbody>
+
+	<% @types.each do |element| %>
+		 <tr><td> <a href="<%= element[:value] %>"><%= element[:name] %> structures</a></td>
+
+		</tr>
+	<% end %>
+</tbody>
+
+
+</table>
+<br>
 <h2>All Structures</h2>
-<ul>
-<% @structures.each do |element| %>
-	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
-<% end %>
-</ul>
+<table class="styled-table" >
+	<thead>
+		<th>Structures</th>
+	</tr>
+	</thead>
+	<tbody>
+
+	<% @structures.each do |element| %>
+		<tr><td>
+		  <a href="<%= element[:value] %>"><%= element[:name] %></a></td>
+
+		</tr>
+	<% end %>
+</tbody>
+
+
+</table>
+<br>

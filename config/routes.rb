@@ -195,10 +195,10 @@ Rails.application.routes.draw do
 	delete 'classroom/:id' => 'classroom#destroy'
 
 	# Student's services pages
+	get 'service/index' => 'service#index', as: 'service_index'
 	get 'service/:id' => 'service#view', as: 'service'
 	get 'service/:id/reference' => 'service#reference', as: 'service_reference'
 	# CRUD services
-
 	get 'services/new' => 'service#new', as: 'new_service'
 	post 'service' => 'service#create'
 	get 'service/:id/edit' => 'service#edit', as: 'edit_service'
@@ -206,6 +206,7 @@ Rails.application.routes.draw do
 	delete 'service/:id' => 'service#destroy'
 
 	# Structures pages
+	get 'structure/index', to: 'structure#index', as: 'structure_index'
 	get 'structure/:id' => 'structure#view', as: 'structure'
 	get 'structure/:id/map' => 'structure#map', as: 'structure_map'
 	get 'structure/:id/photogallery' => 'structure#photogallery', as: 'structure_photos'
@@ -219,6 +220,7 @@ Rails.application.routes.draw do
 	delete 'structure/:id' => 'structure#destroy'
 
 	# Events pages
+	get 'event/index', to: 'event#index', as: 'event_index'
 	get 'event/:id' => 'event#view', as: 'event'
 	get 'event/:id/get_involved' => 'event#get_involved', as: 'event_get_involved'
 	#CRUD events

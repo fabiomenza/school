@@ -1,12 +1,40 @@
 <p>Find service by type:</p>
-<ul>
-<% @types.each do |element| %>
-	  <li><a href="<%= element[:value] %>"><%= element[:name] %> services</a></li>
-<% end %>
-</ul>
+
+<table class="styled-table" >
+	<thead>
+		<th>Service</th>
+	</tr>
+	</thead>
+	<tbody>
+
+	<% @types.each do |element| %>
+		<tr>
+		  <td><a href="<%= element[:value] %>"><%= element[:name] %> services</a></td>
+
+		</tr>
+	<% end %>
+</tbody>
+
+
+</table>
+<br>
 <h2>All Services</h2>
-<ul>
-<% @services.each do |element| %>
-	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
-<% end %>
-</ul>
+
+<table class="styled-table" >
+	<thead>
+		<th>Service</th>
+	</tr>
+	</thead>
+	<tbody>
+	
+	<% @services.each do |service| %>
+		<tr>
+			<td><%= link_to service.name, service_path(service) %></td>
+
+		</tr>
+	<% end %>
+</tbody>
+
+
+</table>
+<br>

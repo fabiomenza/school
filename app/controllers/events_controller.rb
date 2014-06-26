@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+	add_breadcrumb 'Events', :events_path
   def view
 	@types = Array.new
 	EventType.all.each do |type|
@@ -20,6 +21,7 @@ class EventsController < ApplicationController
 	type.event.each do |event|
 		@events << {:name => "#{event.name}",:value => "/event/#{event.id}/"}
 	end
+	add_breadcrumb type.name, "/events/type/#{type.id}/"
   end
 
   def bydate

@@ -91,4 +91,11 @@ class ServiceController < ApplicationController
 		@semant_links << {:name => "Room #{c.classroom.name}",:value => "/classroom/#{c.classroom.id}/"}
 	end
   end
+
+
+  def index
+    @services=Service.order('name ASC').paginate(page: params[:page])
+
+    add_breadcrumb "Index for services", service_index_path
+  end
 end

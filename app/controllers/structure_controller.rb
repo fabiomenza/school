@@ -74,6 +74,12 @@ class StructureController < ApplicationController
 	@structure = Structure.find(params[:id])
   end
 
+  def index
+    @structures=Structure.order('name ASC').paginate(page: params[:page])
+
+    add_breadcrumb "Index for structures", structure_index_path
+  end
+
   def update
     @structure=Structure.find(params[:id])
     @structure.name=params[:structure][:name]

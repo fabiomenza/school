@@ -1,6 +1,23 @@
 <h1>School's Awards</h1>
-<ul>
+
+<table class="styled-table" >
+	<thead>
+		<tr>
+			<th>Award </th>
+			<th>Date </th>
+		</tr>
+
+	</thead>
+	<tbody>
 <% @awards.each do |element| %>
-	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a> - <i><%= element[:time] %></i></li>
+	<tr>
+	  <td><a href="<%= element[:value] %>"><%= element[:name] %></a></td>
+	<td><%= element[:time] %></td>
+	</tr>
 <% end %>
-</ul>
+
+
+	</tbody>
+
+
+</table>
