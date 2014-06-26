@@ -192,6 +192,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', end
 
 }
 
+#login-form {
+  
+  width: 300px;
+  margin: auto;
+
+}
+
+
 
 
 #breadcrumb a, .pagination a{
@@ -205,6 +213,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', end
   color:#51F751;
   
 }
+
+
+
 
 .paginate {
   /*border: 1px solid green;*/

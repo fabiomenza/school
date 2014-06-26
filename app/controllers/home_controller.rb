@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   
   before_action :authenticate_admin!, except: [:index ]
   def index
+    @title='HomePage'
   	@home=Home.find 1	
   end
 
