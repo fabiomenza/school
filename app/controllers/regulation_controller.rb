@@ -4,8 +4,6 @@ class RegulationController < ApplicationController
   add_breadcrumb 'Regulation', :regulation_path
   def view
    @regulation=Regulation.find 1
-	 @title = "Regulation"
-
 	 build_links
   end
 

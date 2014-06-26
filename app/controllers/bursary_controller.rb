@@ -4,7 +4,7 @@ class BursaryController < ApplicationController
   add_breadcrumb 'Bursary', :bursary_path
 
   def view
-   @title = "Bursary"
+   
    @bursary=Bursary.find 1
    build_links
   end

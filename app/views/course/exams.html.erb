@@ -1,4 +1,4 @@
-<h1><%= @name %></h1>
+<%= title @name %>
 <ul>
 <% @exams.each do |element| %>
 	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>

@@ -1,4 +1,4 @@
-<h1>Edit Course <%= @course.name %></h1>
+<%= title "Edit Course #{@course.name}" %>
 
 <%= render partial:'shared/error_partial', locals:{what: @course, name:'course'} %>
 <%= render partial:'course_form', locals: {to_do:'update' , to_met: 'put', what: @course} %>

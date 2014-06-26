@@ -12,7 +12,7 @@ end
 
 def syllabus
   c = Course.find(params[:id])
-  @title = @name = c.name
+  @name = c.name
   @program = c.program
 
 
@@ -92,39 +92,33 @@ def timetable
   
 def materials
   c = Course.find(params[:id])
-  @name = @title = "Materials for " + c.name
+  @name  = "Materials for " + c.name
   @materials = c.material.order('name ASC').paginate(page: params[:page])
-  back_to_course
+ 
 
   add_breadcrumb c.name, course_path(c)
   add_breadcrumb 'Materials', course_materials_path(c)
 end
 
 def exams
-   c = Course.find(params[:id])
-   @name = @title = "Exams for " + c.name
-   @exams = Array.new
-   c.exam.each do |exam|
+  c = Course.find(params[:id])
+  @name  = "Exams for " + c.name
+  @exams = Array.new
+  c.exam.each do |exam|
     @exams << {:name => "#{exam.name}",:value => "/exam/#{exam.id}/"}
   end
-  back_to_course
-
+  
   add_breadcrumb c.name, course_path(c)
   add_breadcrumb 'Exams', course_exams_path(c)
-
 end
 
 def curricula
 	c = Course.find(params[:id])
-	@name = @title = "Curricula related to " + c.name
+	@name  = "Curricula related to " + c.name
 	@curricula = c.curriculum.order('name ASC').paginate(page: params[:page])
 	
-
-	back_to_course
-
   add_breadcrumb c.name, course_path(c)
   add_breadcrumb "Curricula related to #{c.name}", course_curricula_path(c)
-
 end
 
 
@@ -174,12 +168,13 @@ end
 
 
 
- def type_guided_tour
+def type_guided_tour
 
   @this_course=Course.find(params[:id])
   @curriculum=Curriculum.find(params[:curriculum_id])
   #se params[:page].nil allora vuol dire che arrivo direttamente da
-  #courses_by_type, quindi devo mostrare il corso selezionato !
+  #courses_by_type, quindi devo mostrare il corso selezionato.
+  #per cui frego will_paginate modificando il parametro :page
   if  params[:page].nil?
     @page=@curriculum.course.find_index(@this_course)+1
   else
@@ -192,9 +187,6 @@ end
   semantic_links
 
   add_breadcrumb "Course for curriculum #{@curriculum.name}", courses_type_guided_tour_id_path(@curriculum, @this_course)
-
-
-
 end
 
   
@@ -353,11 +345,11 @@ end
 
 
 
-def back_to_course
-	c=Course.find(params[:id])
-	@semant_links=Array.new
-  @semant_links << {name: c.name,value:"/course/#{c.id} "}
-end
+# def back_to_course
+# 	c=Course.find(params[:id])
+# 	@semant_links=Array.new
+#   @semant_links << {name: c.name,value:"/course/#{c.id} "}
+# end
 
   
 end

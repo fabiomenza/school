@@ -1,7 +1,8 @@
 
-
-
-	<h1><%= course.name %></h1>
+	<!-- if is not defined a special name of the course to use as a title -->
+	<!-- use the course name -->
+	<% name ||= course.name %>
+	<%= title name %>
 	<%= course.description.html_safe %>
 
 

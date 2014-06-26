@@ -64,7 +64,7 @@ class LecturesController < ApplicationController
 	def index
 		@lectures=Lecture.order('w_day ASC').order('start_time Asc').where(course_id: params[:course_id] )
 		@course=Course.find params[:course_id]
-		back_to_course
+		
 		
 	end
 
@@ -78,11 +78,10 @@ class LecturesController < ApplicationController
 		redirect_to course_lectures_index_path params[:course_id]
 	end
 
-	def back_to_course
-    @semant_links=Array.new
-    @semant_links << {name: "Back to courses",value: course_index_path }
-
-  	end
+ # def back_to_course
+ #    @semant_links=Array.new
+ #    @semant_links << {name: "Back to courses",value: course_index_path }
+ # end
 
 
 	private

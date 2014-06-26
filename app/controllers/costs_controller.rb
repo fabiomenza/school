@@ -4,7 +4,6 @@ class CostsController < ApplicationController
 
 
   def view
-   @title = "Costs"
    @costs=Cost.find 1
    build_links
   end

@@ -4,9 +4,7 @@ class BureaucracyController < ApplicationController
 
   def view
    @bureaucracy=Bureaucracy.find 1
-	 @title = "Ammission"
-
-
+	 
 	 build_links
   end
 

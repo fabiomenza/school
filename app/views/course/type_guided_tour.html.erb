@@ -1,16 +1,10 @@
 
-<h1>Course for curriculum <%= @curriculum.name %></h1>
-
-
 <%= render partial: 'show', locals: {course: @courses.at(0)} %>
-
-
-
 
 
 <div class="paginate">
 
-Course<strong> <%= @page %></strong> of <strong><%=  @total_pages %></strong>
+<%= "Course <strong>#{@page}</strong> of <strong>#{@total_pages}</strong>".html_safe %>
 <%= will_paginate @courses %>
 
 </div>

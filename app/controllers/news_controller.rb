@@ -6,7 +6,7 @@ class NewsController < ApplicationController
 
   def view
    n = News.find(params[:id])
-   @title = @name = n.name
+   @name = n.name
    @time = n.time.to_s(:long)
    @description = n.description
 
@@ -22,6 +22,7 @@ class NewsController < ApplicationController
     @course=Course.find(params[:course_id])
      
     add_breadcrumb "New new", new_course_news_path(@course)
+
 
     
   end
@@ -39,7 +40,6 @@ class NewsController < ApplicationController
       flash_notice_create "New"
       redirect_to course_news_index_path params[:course_id]
     else
-      #flash_error_create "New"
       render 'new'
     end
     
@@ -96,18 +96,12 @@ class NewsController < ApplicationController
   	@news=c.news.paginate(page: params[:page])
 
   	build_links
-    @title='bannana'
+    
     add_breadcrumb c.name , course_path(c)
     add_breadcrumb 'News', course_news_path(c)
   	
+    
   end
-
-  def back_to_course
-    @semant_links=Array.new
-    @semant_links << {name: "Back to courses",value: course_index_path }
-
-  end
-
  
 
   def build_links

@@ -25,7 +25,7 @@ class MaterialController < ApplicationController
 
   def new
   	@material=Material.new
-
+    @course=Course.find params[:course_id]
     add_breadcrumb "New material", new_course_material_path(params[:course_id])
   end
 
@@ -46,6 +46,7 @@ class MaterialController < ApplicationController
 
   def edit
   	@material=Material.find params[:id]
+    @course=Course.find params[:course_id]
 
     add_breadcrumb @material.name, edit_course_material_path(params[:course_id],@material)
   end
@@ -79,11 +80,11 @@ class MaterialController < ApplicationController
 	semantic_links
   end
 
-  def back_to_course
-    @semant_links=Array.new
-    @semant_links << {name: "Back to courses",value: course_index_path }
+  # def back_to_course
+  #   @semant_links=Array.new
+  #   @semant_links << {name: "Back to courses",value: course_index_path }
 
-  end
+  # end
 
   def structural_links
   end

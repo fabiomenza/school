@@ -1,4 +1,4 @@
-<h1>Listing lectures for <%= @course.name %></h1>
+<%= title "Listing lectures for #{@course.name}" %>
 
 <%= link_to "New Lecture", new_course_lecture_path, {class: "new_button"} %>
 <br><br>

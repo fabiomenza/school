@@ -43,7 +43,8 @@ ul.sf-menu > li {
 .sf-menu ul li a{
 	border:none;
 	border-top: 1px solid green;
-	width: 150px;
+	width: 160px;
+	text-align:left;
 	
 		
 }

@@ -1,4 +1,4 @@
-<h1>New me</h1>
+<%= title "New material for #{@course.name}" %>
 
 <%= render partial:'shared/error_partial', locals:{what: @material, name:'material'} %>
 <%= render partial:'material_form', locals: {to_do:'create' , to_met: 'post', what: @material} %>
