@@ -3,12 +3,17 @@ class HomeController < ApplicationController
   before_action :authenticate_admin!, except: [:index ]
   def index
     @title='HomePage'
-  	@home=Home.find 1	
+  	@home=Home.find_by_id 1
+    
   end
 
   def edit
     @home=Home.find 1	
     add_breadcrumb 'Edit', edit_home_path
+  end
+
+  def new
+
   end
 
   def update
