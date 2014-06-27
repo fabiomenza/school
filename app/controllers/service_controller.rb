@@ -1,7 +1,9 @@
 class ServiceController < ApplicationController
   
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
-  
+  add_breadcrumb 'Services', :services_path
+  add_breadcrumb "Index for services", :service_index_path, only: [:index, :new, :edit]
+
   def view
 	s = Service.find(params[:id])
 	@title = @name = s.name
@@ -23,6 +25,7 @@ class ServiceController < ApplicationController
 
   def new
 	@service=Service.new
+  add_breadcrumb 'New', new_service_path
   end
 
   def create
@@ -43,6 +46,7 @@ class ServiceController < ApplicationController
 
   def edit
 	@service = Service.find(params[:id])
+  add_breadcrumb 'Edit', edit_service_path(@service)
   end
 
   def update
@@ -96,6 +100,6 @@ class ServiceController < ApplicationController
   def index
     @services=Service.order('name ASC').paginate(page: params[:page])
 
-    add_breadcrumb "Index for services", service_index_path
+    
   end
 end

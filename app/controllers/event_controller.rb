@@ -1,6 +1,8 @@
 class EventController < ApplicationController
   
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
+  add_breadcrumb 'Events', :events_path
+  add_breadcrumb "Index for event", :event_index_path, only: [:index, :new, :edit]
   
   def view
 	e = Event.find(params[:id])
@@ -22,11 +24,12 @@ class EventController < ApplicationController
   def index
     @events=Event.order('name ASC').paginate(page: params[:page])
 
-    add_breadcrumb "Index for events", event_index_path
+    
   end
 
   def new
 	@event=Event.new
+  add_breadcrumb 'New', new_event_path
   end
 
   def create
@@ -46,6 +49,8 @@ class EventController < ApplicationController
 
   def edit
 	@event = Event.find(params[:id])
+  add_breadcrumb 'Edit', edit_event_path(@event)
+
   end
 
   def update

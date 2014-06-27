@@ -1,7 +1,8 @@
 class StructureController < ApplicationController
 
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
-  
+  add_breadcrumb 'Structures', :structures_path
+  add_breadcrumb "Index for structures", :structure_index_path, only: [:index, :new, :edit]
 
   def view
 	c = Structure.find(params[:id])
@@ -54,6 +55,7 @@ class StructureController < ApplicationController
 
   def new
 	@structure=Structure.new
+  add_breadcrumb 'New', new_structure_path
   end
 
   def create
@@ -72,12 +74,12 @@ class StructureController < ApplicationController
 
   def edit
 	@structure = Structure.find(params[:id])
+  add_breadcrumb 'Edit', edit_structure_path(@structure)
   end
 
   def index
     @structures=Structure.order('name ASC').paginate(page: params[:page])
 
-    add_breadcrumb "Index for structures", structure_index_path
   end
 
   def update

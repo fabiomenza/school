@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 	add_breadcrumb 'Events', :events_path
+	
+	
   def view
 	@types = Array.new
 	EventType.all.each do |type|

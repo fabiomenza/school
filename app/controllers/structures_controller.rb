@@ -1,4 +1,7 @@
 class StructuresController < ApplicationController
+  add_breadcrumb 'Structures', :structures_path
+  
+
   def view
 	@types = Array.new
 	StructureType.all.each do |type|
