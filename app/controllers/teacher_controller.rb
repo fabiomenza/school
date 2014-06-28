@@ -1,7 +1,7 @@
 class TeacherController < ApplicationController
 
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
-
+  add_breadcrumb 'Teachers', :teacher_path
 
   def view
 	t = Teacher.find(params[:id])
@@ -65,6 +65,10 @@ def destroy
 
 end
 
+def index
+  @teachers=Teacher.order('name ASC').paginate(page: params[:page])
+
+end
 
   def build_courses
 	t = Teacher.find(params[:id])

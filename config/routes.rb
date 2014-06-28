@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   	devise_for :admins , controllers: { registrations: 'registration'}
-  	
-	
+
+
 	root to: "home#index"
 	#Edit
 	get 'home/edit' , to: 'home#edit', as: 'edit_home'
@@ -25,8 +25,8 @@ Rails.application.routes.draw do
 	get 'awards' , to: 'awards#view'				# Tutti i riconoscimenti
 	get 'history', to: 'history#view', as: 'history'
 	get 'alumni', to: 'alumni#view'
-	
-	
+
+
 	#bureaucracy
 	get 'bureaucracy' , to: 'bureaucracy#view', as: 'bureaucracy'	# Burocrazia
 	get 'regulation' , to: 'regulation#view',as: 'regulation'	# Regolamento
@@ -46,13 +46,13 @@ Rails.application.routes.draw do
 	patch 'bursary' , to: 'bursary#update'
 
 	#Edit for single topic
-		
+
 	get 'mission/edit' , to: 'mission#edit', as: 'edit_mission'
 	patch 'mission', to: 'mission#update'
-	
+
 	get 'history/edit' , to: 'history#edit', as: 'edit_history'
 	patch 'history', to: 'history#update'
-	
+
 	get 'awards/edit' , to: 'awards#edit', as: 'edit_awards'
 	patch 'awards', to: 'awards#update'
 
@@ -88,7 +88,7 @@ Rails.application.routes.draw do
 
 
 
-	
+
 	#CRUD courses news
 	get 'course/:course_id/news/index' , to: 'news#index', as: 'course_news_index'
 	get 'course/:course_id/news/new' , to: 'news#new', as: 'new_course_news'
@@ -127,12 +127,13 @@ Rails.application.routes.draw do
 
 
 	# Teacher pages
+  get 'teacher/index' , to: 'teacher#index', as: 'teacher_index'
 	get 'teacher/new' , to: 'teacher#new', as: 'new_teacher'
 	get 'teacher/:id' , to: 'teacher#view', as: 'teacher'
 	get 'teacher/:id/curriculum' , to: 'teacher#curriculum', as: 'teacher_curriculum'
 
 	#CRUD teacher
-	
+
 	post 'teacher' , to: 'teacher#create'
 	get 'teacher/:id/edit' , to: 'teacher#edit', as: 'edit_teacher'
 	put 'teacher/:id' , to: 'teacher#update'
@@ -154,7 +155,7 @@ Rails.application.routes.draw do
 	get 'curriculum/:id' , to: 'curriculum#view', as: 'curriculum_id'
 	get 'curriculum/:id/work_opportunity' , to: 'curriculum#work_opportunity', as: 'curriculum_work_opportunity'
 
-	
+
 
 	#CRUD Material
 	get 'course/:course_id/material/index' , to: 'material#index', as: 'course_material_index'
@@ -167,11 +168,12 @@ Rails.application.routes.draw do
 	get 'course/:course_id/material/:id' , to: 'material#view', as: 'material'
 
 	# Exams pages
+  get 'exam/index' , to: 'exam#index', as: 'index_exam'
 	get 'exam/new' , to: 'exam#new', as: 'new_exam'
 	get 'exam/:id' , to: 'exam#view', as: 'exam'
 
 	# CRUD exam
-	
+
 	post 'exam' , to: 'exam#create'
 	get 'exam/:id/edit' , to: 'exam#edit', as: 'edit_exam'
 	put 'exam/:id' , to: 'exam#update'
@@ -179,7 +181,7 @@ Rails.application.routes.draw do
 
 	# Classrooms pages
 	get 'classroom/new' , to: 'classroom#new', as: 'new_classroom'
-
+  get 'classroom/index', to: 'classroom#index', as: 'index_classroom'
 	get 'classroom/:id' , to: 'classroom#view' , as: 'classroom'
 	get 'classroom/:id/how_to_get_there' , to: 'classroom#how_to_get_there', as: "classroom_htgt"
 	get 'classroom/:id/availability' , to: 'classroom#availability', as: 'classroom_avail'
@@ -188,7 +190,7 @@ Rails.application.routes.draw do
 	get 'classroom/:id/courses', to: 'classroom#courses', as: 'classroom_courses'
 
 	#CRUD classroom
-	
+
 	post 'classroom' , to: 'classroom#create'
 	get 'classroom/:id/edit' , to: 'classroom#edit', as: 'edit_classroom'
 	put 'classroom/:id' , to: 'classroom#update'

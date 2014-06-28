@@ -1,6 +1,7 @@
 class ExamController < ApplicationController
 
 before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
+add_breadcrumb 'Exams', :exam_path
 
 
   def view
@@ -54,6 +55,11 @@ def destroy
  @exam.destroy
 
  redirect_to exam_path
+
+end
+
+def index
+  @exams=Exam.order('name ASC').paginate(page: params[:page])
 
 end
 

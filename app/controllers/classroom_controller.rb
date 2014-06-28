@@ -1,6 +1,7 @@
 class ClassroomController < ApplicationController
 
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
+  add_breadcrumb 'Classrooms', :classroom_path
 
 
   def view
@@ -79,6 +80,11 @@ def destroy
  @classroom.destroy
 
  redirect_to classroom_path
+
+end
+
+def index
+  @classrooms=Classroom.order('name ASC').paginate(page: params[:page])
 
 end
 
