@@ -1,7 +1,7 @@
 class CourseController < ApplicationController
   add_breadcrumb "Courses", :courses_path
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
-  
+
   def view
     @course= Course.find(params[:id])
 
@@ -28,7 +28,7 @@ class CourseController < ApplicationController
 
       add_breadcrumb "Course in the year #{params[:courses_year]}", courses_year_guided_tour_id_path(params[:courses_year],c)
       add_breadcrumb 'Syllabus', courses_year_guided_tour_id_syllabus_path(params[:courses_year],c)
-        
+
     else
       build_links
 
@@ -47,13 +47,13 @@ class CourseController < ApplicationController
 
     for i in 0..10
       @rows[i][0]=time.advance(hours: i).hour
-    end	
+    end
 
-    # controlla il giorni di ongli lecture. 
+    # controlla il giorni di ongli lecture.
     #E lo colloca nell'array a seconda del suo orario
     @weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
-    lectures.each do |lecture| 
-     	day=@weekday.find_index(lecture.w_day)+1 	
+    lectures.each do |lecture|
+     	day=@weekday.find_index(lecture.w_day)+1
 
      	for i in lecture.start_time.hour...lecture.end_time.hour
         @rows[i-start_hours][day]={:name => lecture.classroom.name, :id =>lecture.classroom.id}
@@ -68,7 +68,7 @@ class CourseController < ApplicationController
 
       add_breadcrumb "Courses for curriculum #{Curriculum.find(params[:curriculum_id]).name}", courses_type_guided_tour_id_path(params[:curriculum_id],@course)
       add_breadcrumb 'Timetable', courses_type_guided_tour_id_timetable_path(params[:curriculum_id],@course)
-    
+
     elsif params[:courses_year]
 
       gt_year_structural_links
@@ -76,23 +76,23 @@ class CourseController < ApplicationController
 
       add_breadcrumb "Course in the year #{params[:courses_year]}", courses_year_guided_tour_id_path(params[:courses_year],@course)
       add_breadcrumb 'Timetable', courses_year_guided_tour_id_timetable_path(params[:courses_year],@course)
-    
+
     else
       build_links
 
       add_breadcrumb @course.name, course_path(@course)
       add_breadcrumb 'Timetable', course_timetable_path(@course)
-    
+
     end
 
-      
+
     end
-    
+
   def materials
     c = Course.find(params[:id])
     @name  = "Materials for " + c.name
     @materials = c.material.order('name ASC').paginate(page: params[:page])
-   
+
 
     add_breadcrumb c.name, course_path(c)
     add_breadcrumb 'Materials', course_materials_path(c)
@@ -101,8 +101,8 @@ class CourseController < ApplicationController
   def exams
     c = Course.find(params[:id])
     @exams= c.exam.order('time DESC')
-    @name=c.name   
-    
+    @name=c.name
+
 
     add_breadcrumb c.name, course_path(c)
     add_breadcrumb 'Exams', course_exams_path(c)
@@ -112,7 +112,7 @@ class CourseController < ApplicationController
   	c = Course.find(params[:id])
   	@name  = "Curricula related to " + c.name
   	@curricula = c.curriculum.order('name ASC').paginate(page: params[:page])
-  	
+
     add_breadcrumb c.name, course_path(c)
     add_breadcrumb "Curricula related to #{c.name}", course_curricula_path(c)
   end
@@ -129,7 +129,7 @@ class CourseController < ApplicationController
 
 
   	@courses=Array.new
-   #Informazioni mostrate: name, teacher, curriculum,year 
+   #Informazioni mostrate: name, teacher, curriculum,year
   	@courses_by_year.each do |course|
   		curricula=Array.new
   		course.curriculum.each do |curriculum|
@@ -172,7 +172,7 @@ class CourseController < ApplicationController
     end
     @courses=@curriculum.course.paginate(page: @page, per_page:1)
     @total_pages=@curriculum.course.length
-    
+
     gt_type_structural_links
     semantic_links
 
@@ -185,18 +185,18 @@ class CourseController < ApplicationController
     date1=Date.new(@year.to_i)
     date2=Date.new(@year.to_i+1)
     @courses=Course.order('name ASC').where(accademic_year:  date1...date2)
-    
+
     if  params[:page].nil?
       @page=@courses.find_index(@this_course)+1
     else
       @page=params[:page]
     end
-    
+
 
     @total_pages=@courses.length
     @courses=@courses.paginate(page: @page, per_page: 1)
 
-    
+
     gt_year_structural_links
     semantic_links
 
@@ -212,7 +212,7 @@ class CourseController < ApplicationController
   def new
     @course=Course.new
 
-    add_breadcrumb 'New course', new_course_path(@course)  
+    add_breadcrumb 'New course', new_course_path(@course)
   end
 
   def create
@@ -225,7 +225,7 @@ class CourseController < ApplicationController
     # curriculum=Curriculum.find(params[:course][:curriculum])
     # curriculum.course << @course
     @course.accademic_year=Date.new params[:course]['accademic_year(1i)'].to_i, params[:course]['accademic_year(2i)'].to_i, params[:course]['accademic_year(3i)'].to_i
-    
+
     if @course.save
       flash_notice_create "Course"
 
@@ -233,7 +233,7 @@ class CourseController < ApplicationController
     else
       # flash_error_create "Course"
       render 'new'
-    end 
+    end
   end
 
   def destroy
@@ -243,7 +243,7 @@ class CourseController < ApplicationController
     else
       # flash_error_destroy "Course"
     end
-    redirect_to course_index_path 
+    redirect_to course_index_path
   end
 
   def edit
@@ -270,7 +270,7 @@ class CourseController < ApplicationController
     #     end
     #     curriculum_new.course << @course
     # end
-          
+
     @course.accademic_year=Date.new params[:course]['accademic_year(1i)'].to_i, params[:course]['accademic_year(2i)'].to_i, params[:course]['accademic_year(3i)'].to_i
 
     if @course.save
@@ -280,7 +280,7 @@ class CourseController < ApplicationController
       # flash_error_edit "Course"
       render 'edit'
     end
-    
+
   end
 
 
@@ -332,5 +332,5 @@ class CourseController < ApplicationController
   #   @semant_links << {name: c.name,value:"/course/#{c.id} "}
   # end
 
-  
+
 end

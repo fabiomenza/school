@@ -23,7 +23,7 @@
       <% @exams.each do |exam| %>
         <tr>
           <td><%= exam.name %></td>
-          <td><%= exam.time %></td>
+          <td><%= exam.time.strftime("%A,%d/%m/%Y - %R") %></td>
           <td><%= link_to "#{Course.find(exam.course_id).name}", course_path(exam.course_id) %></td>
           <td><%= link_to 'Show', exam_path(exam) %></td>
           <td><%= link_to 'Edit', exam_path(exam) + "/edit" %></td>

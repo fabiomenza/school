@@ -1,5 +1,5 @@
 <h1><%= @name %></h1>
-<p>Scheduled at <%= @time %></p>
+<p>Scheduled at <%= @time.strftime("%A,%d/%m/%Y - %R") %></p>
 <p><%= @description %></p>
 
 <%= render "shared/structural_link" %>
