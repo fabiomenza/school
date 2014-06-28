@@ -1,7 +1,7 @@
 class TeacherController < ApplicationController
 
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
-  
+
 
   def view
 	t = Teacher.find(params[:id])
@@ -28,8 +28,8 @@ def create
   @teacher.firstname=params[:teacher][:firstname]
   @teacher.lastname=params[:teacher][:lastname]
   @teacher.bio=params[:teacher][:bio]
-  @teacher.photo_url[:teacher][:photo_url]
-  @teacher.curriculum[:teacher][:curriculum]
+  @teacher.photo_url=params[:teacher][:photo_url]
+  @teacher.curriculum=params[:teacher][:curriculum]
   if @teacher.save
     redirect_to teacher_path(@teacher)
   else
@@ -48,7 +48,7 @@ def update
   @teacher.lastname=params[:teacher][:lastname]
   @teacher.bio=params[:teacher][:bio]
   @teacher.photo_url=params[:teacher][:bio]
-  @teacher.curriculum[:teacher][:curriculum]
+  @teacher.curriculum=params[:teacher][:curriculum]
   if @teacher.save
     redirect_to teacher_path(@teacher)
   else

@@ -1,7 +1,7 @@
 class ClassroomController < ApplicationController
-  
+
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
-  
+
 
   def view
 	c = Classroom.find(params[:id])
@@ -46,9 +46,9 @@ end
 
 def create
  @classroom=Classroom.new
- @classroom.name=params[:teacher][:name]
- @classroom.description=params[:teacher][:description]
- @classroom.how_to_get_there=params[:teacher][:how_to_get_there]
+ @classroom.name=params[:classroom][:name]
+ @classroom.description=params[:classroom][:description]
+ @classroom.how_to_get_there=params[:classroom][:how_to_get_there]
  if @classroom.save
    redirect_to classroom_path(@classroom)
  else
@@ -63,9 +63,9 @@ end
 
 def update
  @classroom=Classroom.find(params[:id])
- @classroom.name=params[:teacher][:name]
- @classroom.description=params[:teacher][:description]
- @classroom.how_to_get_there=params[:teacher][:how_to_get_there]
+ @classroom.name=params[:classroom][:name]
+ @classroom.description=params[:classroom][:description]
+ @classroom.how_to_get_there=params[:classroom][:how_to_get_there]
  if @classroom.save
    redirect_to classroom_path(@classroom)
  else
