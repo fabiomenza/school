@@ -19,7 +19,7 @@
 				<td><%= link_to exam.name, exam_path(exam) %></td>
 				<td><%= exam.description %></td>
 				<td><%= link_to exam.classroom.name, classroom_path(exam.classroom) %></td>
-				<td><%= exam.time.strftime("%b,%d/%m/%Y - %R") %></td>
+				<td><%= exam.time.strftime("%A,%d/%m/%Y - %R") %></td>
 			</tr>
 
 		<% end %>
