@@ -100,7 +100,6 @@ end
 	@struct_links = Array.new
 	@struct_links << {:name => "Description",:value => "/classroom/#{c.id}/"}
 	@struct_links << {:name => "How to reach",:value => "/classroom/#{c.id}/how_to_get_there"}
-	@struct_links << {:name => "Availability",:value => "/classroom/#{c.id}/availability"}
   end
   def semantic_links
 	c = Classroom.find(params[:id])

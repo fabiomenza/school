@@ -184,7 +184,6 @@ Rails.application.routes.draw do
   get 'classroom/index', to: 'classroom#index', as: 'classroom_index'
 	get 'classroom/:id' , to: 'classroom#view' , as: 'classroom'
 	get 'classroom/:id/how_to_get_there' , to: 'classroom#how_to_get_there', as: "classroom_htgt"
-	get 'classroom/:id/availability' , to: 'classroom#availability', as: 'classroom_avail'
 	get 'classroom/:id/services', to: 'classroom#services', as: 'classroom_services'
 	get 'classroom/:id/exams', to: 'classroom#exams', as: 'classroom_exams'
 	get 'classroom/:id/courses', to: 'classroom#courses', as: 'classroom_courses'
