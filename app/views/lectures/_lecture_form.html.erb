@@ -1,6 +1,5 @@
 
 
-
 <%= form_for what, url:{ controller: 'lectures', action: to_do}, method: to_met do |f| %>
 	<p>
 		<%= f.label :week_day %> 
@@ -15,8 +14,7 @@
 		<%= f.select :end_time,@lecture_times.map{|t| ["#{t}:00",t] }  %><br/>
 	</p>
 	<p>
-		<%= f.label :classroom%> 
-		<%= f.select :classroom_id,@classrooms.map{ |c| [ c.name,c.id] } %> <br/> <br/>
+		<%= f.label :classroom, "Classroom for this course is #{@classroom.name}" %> <br/>
 	</p>
 
 

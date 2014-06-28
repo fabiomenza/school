@@ -49,14 +49,15 @@ class CourseController < ApplicationController
       @rows[i][0]=time.advance(hours: i).hour
     end
 
-    # controlla il giorni di ongli lecture.
+    # controlla il giorni di onnii lecture.
     #E lo colloca nell'array a seconda del suo orario
     @weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
     lectures.each do |lecture|
      	day=@weekday.find_index(lecture.w_day)+1
 
      	for i in lecture.start_time.hour...lecture.end_time.hour
-        @rows[i-start_hours][day]={:name => lecture.classroom.name, :id =>lecture.classroom.id}
+        classroom=Classroom.select(:name,:id).find(lecture.course.classroom_id)
+        @rows[i-start_hours][day]={name: classroom.name, id: classroom.id}
       end
 
     end

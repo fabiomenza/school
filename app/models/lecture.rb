@@ -1,12 +1,12 @@
 class Lecture < ActiveRecord::Base
 	belongs_to :course
-	belongs_to :classroom
+	
 
 	#validation
-  	validates :w_day, :start_time, :end_time, :course_id, :classroom_id,  presence: true
+  	validates :w_day, :start_time, :end_time, :course_id,  presence: true
   	validate :end_time_greater_than_start_time
     validate :lecture_not_overlapping
-  	validates :course_id,:classroom_id, numericality: { only_integer: true }
+  	validates :course_id, numericality: { only_integer: true }
 
 
   	#validation method

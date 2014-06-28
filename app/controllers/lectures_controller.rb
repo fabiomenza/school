@@ -1,25 +1,28 @@
 class LecturesController < ApplicationController
 
 	add_breadcrumb 'Courses', :courses_path
-	add_breadcrumb "Index for courses", :course_index_path, only: %w(index new edit)
-  	add_breadcrumb "Index for lectures", :course_lectures_index_path, only: %w(index new edit)
+	add_breadcrumb "Index for courses", :course_index_path, only: [:index, :new, :edit]
+  	add_breadcrumb "Index for lectures", :course_lectures_index_path, only: [:index, :new, :edit]
 
   	before_action :authenticate_admin!
 
 	def new
 		@lecture=Lecture.new
 		@course=Course.find(params[:course_id])
+		@classroom=Classroom.find (@course.classroom_id)
 		@weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
 		@lecture_times=*(8..19)
-		@classrooms=Classroom.select(:name, :id).order('name ASC')
-
+		
 		add_breadcrumb "New lecture", new_course_lecture_path(@course)
 	end
 
 	def create
 		@lecture=Lecture.new
-		set_params(@lecture)
 		@course=Course.find params[:course_id]
+		@classroom=Classroom.find (@course.classroom_id)
+
+		set_params(@lecture)
+
 		@weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
 		@lecture_times=*(8..19)
 		@classrooms=Classroom.select(:name, :id).order('name ASC')
@@ -36,6 +39,7 @@ class LecturesController < ApplicationController
 	def edit
 		@lecture=Lecture.find(params[:id])
 		@course=Course.find(params[:course_id])
+		@classroom=Classroom.find (@course.classroom_id)
 		@weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
 		@lecture_times=*(8..19)
 		@classrooms=Classroom.select(:name, :id).order('name ASC')
@@ -45,9 +49,17 @@ class LecturesController < ApplicationController
 	end
 
 	def update
-		lecture=Lecture.find(params[:id])
-		set_params(lecture)
-		if lecture.save
+		@lecture=Lecture.find(params[:id])
+		@course=Course.find(params[:course_id])
+		@classroom=Classroom.find (@course.classroom_id)
+		@weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
+		@lecture_times=*(8..19)
+		@classrooms=Classroom.select(:name, :id).order('name ASC')
+		@start_hour=@lecture
+		
+		
+		set_params(@lecture)
+		if @lecture.save
 			flash_notice_edit "Lecture"
 			redirect_to course_lectures_index_path params[:course_id]
 		else
@@ -78,6 +90,6 @@ class LecturesController < ApplicationController
 			lecture.start_time=Time.zone.now.change( hour: param[:start_time] )
 			lecture.end_time=Time.zone.now.change(hour: param[:end_time])
 			lecture.course_id=params[:course_id]
-			lecture.classroom_id=param[:classroom_id]	
+				
 		end
 end
