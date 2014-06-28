@@ -24,11 +24,12 @@ def create
  @exam.time=params[:exam][:time]
  @exam.course_id=params[:exam][:course_id]
  @exam.classroom_id=params[:exam][:classroom_id]
- if @exam.save
-   redirect_to exam_path(@exam)
- else
-   render 'edit'
- end
+ @var=params
+ # if @exam.save
+ #   redirect_to exam_path(@exam)
+ # else
+ #   render 'edit'
+ # end
 
 end
 
