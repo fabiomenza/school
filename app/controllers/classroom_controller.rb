@@ -1,7 +1,7 @@
 class ClassroomController < ApplicationController
 
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
-  add_breadcrumb 'Classrooms', :classroom_path
+  add_breadcrumb 'Index for classrooms', :classroom_index_path, only: [:index, :new,:edit]
 
 
   def view
@@ -43,6 +43,7 @@ class ClassroomController < ApplicationController
 
 def new
 @classroom=Classroom.new
+add_breadcrumb 'New', new_classroom_path
 end
 
 def create
@@ -60,6 +61,7 @@ end
 
 def edit
 @classroom = Classroom.find(params[:id])
+add_breadcrumb 'Edit', edit_classroom_path(@classroom)
 end
 
 def update

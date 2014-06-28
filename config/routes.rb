@@ -168,7 +168,7 @@ Rails.application.routes.draw do
 	get 'course/:course_id/material/:id' , to: 'material#view', as: 'material'
 
 	# Exams pages
-  get 'exam/index' , to: 'exam#index', as: 'index_exam'
+  get 'exam/index' , to: 'exam#index', as: 'exam_index'
 	get 'exam/new' , to: 'exam#new', as: 'new_exam'
 	get 'exam/:id' , to: 'exam#view', as: 'exam'
 
@@ -181,7 +181,7 @@ Rails.application.routes.draw do
 
 	# Classrooms pages
 	get 'classroom/new' , to: 'classroom#new', as: 'new_classroom'
-  get 'classroom/index', to: 'classroom#index', as: 'index_classroom'
+  get 'classroom/index', to: 'classroom#index', as: 'classroom_index'
 	get 'classroom/:id' , to: 'classroom#view' , as: 'classroom'
 	get 'classroom/:id/how_to_get_there' , to: 'classroom#how_to_get_there', as: "classroom_htgt"
 	get 'classroom/:id/availability' , to: 'classroom#availability', as: 'classroom_avail'

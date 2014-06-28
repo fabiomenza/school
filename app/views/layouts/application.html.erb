@@ -7,74 +7,75 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-        <!-- load jQuery -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+      <!-- load jQuery -->
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
 
-        <!-- load Galleria -->
-        <script src="/assets/galleria-1.3.5.min.js"></script>
+      <!-- load Galleria -->
+      <script src="/assets/galleria-1.3.5.min.js"></script>
 
 	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	  <link rel="stylesheet" href="/resources/demos/style.css">
 	  <script>
-	  $(function() {
-	    $( "#datepicker" ).datepicker();
-	  });
+		  $(function() {
+		    $( "#datepicker" ).datepicker();
+		  });
 	  </script>
 </head>
 <body>
-<%= render 'shared/admin_menu' %>
-<div id=main-wrapper>
-  
-  <div id=header-wrapper>
-      <a href="/"><%= image_tag "logo.jpg", id: "logo" %> </a>
-    </div><!-- end of header-wrapper -->
-    <div id=nav>
-    	<%= render "shared/landmark_menu" %>
-    </div>
-    <div id=page-wrapper>
-    
-      <div id=content>
-      	<div id="breadcrumb">
-			<%= render_breadcrumbs :separator => '>>' %>
-    	</div>
+	<%= render 'shared/admin_menu' %> <!-- Here will be rendered the admin menu if the admin is logged -->
+	<div id='main-wrapper'>
+	  
+	    <div id='header-wrapper'>
+	    	
+	    	<a href="/"><%= image_tag "logo.jpg", id: "logo" %> </a>
+	    </div><!-- end of header-wrapper -->
 
-      	<% flash.each do |name, msg| %>
-      		<%= content_tag :div, id: "flash_#{name}" do%>
-				<%= msg %>
+	    <div id='nav'>
+	    
+	    	<%= render "shared/landmark_menu" %>
+	    </div> <!-- End of nav -->
+
+	    <div id='page-wrapper'>
+	    
+	        <div id='content'>
+		      	<div id='breadcrumb'>
+					<%= render_breadcrumbs :separator => '>>' %>
+		    	</div><!-- end of breadcrumb -->
 				
+				<!-- Qui vengono resi i messaggi di servizio -->
+		      	<% flash.each do |name, msg| %>
+		      		<%= content_tag :div, id: "flash_#{name}" do%>
+						<%= msg %>
+		      		<% end %>
+		        <% end %>
 
-      		<% end %>
-        <% end %>
+		      	<!-- Qui viene reso il contenuto della pagina -->
+				<%= yield %>
+		    </div><!-- end of content -->
+
+			<div id='sidebar-right'>
+			    <div id='structural-block'>
+			      
+					<%= yield :structuralLinkMenu %>
+			      
+			    </div> <!-- end of structural-block -->
+			    <div id='semantic-block'>
+			      
+			      		<%= yield :semanticLinkMenu %>
+			      
+			    </div><!-- end of semantic-block -->
+			</div><!-- end of sidebar-right -->
+	   	</div><!-- end of page-wrapper -->
 
 
-      	
-		<!-- Qui viene reso il contenuto della pagina -->
-		<%= yield %>
-
-      </div>
-	  <div id=sidebar-right>
-	    <div id=structural-block>
-	      
-			<%= yield :structuralLinkMenu %>
-	      
-	    </div> 
-	    <div id=semantic-block>
-	      
-	      		<%= yield :semanticLinkMenu %>
-	      
-	    </div>
-	</div>
-      </div>
-
-
-    <div id=footer-wrapper>
-		
-		<%= render "shared/footer_menu" %>
-		<div id=credits>
+	    <div id='footer-wrapper'>
 			
-		</div>
-    </div>
-</div>
+			<%= render "shared/footer_menu" %>
+			<div id='credits'>
+				
+			</div><!-- end of credits -->
+	    </div><!-- end of footer-wrapper -->
+	</div> <!-- end of main wrapper -->
 </body>
 </html>

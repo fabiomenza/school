@@ -66,7 +66,7 @@ def destroy
 end
 
 def index
-  @teachers=Teacher.order('name ASC').paginate(page: params[:page])
+  @teachers=Teacher.order('lastname ASC').paginate(page: params[:page])
 
 end
 

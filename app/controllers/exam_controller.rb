@@ -1,7 +1,7 @@
 class ExamController < ApplicationController
 
 before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
-add_breadcrumb 'Exams', :exam_path
+add_breadcrumb 'Index for exams', :exam_index_path, except: [:view]
 
 
   def view
@@ -14,6 +14,7 @@ add_breadcrumb 'Exams', :exam_path
 
 def new
 @exam=Exam.new
+add_breadcrumb 'New', new_exam_path
 end
 
 def create
@@ -33,6 +34,7 @@ end
 
 def edit
 @exam = Exam.find(params[:id])
+add_breadcrumb 'Edit', edit_exam_path(@exam)
 end
 
 def update
