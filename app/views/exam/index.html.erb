@@ -1,0 +1,44 @@
+<%= title "Listing Exams" %>
+
+<%= link_to "New Exam", new_exam_path, {class: "new_button"} %>
+
+<br><br>
+
+<table class="styled-table" >
+  <thead>
+    <tr>
+      <th>Name </th>
+      <th>Time </th>
+      <th>Course </th>
+
+
+      <th colspan=4></th>
+
+
+    </tr>
+
+  </thead>
+  <tbody>
+
+      <% @exams.each do |exam| %>
+        <tr>
+          <td><%= exam.name %></td>
+          <td><%= exam.time %></td>
+          <td><%= link_to "#{Course.find(exam.course_id).name}", course_path(exam.course_id) %></td>
+          <td><%= link_to 'Show', exam_path(exam) %></td>
+          <td><%= link_to 'Edit', exam_path(exam) + "/edit" %></td>
+          <td><%= link_to 'Destroy', exam_path(exam), method: :delete,data: { confirm: 'Are you sure?' }  %></td>
+
+        </tr>
+
+      <% end %>
+
+  </tbody>
+
+
+</table>
+
+<%= will_paginate @exams %>
+
+<%= render 'shared/hide_semantic_link' %>
+<%= render 'shared/hide_structural_link' %>

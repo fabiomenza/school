@@ -1,0 +1,44 @@
+<%= title "Listing Teachers" %>
+
+<%= link_to "New Teachers", new_teacher_path, {class: "new_button"} %>
+
+<br><br>
+
+<table class="styled-table" >
+  <thead>
+    <tr>
+      <th>Firstname </th>
+      <th>Lastname </th>
+      <th>Biography </th>
+
+
+      <th colspan=4></th>
+
+
+    </tr>
+
+  </thead>
+  <tbody>
+
+      <% @teachers.each do |teacher| %>
+        <tr>
+          <td><%= teacher.firstname %></td>
+          <td><%= teacher.lastname %></td>
+          <td><%= teacher.bio %></td>
+          <td><%= link_to 'Show', teacher_path(teacher) %></td>
+          <td><%= link_to 'Edit', teacher_path(teacher) + "/edit" %></td>
+          <td><%= link_to 'Destroy', teacher_path(teacher), method: :delete,data: { confirm: 'Are you sure?' }  %></td>
+
+        </tr>
+
+      <% end %>
+
+  </tbody>
+
+
+</table>
+
+<%= will_paginate @teachers %>
+
+<%= render 'shared/hide_semantic_link' %>
+<%= render 'shared/hide_structural_link' %>

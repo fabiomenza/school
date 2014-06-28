@@ -1,0 +1,42 @@
+<%= title "Listing Classrooms" %>
+
+<%= link_to "New Classroom", new_classroom_path, {class: "new_button"} %>
+
+<br><br>
+
+<table class="styled-table" >
+  <thead>
+    <tr>
+      <th>Name </th>
+      <th>Description </th>
+
+
+      <th colspan=4></th>
+
+
+    </tr>
+
+  </thead>
+  <tbody>
+
+      <% @classrooms.each do |classroom| %>
+        <tr>
+          <td><%= classroom.name %></td>
+          <td><%= classroom.description %></td>
+          <td><%= link_to 'Show', classroom_path(classroom) %></td>
+          <td><%= link_to 'Edit', classroom_path(classroom) + "/edit" %></td>
+          <td><%= link_to 'Destroy', classroom_path(classroom), method: :delete,data: { confirm: 'Are you sure?' }  %></td>
+
+        </tr>
+
+      <% end %>
+
+  </tbody>
+
+
+</table>
+
+<%= will_paginate @classrooms %>
+
+<%= render 'shared/hide_semantic_link' %>
+<%= render 'shared/hide_structural_link' %>
