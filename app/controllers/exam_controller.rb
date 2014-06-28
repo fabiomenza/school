@@ -35,7 +35,7 @@ def edit
 end
 
 def update
- @classroom=Classroom.find(params[:id])
+ @exam=Exam.find(params[:id])
 @exam.name=params[:exam][:name]
 @exam.description=params[:exam][:description]
 @exam.time=params[:exam][:time]
