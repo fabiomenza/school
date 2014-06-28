@@ -16,7 +16,7 @@ class Course < ActiveRecord::Base
   validates :teacher_id, numericality: { only_integer: true }
 
 
-  self.per_page = 10
+  self.per_page = 4
   def self.max_word 
    15
   end
