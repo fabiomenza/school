@@ -1,7 +1,7 @@
 class TeacherController < ApplicationController
 
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
-  add_breadcrumb 'Teachers', :teacher_path
+  add_breadcrumb 'Index fo teachers', :teacher_index_path , only: [:index, :new,:edit]
 
   def view
 	t = Teacher.find(params[:id])
@@ -10,6 +10,8 @@ class TeacherController < ApplicationController
 	@photo = t.photo_url
 	build_links
 	build_courses
+  add_breadcrumb @title, teacher_path(t)
+
   end
 
   def curriculum

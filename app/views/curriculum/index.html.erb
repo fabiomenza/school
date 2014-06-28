@@ -1,6 +1,6 @@
 
 <%= stylesheet_link_tag 'stylesheets/tables' %>
-<h1>Listing Curricuums</h1>
+<%= title "Listing Curriculums" %>
 
 <%= link_to "New Curriculum", new_curriculum_path, {class: "new_button"} %>
 <br><br>
@@ -10,7 +10,8 @@
 		<tr>
 			<th>Name </th>
 			<th>Description</th>
-			<th colspan=4></th>
+			<th>Related</th>
+			<th colspan=3></th>
 
 
 		</tr>

@@ -69,7 +69,7 @@ class ServiceController < ApplicationController
     @service=Service.find params[:id]
     @service.destroy
 
-    redirect_to services
+    redirect_to services_index_path
     
   end
 
