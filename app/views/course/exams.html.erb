@@ -1,9 +1,33 @@
-<%= title @name %>
+<%= title "Exams for #{@name}" %>
+
 <ul>
-<% @exams.each do |element| %>
-	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
-<% end %>
-</ul>
+<table class="styled-table" >
+	<thead>
+		<tr>
+			<th>Name </th>
+			<th>Description</th>
+			<th>Classroom</th>
+			<th>Date</th>
+
+		</tr>
+
+	</thead>
+	<tbody>
+
+		<% @exams.each do |exam| %>
+			<tr>
+				<td><%= link_to exam.name, exam_path(exam) %></td>
+				<td><%= exam.description %></td>
+				<td><%= link_to exam.classroom.name, classroom_path(exam.classroom) %></td>
+				<td><%= exam.time.strftime("%b,%d/%m/%Y - %R") %></td>
+			</tr>
+
+		<% end %>
+
+	</tbody>
+
+
+</table>
 
 <%= render 'shared/semantic_link' %>
 <%= render 'shared/hide_structural_link' %>

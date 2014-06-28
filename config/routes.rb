@@ -168,7 +168,7 @@ Rails.application.routes.draw do
 	get 'course/:course_id/material/:id' , to: 'material#view', as: 'material'
 
 	# Exams pages
-  get 'exam/index' , to: 'exam#index', as: 'exam_index'
+  	get 'exam/index' , to: 'exam#index', as: 'exam_index'
 	get 'exam/new' , to: 'exam#new', as: 'new_exam'
 	get 'exam/:id' , to: 'exam#view', as: 'exam'
 

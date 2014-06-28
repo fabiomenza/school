@@ -6,17 +6,15 @@ class CourseController < ApplicationController
     @course= Course.find(params[:id])
 
     build_links
-
     add_breadcrumb @course.name, course_path( @course)
+
   end
 
   def syllabus
+
     c = Course.find(params[:id])
     @name = c.name
     @program = c.program
-
-
-     
 
     if params[:curriculum_id]
       gt_type_structural_links
@@ -102,12 +100,10 @@ class CourseController < ApplicationController
 
   def exams
     c = Course.find(params[:id])
-    @name  = "Exams for " + c.name
-    @exams = Array.new
-    c.exam.each do |exam|
-      @exams << {:name => "#{exam.name}",:value => "/exam/#{exam.id}/"}
-    end
+    @exams= c.exam.order('time DESC')
+    @name=c.name   
     
+
     add_breadcrumb c.name, course_path(c)
     add_breadcrumb 'Exams', course_exams_path(c)
   end
