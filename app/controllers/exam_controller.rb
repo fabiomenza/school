@@ -21,15 +21,16 @@ def create
  @exam=Exam.new
  @exam.name=params[:exam][:name]
  @exam.description=params[:exam][:description]
- @exam.time=params[:exam][:time]
+ @exam.time=Time.new params[:exam]['time(1i)'].to_i, params[:exam]['time(2i)'].to_i, params[:exam]['time(3i)'].to_i, params[:exam]['time(4i)'].to_i, params[:exam]['time(5i)'].to_i
+
  @exam.course_id=params[:exam][:course_id]
  @exam.classroom_id=params[:exam][:classroom_id]
  @var=params
- # if @exam.save
- #   redirect_to exam_path(@exam)
- # else
- #   render 'edit'
- # end
+  if @exam.save
+   redirect_to exam_path(@exam)
+ else
+   render 'edit'
+ end
 
 end
 
@@ -42,11 +43,11 @@ def update
  @exam=Exam.find(params[:id])
 @exam.name=params[:exam][:name]
 @exam.description=params[:exam][:description]
-@exam.time=params[:exam][:time]
+@exam.time=Time.new params[:exam]['time(1i)'].to_i, params[:exam]['time(2i)'].to_i, params[:exam]['time(3i)'].to_i, params[:exam]['time(4i)'].to_i, params[:exam]['time(5i)'].to_i
 @exam.course_id=params[:exam][:course_id]
 @exam.classroom_id=params[:exam][:classroom_id]
  if @exam.save
-   redirect_to exam_path(@exam)
+   redirect_to exam_index_path
  else
    render 'edit'
  end
@@ -57,7 +58,7 @@ def destroy
  @exam=Exam.find params[:id]
  @exam.destroy
 
- redirect_to exam_path
+ redirect_to exam_index_path
 
 end
 
