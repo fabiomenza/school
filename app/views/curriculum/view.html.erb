@@ -3,10 +3,11 @@
 <h2>Courses in this curriculum</h2>
 <ul class="curriculum-list">
 <% @courses.each do |course| %>
-	  <li><%= link_to course.name, course_path(course), {class: "to_curriculum"}  %></li>
+	  <li><%= link_to course.name, course_path(course), {class: "simple-link"}  %></li>
 <% end %>
 </ul>
 
+<%= will_paginate @courses %>
 
 <%= render "shared/structural_link" %>
 <%= render "shared/hide_semantic_link" %>

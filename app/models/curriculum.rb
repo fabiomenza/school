@@ -3,7 +3,7 @@ class Curriculum < ActiveRecord::Base
 
   #validation
   validates :name, :description, :work_opportunity, presence: true
-  validates :name, length: {in: 6...20}
+  validates :name, length: {in: 6...50}
   validates :description, length: {minimum: 20}
   validates :work_opportunity, length: {minimum: 20}
   

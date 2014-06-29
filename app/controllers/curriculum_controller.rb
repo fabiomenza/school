@@ -13,9 +13,10 @@ class CurriculumController < ApplicationController
   	@title = @name = c.name
   	@description = c.description
   	
-  	@courses = c.course
+  	@courses = c.course.to_a.paginate(page: params[:page])
 
     add_breadcrumb c.name, curriculum_id_path(c)
+    build_links
   end
 
   def manage_courses
@@ -131,8 +132,10 @@ class CurriculumController < ApplicationController
 
   def work_opportunity
   	c = Curriculum.find(params[:id])
-  	@title = @name = "Work opportunities with " + c.name + " curriculum"
+  	@name = "Work opportunities with " + c.name + " curriculum"
   	@description = c.work_opportunity
+    add_breadcrumb "#{c.name} Curriculum", curriculum_id_path(c)
+    add_breadcrumb "Work opportunities", curriculum_work_opportunity_path(c)
   	build_links
   end
 
@@ -150,7 +153,7 @@ class CurriculumController < ApplicationController
 
   def semantic_links
 	  c = Curriculum.find(params[:id])
-    @semant_links = Array.new
+    
   end
 
   private

@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
 
   #validation
   validates :name, :description, :program, :teacher_id, :classroom_id, :accademic_year, presence: true
-  validates :name, length: {in: 6...20}
+  validates :name, length: {in: 6...50}
   validates :description, length: {minimum: 20}
   validates :program , length: {minimum: 20}
   validates :teacher_id, numericality: { only_integer: true }

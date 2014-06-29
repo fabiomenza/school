@@ -40,7 +40,7 @@ class EventController < ApplicationController
     @event.event_type_id=params[:event_type]
     @event.structure_id=params[:structure]
     if @event.save
-      redirect_to event_path(@event)
+      redirect_to event_index_path
     else
       render 'edit'
     end
@@ -61,7 +61,7 @@ class EventController < ApplicationController
     @event.event_type_id=params[:event_type]
     @event.structure_id=params[:structure]
     if @event.save
-      redirect_to event_path(@event)
+      redirect_to event_index_path
     else
       render 'edit'
     end
@@ -72,7 +72,7 @@ class EventController < ApplicationController
     @event=Event.find params[:id]
     @event.destroy
 
-    redirect_to events
+    redirect_to event_index_path
     
   end
 
