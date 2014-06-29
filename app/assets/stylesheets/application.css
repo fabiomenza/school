@@ -202,13 +202,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', end
 
 
 
-#breadcrumb a, .pagination a{
+#breadcrumb a, .pagination a ,a.simple-link {
   color: green;
   text-decoration: none;
   
 }
 
-#breadcrumb a:hover,.pagination a:hover{
+#breadcrumb a:hover,.pagination a:hover,a.simple-link:hover{
 
   color:#51F751;
   
