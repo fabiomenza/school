@@ -9,6 +9,7 @@ class StructureController < ApplicationController
 	@title = @name = c.name
 	@description = c.description
   	add_breadcrumb c.name, structure_path(c)
+
 	build_links
   end
 
@@ -18,7 +19,8 @@ class StructureController < ApplicationController
 	@map = c.map
         c.map = @map
   	add_breadcrumb c.name, structure_path(c)
-	build_links
+    add_breadcrumb "Map", structure_map_path(c)
+	build_links 
   end
 
   def photogallery
@@ -29,6 +31,7 @@ class StructureController < ApplicationController
 		@photos << {:name => "#{photo.name}",:value => "#{photo.url}"}
 	end
   	add_breadcrumb c.name, structure_path(c)
+    add_breadcrumb "Photogallery", structure_photos_path(c)
 
 	build_links
   end
@@ -49,6 +52,7 @@ class StructureController < ApplicationController
 	c.service.each do |service|
 		@services << {:name => "#{service.name}",:value => "/service/#{service.id}"}
 	end
+  add_breadcrumb "Services available in #{c.name}", structure_services_path(c)
 
 	build_links
   end

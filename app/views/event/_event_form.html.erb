@@ -1,6 +1,3 @@
-<% if defined? time %>
-	<%= debug time %>
-<% end %>
 
 <%= form_for what, url:{ controller: 'event', action: to_do}, method: to_met do |f| %>
 	<%= f.label :name %> <br>

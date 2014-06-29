@@ -231,7 +231,14 @@ Rails.application.routes.draw do
 	put 'event/:id' , to: 'event#update'
 	delete 'event/:id' , to: 'event#destroy'
 
-	# School's awards pages
+	# School's awards pages CRUD
+	get 'awards/index', to: 'awards#index', as: 'awards_index'
+	get 'awards/new' , to: 'awards#new', as: 'new_award'
+	post 'awards' , to: 'awards#create'
+	get 'awards/:id/edit' , to: 'awards#edit', as: 'edit_award'
+	put 'awards/:id' , to: 'awards#update'
+	delete 'award/:id' , to: 'awards#destroy'
+
 	get 'award/:id' , to: 'award#view', as: 'award'
 
 end

@@ -4,7 +4,7 @@
 <h2><%= @name %>'s courses</h2>
 <ul>
 <% @courses.each do |element| %>
-	  <li><a href="<%= element[:url] %>"><%= element[:name] %></a></li>
+	  <li><a href="<%= element[:url] %>" class="simple-link"><%= element[:name] %></a></li>
 <% end %>
 </ul>
 

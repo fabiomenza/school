@@ -1,0 +1,8 @@
+<%= title "Edit Award" %>
+
+<%= render partial:'shared/error_partial', locals:{what: @award, name:'award'} %>
+<%= render partial:'award_form', locals: {to_do:'update' , to_met: 'put', what: @award} %>
+
+
+<%= render 'shared/hide_semantic_link' %>
+<%= render 'shared/hide_structural_link' %>

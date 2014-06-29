@@ -1,7 +1,7 @@
 <h1><%= @name %></h1>
 <ul>
 <% @events.each do |element| %>
-	  <li><a href="<%= element[:value] %>"><%= element[:name] %></a></li>
+	  <li><a href="<%= element[:value] %>" class="simple-link"><%= element[:name] %></a></li>
 <% end %>
 </ul>
 <%= render "shared/structural_link" %>
