@@ -1,7 +1,7 @@
 class NewsController < ApplicationController
   add_breadcrumb 'Courses', :courses_path
-  add_breadcrumb "Index for courses", :course_index_path, only: %w(index new edit)
-  add_breadcrumb "Index for news", :course_news_index_path, only: %w(index new edit)
+  add_breadcrumb "Index for courses", :course_index_path, only: [:index, :new, :edit]
+  add_breadcrumb "Index for news", :course_news_index_path, only: [:index, :new, :edit]
   
   before_action :authenticate_admin!, only: [:index, :new, :create, :destroy, :edit,:update]
   
@@ -11,21 +11,16 @@ class NewsController < ApplicationController
    @time = n.time.to_s(:long)
    @description = n.description
 
-   build_links
-
+   
    add_breadcrumb  n.course.name, course_path(n.course)
-   add_breadcrumb 'News', course_news_path(n.course)
-   add_breadcrumb  @name, course_new_path(n.course, n)  
+   add_breadcrumb 'News', course_news_path(n.course)d_breadcrumb  @name, course_new_path(n.course, n)  
  end
 
   def new
     @new=News.new
     @course=Course.find(params[:course_id])
      
-    add_breadcrumb "New new", new_course_news_path(@course)
-
-
-    
+    add_breadcrumb "New new", new_course_news_path(@course)    
   end
 
   def create
@@ -96,24 +91,10 @@ class NewsController < ApplicationController
   	@course_name=c.name
   	@news=c.news.paginate(page: params[:page])
 
-  	build_links
-    
+  	    
     add_breadcrumb c.name , course_path(c)
-    add_breadcrumb 'News', course_news_path(c)
-  	
-    
+    add_breadcrumb 'News', course_news_path(c)   
   end
  
 
-  def build_links
-	structural_links
-	semantic_links
-  end
-  def structural_links
-  end
-  def semantic_links
-	 # n = Course.find(params[:id])
-	 # @semant_links = Array.new
-	 # @semant_links << {:name => "#{n.name}",:value => course_path(n)}
-  end
 end

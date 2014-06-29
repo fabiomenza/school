@@ -22,6 +22,7 @@ class CurriculumController < ApplicationController
 
     curriculum=Curriculum.find params[:curriculum_id]
     @name=curriculum.name
+    #if :search is not nil use it to filter the courses
     if params[:search]
       @courses=curriculum.course.where('name LIKE ?', "%#{params[:search]}%")
     else
@@ -35,13 +36,15 @@ class CurriculumController < ApplicationController
 
   def list_courses_to_add
 
-    #TODO, magari rendere piu' snello
+    
     @curriculum=Curriculum.find params[:curriculum_id]
+    #if :search is not nil use it to filter the courses
     if params[:search]
       courses=Course.where('name LIKE ?', "%#{params[:search]}%")
     else
       courses=Course.all
     end
+    #if the courses is not in the curriculum add it to array
     @courses=Array.new
     courses.each do |course|
       unless @curriculum.course.exists? id: course.id

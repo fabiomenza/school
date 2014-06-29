@@ -16,6 +16,9 @@ class CourseController < ApplicationController
     @name = c.name
     @program = c.program
 
+    #Since this action is called even in guided tours, it check if:
+    #:curriculum_id exist, we are on the type guided tour
+    #:courses_year exists, we are in the year guided tour
     if params[:curriculum_id]
       gt_type_structural_links
       semantic_links
@@ -39,19 +42,25 @@ class CourseController < ApplicationController
 
   def timetable
     @course=Course.find(params[:id])
-  	# indica le ore della mattina da cui partono le lezioni
+  	# Starting time of the lessons in the morning
   	start_hours=8
+    #Scholar day duration in hours
+    day_duration=10
   	lectures=@course.lecture
   	time=Time.new().change(hour:start_hours,minute:0,second:0)
+    #In this matrix will be stored all the lectures and the data for the view
+    #Each row is of a specific hour(8:00,9:00) and in each column there is the lecture for a week day
   	@rows=Array.new(11){ Array.new(6)}
 
-    for i in 0..10
+    #Pouplate the first culumn with the day-time
+    for i in 0..day_duration
       @rows[i][0]=time.advance(hours: i).hour
     end
 
-    # controlla il giorni di onnii lecture.
-    #E lo colloca nell'array a seconda del suo orario
+    #This array is used to place each lecture in the right column
+    #is used also to decrease the complexity of the algorithm
     @weekday=['Monday','Tuesday','Wednesday','Thursday','Friday']
+    #place each lecture in the right spot in the matrix @row
     lectures.each do |lecture|
      	day=@weekday.find_index(lecture.w_day)+1
 
@@ -62,6 +71,7 @@ class CourseController < ApplicationController
 
     end
 
+    #Samen as 'syllabus'
     if params[:curriculum_id]
 
       gt_type_structural_links
@@ -120,30 +130,28 @@ class CourseController < ApplicationController
 
   def courses_by_year
   	@year=params[:course][:year]
-  	# @courses_by_year=Course.order('accademic_year DESC').all.paginate(page: params[:page])
+    #Used for delimit one year
   	date1=Date.new(@year.to_i)
   	date2=Date.new(@year.to_i+1)
 
   	@courses_by_year=Course.order('name ASC').where(accademic_year:  date1...date2).paginate(page: params[:page])
-  	# quick and dirty
-  	#@courses_by_year=Course.all.paginate(page: params[:page])
-
-
+  	
   	@courses=Array.new
-   #Informazioni mostrate: name, teacher, curriculum,year
+    #Informazioni mostrate: name, teacher, curriculum,year
   	@courses_by_year.each do |course|
+      #Store all curriculum of this course in a array for easiest access later
   		curricula=Array.new
   		course.curriculum.each do |curriculum|
-  			curricula <<{:name => "#{curriculum.name}",:id => curriculum.id}
-  	end
+  			curricula <<{name: "#{curriculum.name}",id: curriculum.id}
+  	  end
 
-  	@courses << {:name => "#{course.name}",
-  				 :id => course.id,
-  				 :teacher => "#{course.teacher.firstname} #{course.teacher.lastname}",
-  				 :teacher_id => course.teacher_id,
-  				 :year => course.accademic_year,
-  				 :curricula => curricula,
-  				 :description => course.description
+  	@courses << {name: "#{course.name}",
+  				 id: course.id,
+  				 teacher: "#{course.teacher.firstname} #{course.teacher.lastname}",
+  				 teacher_id: course.teacher_id,
+  				 year: course.accademic_year,
+  				 curricula: curricula,
+  				 description: course.description
       		}
   	end
 
@@ -163,9 +171,10 @@ class CourseController < ApplicationController
 
     @this_course=Course.find(params[:id])
     @curriculum=Curriculum.find(params[:curriculum_id])
-    #se params[:page].nil allora vuol dire che arrivo direttamente da
-    #courses_by_type, quindi devo mostrare il corso selezionato.
-    #per cui frego will_paginate modificando il parametro :page
+
+    #If params[:page].nil i'm arriving directly  from  courses_by_type_path
+    #That means i'm at the sting point of the guided tour.
+    #So i fool will_paginate setting directly :page to show the course user has chosen
     if  params[:page].nil?
       @page=@curriculum.course.find_index(@this_course)+1
     else
@@ -187,6 +196,7 @@ class CourseController < ApplicationController
     date2=Date.new(@year.to_i+1)
     @courses=Course.order('name ASC').where(accademic_year:  date1...date2)
 
+    #As type _guided_tour
     if  params[:page].nil?
       @page=@courses.find_index(@this_course)+1
     else
@@ -223,8 +233,6 @@ class CourseController < ApplicationController
     @course.program=params[:course][:program]
     @course.teacher_id=params[:course][:teacher_id]
     @course.classroom_id=params[:course][:classroom_id]
-    # curriculum=Curriculum.find(params[:course][:curriculum])
-    # curriculum.course << @course
     @course.accademic_year=Date.new params[:course]['accademic_year(1i)'].to_i, params[:course]['accademic_year(2i)'].to_i, params[:course]['accademic_year(3i)'].to_i
 
     if @course.save
@@ -260,18 +268,7 @@ class CourseController < ApplicationController
     @course.program=params[:course][:program]
     @course.teacher_id=params[:course][:teacher_id]
     @course.classroom_id=params[:course][:classroom_id]
-    # #if the curriculum for the course changed
-    # # => delete from old if exist
-    # # => add to the new course
-    # unless @course.curriculum.exists? params[:course][:classroom_id]
-    #     curriculum_old=Curriculum.find(@course.curriculum.id)
-    #     curriculum_new=Curriculum.find(params[:course][:classroom_id])
-    #     if curriculum_old.course.exists?(@course.id)
-    #       curriculum_old.delete(@course)
-    #     end
-    #     curriculum_new.course << @course
-    # end
-
+  
     @course.accademic_year=Date.new params[:course]['accademic_year(1i)'].to_i, params[:course]['accademic_year(2i)'].to_i, params[:course]['accademic_year(3i)'].to_i
 
     if @course.save
